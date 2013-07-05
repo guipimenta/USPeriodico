@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<html>
+<head>
+     <link href="~/Content/CSS/bootstrap.css" rel="stylesheet" media="screen"/>
+    <link href="~/Content/CSS/usperiodico.css" rel="stylesheet" media="screen" />
+    <link href="~/Content/CSS/mosaic.css" rel="stylesheet" media="screen"/>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/Bootstrap/bootstrap.min.js"></script>
+    <script src="~/Scripts/Bootstrap/mosaic.1.0.1.js"></script>
+    <title>USPeriodico</title>
+    
+    <script type="text/javascript">  
+        jQuery(function($){
+            $('.bar2').mosaic({
+            animation	:	'slide'		//fade or slide
+            });
+        });
+    </script>
+
+</head>
+
+<body >
+    <header>
+        <div>
+            <ul class="nav nav-pills">
+                <li>
+                    <a href="/Home">Home</a>
+                </li>
+                <li>
+                    <a href="/Login/Login">Login</a>
+                </li>
+                <li>
+                    <a href="#">Sobre</a>
+                </li>
+                <li>
+                    <a href="#">Contato</a>
+                </li>
+                <li>
+                    <form class="navbar-search pull-left">
+                        <input type="text" class="search-query" placeholder="Buscar">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </header>
+    
+    <div>
+        @RenderBody();
+    </div>
+    <footer>
+        
+    </footer>
+</body>
+</html>

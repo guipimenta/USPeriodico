@@ -1,0 +1,78 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/CSS/bootstrap.css" rel="stylesheet" media="screen"/>
+    <link href="~/Content/CSS/usperiodico.css" rel="stylesheet" media="screen" />
+    <link href="~/Content/CSS/mosaic.css" rel="stylesheet" media="screen"/>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/Bootstrap/bootstrap.min.js"></script>
+    <script src="~/Scripts/Bootstrap/mosaic.1.0.1.js"></script>
+    <title>USPeriodico - Home</title>
+
+</head>
+
+<body >
+    <header>
+        <div>
+            <ul class="nav nav-pills">
+                <li>
+                    <a href="/Home/IndexSafe">Home</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Filtrar
+                        <b class="caret"></b>
+                    </a>
+                     <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">Esportes</a>
+                        </li>
+                        <li>
+                            <a href="#">Estagio</a>
+                        </li>
+                        <li>
+                            <a href="#">Iniciacao</a>
+                        </li>
+                        <li>
+                            <a href="#">Festa</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Novo
+                        <b class="caret"></b>
+                    </a>
+                     <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">Esporte</a>
+                        </li>
+                        <li>
+                            <a href="#">Estagio</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Contato</a>
+                </li>
+                <li>
+                    <a href="/Login/LogOff">Logout</a>
+                </li>
+                <li>
+                    <form class="navbar-search pull-left">
+                        <input type="text" class="search-query" placeholder="Buscar">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div>
+        @RenderBody();
+    </div>
+
+
+</body>
+</html>
