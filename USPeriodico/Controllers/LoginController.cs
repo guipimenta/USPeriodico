@@ -65,7 +65,9 @@ namespace USPeriodico.Controllers
                     return Redirect("/Home/IndexSafe");
                 }
             }
-            return Redirect("/Home/");
+            ViewBag.alert = true;
+            ViewBag.mensagemErro = "Email ou senha inválidos";
+            return View();
         }
 
 
