@@ -82,12 +82,12 @@ namespace USPeriodico.Controllers
             Estagio estagio = entities.Estagio.Find(id);
             usperiodicoEntities empresa = new usperiodicoEntities();
             Usuarios dono = empresa.Usuarios.First(Usuario => Usuario.email == HttpContext.User.Identity.Name);
-            if (Utilitarios.VerificaUsuario(1, dono.email) > 1)
+            if (Utilitarios.VerificaUsuario(1, dono.email) > 0)
             {
                 entities.Estagio.Remove(estagio);
                 entities.SaveChanges();
             }
-            else if (Utilitarios.VerificaUsuario(2, dono.email) > 1)
+            else if (Utilitarios.VerificaUsuario(2, dono.email) > 0)
             {
                 if (estagio.EmpresaID == dono.Id)
                 {
@@ -167,12 +167,12 @@ namespace USPeriodico.Controllers
                     String name = HttpContext.User.Identity.Name;
                     usperiodicoEntities usuario = new usperiodicoEntities();
                     Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
-                    if (Utilitarios.VerificaUsuario(1, recuperado.email) >= 1)
+                    if (Utilitarios.VerificaUsuario(1, recuperado.email) > 0)
                     {
                         ViewBag.ID = id;
                         return View(estagio);
                     }
-                    else if (Utilitarios.VerificaUsuario(2, recuperado.email) > 1)
+                    else if (Utilitarios.VerificaUsuario(2, recuperado.email) > 0)
                     {
                         if (recuperado.Id == estagio.EmpresaID)
                         {
