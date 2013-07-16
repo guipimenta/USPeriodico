@@ -10,9 +10,12 @@ using System.Web.Security;
 
 
 namespace USPeriodico.Controllers
-{
+{   
     public class LoginController : Controller
     {
+        private static int ROLE_ADMINISTRADOR = 1;
+        private static int ROLE_EMPRESA = 2;
+        private static int ROLE_ALUNO = 3;
         //
         // GET: /Login/
         [HttpGet]
@@ -52,10 +55,22 @@ namespace USPeriodico.Controllers
             if (ModelState.IsValid)
             {
                 usperiodicoEntities entities = new usperiodicoEntities();
-                model.role = 1;
-               /* entities.Usuarios.Any(Usuarios=>Usuarios.email == model.email){
+                
+                //Papel no sistema
+                model.role = ROLE_ALUNO;
 
-                }*/
+                //Verifica se já existe o email cadastrado
+                if(entities.Usuarios.Any(Usuarios=>Usuarios.email == model.email)){
+                    ViewBag.alert = true;
+                    ViewBag.mensagemErro = "Usuário já existe!";
+                    return View();
+                }
+                if (!Utilitarios.TestEmailRegex(model.email))
+                {
+                    ViewBag.alert = true;
+                    ViewBag.mensagemErro = "e-mail inválido!";
+                    return View();
+                }
                 entities.Usuarios.Add(model);
                 entities.SaveChanges();
                 return Redirect("Login");

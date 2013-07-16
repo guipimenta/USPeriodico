@@ -5,8 +5,14 @@
     Layout = "~/Views/Base/_usuarioComumBase.cshtml";
 }
 
+
+
 <div class="container" style="width: 75%;">
         <div class ="hero-unit">
+            @if (ViewBag.alert == true)
+            {
+                @ViewBag.mensagemErro;
+            }
             <h1 align="center">Cadastrar</h1><br>
             <form class="form-horizontal" action="Cadastrar" method="post" >
                 <div class="control-group">
