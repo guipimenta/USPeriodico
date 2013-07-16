@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Web.Security;
 
 
+
 namespace USPeriodico.Controllers
 {
     public class LoginController : Controller
@@ -24,22 +25,44 @@ namespace USPeriodico.Controllers
         {
             if (ModelState.IsValid)
             {
-                string username = model.username;
+                string email = model.email;
                 string password = model.password;
 
-                UsuariosEntities entities = new UsuariosEntities();
+                usperiodicoEntities entities = new usperiodicoEntities();
 
-                bool userValid = entities.Usuarios.Any(Usuarios => Usuarios.username == username);
+                bool userValid = entities.Usuarios.Any(Usuarios => Usuarios.email == email && Usuarios.password == password);
 
                 if (userValid)
                 {
-                    FormsAuthentication.SetAuthCookie(username, false);
+                    FormsAuthentication.SetAuthCookie(email, false);
                     return Redirect("/Home/IndexSafe");
                 }
             }
             return Redirect("/Home/");
         }
 
+        [HttpGet]
+        public ActionResult Cadastrar()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Cadastrar(Usuarios model)
+        {
+            if (ModelState.IsValid)
+            {
+                usperiodicoEntities entities = new usperiodicoEntities();
+                model.role = 1;
+               /* entities.Usuarios.Any(Usuarios=>Usuarios.email == model.email){
+
+                }*/
+                entities.Usuarios.Add(model);
+                entities.SaveChanges();
+                return Redirect("Login");
+               
+            }
+            return Redirect("Home") ;
+        }
 
         public ActionResult LogOff()
         {

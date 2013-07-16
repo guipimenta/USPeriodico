@@ -16,5 +16,11 @@ namespace USPeriodico.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult IndexSafe()
+        {
+            return View();
+        }
+
     }
 }

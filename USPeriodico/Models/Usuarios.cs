@@ -15,7 +15,7 @@ namespace USPeriodico.Models
     public partial class Usuarios
     {
         public int Id { get; set; }
-        public string username { get; set; }
+        public string email { get; set; }
         public string password { get; set; }
         public int role { get; set; }
     

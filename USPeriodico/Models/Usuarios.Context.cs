@@ -13,10 +13,10 @@ namespace USPeriodico.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class UsuariosEntities : DbContext
+    public partial class usperiodicoEntities : DbContext
     {
-        public UsuariosEntities()
-            : base("name=UsuariosEntities")
+        public usperiodicoEntities()
+            : base("name=usperiodicoEntities")
         {
         }
     

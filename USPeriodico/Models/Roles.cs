@@ -14,9 +14,14 @@ namespace USPeriodico.Models
     
     public partial class Roles
     {
+        public Roles()
+        {
+            this.Usuarios = new HashSet<Usuarios>();
+        }
+    
         public int RoleId { get; set; }
         public string Role { get; set; }
     
-        public virtual Usuarios Usuarios { get; set; }
+        public virtual ICollection<Usuarios> Usuarios { get; set; }
     }
 }
