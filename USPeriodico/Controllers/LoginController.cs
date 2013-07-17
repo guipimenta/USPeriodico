@@ -50,7 +50,7 @@ namespace USPeriodico.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Cadastrar(Usuarios model)
+        public ActionResult Cadastrar(Usuarios model, String confirmaPassword)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +58,22 @@ namespace USPeriodico.Controllers
                 
                 //Papel no sistema
                 model.role = ROLE_ALUNO;
+                try
+                {
+                    if (!model.password.Equals(confirmaPassword))
+                    {
+                        ViewBag.alert = true;
+                        ViewBag.mensagemErro = "Senhas diferentes";
+                        return View();
+                    }
+                }
+                catch (Exception e) 
+                {
+                    ViewBag.alert = true;
+                    ViewBag.mensagemErro = "Digite uma senha";
+                    return View();
+                }
+                
 
                 //Verifica se já existe o email cadastrado
                 if(entities.Usuarios.Any(Usuarios=>Usuarios.email == model.email)){
@@ -65,7 +81,7 @@ namespace USPeriodico.Controllers
                     ViewBag.mensagemErro = "Usuário já existe!";
                     return View();
                 }
-                if (!Utilitarios.TestEmailRegex(model.email))
+                if (!Utilitarios.TestEmailRegex(model.email) && !Utilitarios.VerificaEmailUSP(model.email))
                 {
                     ViewBag.alert = true;
                     ViewBag.mensagemErro = "e-mail inválido!";

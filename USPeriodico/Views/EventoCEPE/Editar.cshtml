@@ -1,0 +1,64 @@
+﻿@model USPeriodico.Models.EventoCEPE
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Base/_logadoBase.cshtml";
+}
+
+
+<div class="container" style="width: 75%;">
+        <div class ="hero-unit">
+           
+            <h1 align="center">@Model.Nome</h1><br>
+             @if (ViewBag.alert == true)
+            {
+                <div class="alert alert-error">
+                    @ViewBag.mensagemErro
+                </div>
+            }
+            <form class="form-horizontal" action="Editar" method="post" >
+                <div class="control-group">
+                    <label class="control-label" for="Nome">Nome:</label>
+                    <div class="controls">
+                        <input type="text" id="Nome" value="@Model.Nome">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Local">Local:</label>
+                    <div class="controls">
+                        <input type="text" id="Local" value="@Model.Local">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Data">Data:</label>
+                    <div class="controls">
+                        <input type="text" id="Data" value="@Model.Data.Year-@Model.Data.Month-@Model.Data.Day">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Horario">Horario:</label>
+                    <div class="controls">
+                        <input type="text" id="Horario" value="@Model.Horario">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Esporte">Esporte:</label>
+                    <div class="controls">
+                        <input type="text" id="Esporte" value="@Model.Esporte">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Descricao">Descrição:</label>
+                    <div class="controls">
+                            <textarea rows="3" id="Descricao">@Model.Descricao </textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-warning">Modificar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
