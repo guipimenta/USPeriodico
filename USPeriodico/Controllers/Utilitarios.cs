@@ -33,9 +33,14 @@ namespace USPeriodico.Controllers
 
             // DOMAIN VALIDATION
             if (isStrictMatch) // email bem formado
-                return emailAddress.Substring(emailAddress.LastIndexOf('@'), 7).CompareTo("@usp.br").Equals(true);
+                return true;
             else
                 return false; // email mal formado
+        }
+
+        public static bool VerificaEmailUSP(string emailAddress)
+        {
+            return emailAddress.Substring(emailAddress.LastIndexOf('@'), 7).Equals("@usp.br");
         }
 
 

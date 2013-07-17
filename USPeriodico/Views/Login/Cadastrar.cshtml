@@ -9,11 +9,14 @@
 
 <div class="container" style="width: 75%;">
         <div class ="hero-unit">
-            @if (ViewBag.alert == true)
-            {
-                @ViewBag.mensagemErro;
-            }
+           
             <h1 align="center">Cadastrar</h1><br>
+             @if (ViewBag.alert == true)
+            {
+                <div class="alert alert-error">
+                    @ViewBag.mensagemErro
+                </div>
+            }
             <form class="form-horizontal" action="Cadastrar" method="post" >
                 <div class="control-group">
                     <label class="control-label" for="inputEmail">Email</label>
@@ -30,7 +33,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputSenhaConfirm">Confirmar Senha</label>
                     <div class="controls">
-                        <input type="password" id="inputSenhaConfirm" name="confirmaPassword">
+                        <input type="password" id="inputSenhaConfirm" name="confirmaPassword"  placeholder="Confirma senha">
                     </div>
                 </div>
                 <div class="control-group">

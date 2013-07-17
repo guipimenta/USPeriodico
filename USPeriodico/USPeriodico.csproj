@@ -128,11 +128,30 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\EventoCEPEController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Utilitarios.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EventoCEPE.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventoCEPE.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EventoCEPE.cs">
+      <DependentUpon>EventoCEPE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EventoCEPE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventoCEPE.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EventoCEPE1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventoCEPE.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>Usuarios.tt</DependentUpon>
@@ -234,6 +253,23 @@
       <DependentUpon>Usuarios.edmx</DependentUpon>
       <LastGenOutput>Usuarios1.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\EventoCEPE.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EventoCEPE.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\EventoCEPE.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EventoCEPE.edmx</DependentUpon>
+      <LastGenOutput>EventoCEPE.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\EventoCEPE.edmx.diagram">
+      <DependentUpon>EventoCEPE.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\EventoCEPE.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EventoCEPE.edmx</DependentUpon>
+      <LastGenOutput>EventoCEPE1.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\USPeriodico.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Bootstrap\bootstrap.js" />
@@ -274,6 +310,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Home\IndexSafe.cshtml" />
     <Content Include="Views\Login\Cadastrar.cshtml" />
+    <Content Include="Views\EventoCEPE\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -300,7 +337,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>8832</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:1536/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
