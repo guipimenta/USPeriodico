@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using USPeriodico.Models;
+using System.Web.Security;
 
 namespace USPeriodico.Controllers
 {
     public class EventoCEPEController : Controller
     {
         eventoCEPEEntities entities = new eventoCEPEEntities();
+        private List<EventoCEPE> todosEventos;
+        
         //
         // GET: /EventoCEPE/Listar
 
@@ -18,19 +22,83 @@ namespace USPeriodico.Controllers
         [Authorize]
         public ActionResult Listar()
         {
-            return View();
+            String name = HttpContext.User.Identity.Name;
+            usperiodicoEntities usuario = new usperiodicoEntities();
+            Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
+            ViewBag.ID = recuperado.Id;
+            todosEventos = entities.EventoCEPE.ToList();
+            return View(todosEventos);
         }
 
         [HttpGet]
         [Authorize]
-        public ActionResult Editar(string id)
+        public ActionResult Detalhar(String id)
         {
-            if (id != null)
+            int idint = int.Parse(id);
+            EventoCEPE evento = entities.EventoCEPE.Find(idint);
+            if (evento != null)
             {
-                int idInt = int.Parse(id);
+                return View(evento);
+            }
+            return Redirect("Listar");
+        }
 
+        [HttpPost]
+        [Authorize]
+        public ActionResult Deletar(String id)
+        {
+            int idint = int.Parse(id);
+            EventoCEPE evento = entities.EventoCEPE.Find(idint);
+            entities.EventoCEPE.Remove(evento);
+            entities.SaveChanges();
+            return Redirect("Listar");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Criar()
+        {
+            //Pega o login do usuario
+            String name = HttpContext.User.Identity.Name;
+            ViewBag.alert = false;
+            usperiodicoEntities usuario = new usperiodicoEntities();
+            Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
+            ViewBag.AlunoID = recuperado.Id;
+
+
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Criar(EventoCEPE model)
+        {
+            try
+            {
+                model = entities.EventoCEPE.Add(model);
+                entities.SaveChanges();
+                return Redirect("Editar?Id=" + model.ID);
+            }
+            catch (Exception e)
+            {
+                return Redirect("Editar " + e.Message);
+            }
+            
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Editar(string ID)
+        {
+            if (ID != null)
+            {
+                int idInt = int.Parse(ID);
+                
                 EventoCEPE evento = entities.EventoCEPE.Find(idInt);
-               
+
+                if (evento == null)
+                    return View("Invalido");
+                else
                     return View(evento);
             }
 
@@ -39,7 +107,7 @@ namespace USPeriodico.Controllers
         }
         [HttpPost]
         [Authorize]
-        public ActionResult Editar(EventoCEPE model)
+        public ActionResult Editar(EventoCEPE modelModificado)
         {
             //Validacoes
             
@@ -48,10 +116,8 @@ namespace USPeriodico.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    entities.EventoCEPE.Attach(model);
-                    entities.Entry(model).State = System.Data.EntityState.Modified;
-                    entities.SaveChanges();
-                    return Redirect("Editar?ID=1");
+                    //Metodo criado pelo Stored Procedures
+                    entities.EventoCEPEUpdate(modelModificado.Nome, modelModificado.Local, modelModificado.Descricao, modelModificado.Esporte, modelModificado.Data, modelModificado.Horario, modelModificado.ID);   
                 }
             }
             catch (DbEntityValidationException e)
@@ -60,7 +126,7 @@ namespace USPeriodico.Controllers
                 ViewBag.mensagemErro = "Erro ao inserir no Banco de Dados";
                 
             }
-            return Redirect("Editar");
+            return Redirect("~/EventoCEPE/Editar?id=" + modelModificado.ID );
             
         }
     }

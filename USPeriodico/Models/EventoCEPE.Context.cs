@@ -12,6 +12,9 @@ namespace USPeriodico.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class eventoCEPEEntities : DbContext
     {
@@ -26,5 +29,80 @@ namespace USPeriodico.Models
         }
     
         public DbSet<EventoCEPE> EventoCEPE { get; set; }
+    
+        public virtual int EventoCEPEUpdate(string nome, string local, string descricao, string esporte, Nullable<System.DateTime> data, Nullable<System.TimeSpan> horario, Nullable<int> id)
+        {
+            var nomeParameter = nome != null ?
+                new ObjectParameter("nome", nome) :
+                new ObjectParameter("nome", typeof(string));
+    
+            var localParameter = local != null ?
+                new ObjectParameter("local", local) :
+                new ObjectParameter("local", typeof(string));
+    
+            var descricaoParameter = descricao != null ?
+                new ObjectParameter("descricao", descricao) :
+                new ObjectParameter("descricao", typeof(string));
+    
+            var esporteParameter = esporte != null ?
+                new ObjectParameter("esporte", esporte) :
+                new ObjectParameter("esporte", typeof(string));
+    
+            var dataParameter = data.HasValue ?
+                new ObjectParameter("data", data) :
+                new ObjectParameter("data", typeof(System.DateTime));
+    
+            var horarioParameter = horario.HasValue ?
+                new ObjectParameter("horario", horario) :
+                new ObjectParameter("horario", typeof(System.TimeSpan));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EventoCEPEUpdate", nomeParameter, localParameter, descricaoParameter, esporteParameter, dataParameter, horarioParameter, idParameter);
+        }
+    
+        public virtual int EventoCEPEInsert(string nome, string local, string descricao, string esporte, Nullable<System.DateTime> data, Nullable<System.TimeSpan> horario, Nullable<int> alunoID)
+        {
+            var nomeParameter = nome != null ?
+                new ObjectParameter("nome", nome) :
+                new ObjectParameter("nome", typeof(string));
+    
+            var localParameter = local != null ?
+                new ObjectParameter("local", local) :
+                new ObjectParameter("local", typeof(string));
+    
+            var descricaoParameter = descricao != null ?
+                new ObjectParameter("descricao", descricao) :
+                new ObjectParameter("descricao", typeof(string));
+    
+            var esporteParameter = esporte != null ?
+                new ObjectParameter("esporte", esporte) :
+                new ObjectParameter("esporte", typeof(string));
+    
+            var dataParameter = data.HasValue ?
+                new ObjectParameter("data", data) :
+                new ObjectParameter("data", typeof(System.DateTime));
+    
+            var horarioParameter = horario.HasValue ?
+                new ObjectParameter("horario", horario) :
+                new ObjectParameter("horario", typeof(System.TimeSpan));
+    
+            var alunoIDParameter = alunoID.HasValue ?
+                new ObjectParameter("alunoID", alunoID) :
+                new ObjectParameter("alunoID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EventoCEPEInsert", nomeParameter, localParameter, descricaoParameter, esporteParameter, dataParameter, horarioParameter, alunoIDParameter);
+        }
+    
+        public virtual int EventoCEPEDeletar(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EventoCEPEDeletar", idParameter);
+        }
     }
 }

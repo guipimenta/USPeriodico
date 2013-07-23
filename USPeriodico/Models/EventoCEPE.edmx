@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="usperiodicoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="usperiodicoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="usperiodicoModelStoreContainer">
           <EntitySet Name="EventoCEPE" EntityType="usperiodicoModel.Store.EventoCEPE" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
@@ -19,15 +19,56 @@
           <Property Name="Data" Type="date" Nullable="false" />
           <Property Name="Horario" Type="time" Nullable="false" />
           <Property Name="Nome" Type="nchar" Nullable="false" MaxLength="100" />
-          <Property Name="Descricao" Type="nchar" Nullable="false" MaxLength="1000" />
+          <Property Name="Descricao" Type="nchar" Nullable="false" MaxLength="250" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <Function Name="EventoCEPEDeletar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EventoCEPEInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nome" Type="varchar" Mode="In" />
+          <Parameter Name="local" Type="varchar" Mode="In" />
+          <Parameter Name="descricao" Type="varchar" Mode="In" />
+          <Parameter Name="esporte" Type="varchar" Mode="In" />
+          <Parameter Name="data" Type="date" Mode="In" />
+          <Parameter Name="horario" Type="time" Mode="In" />
+          <Parameter Name="alunoID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EventoCEPEUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nome" Type="varchar" Mode="In" />
+          <Parameter Name="local" Type="varchar" Mode="In" />
+          <Parameter Name="descricao" Type="varchar" Mode="In" />
+          <Parameter Name="esporte" Type="varchar" Mode="In" />
+          <Parameter Name="data" Type="date" Mode="In" />
+          <Parameter Name="horario" Type="time" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="usperiodicoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="eventoCEPEEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="EventoCEPE" EntityType="usperiodicoModel.EventoCEPE" />
+          <FunctionImport Name="EventoCEPEUpdate">
+            <Parameter Name="nome" Mode="In" Type="String" />
+            <Parameter Name="local" Mode="In" Type="String" />
+            <Parameter Name="descricao" Mode="In" Type="String" />
+            <Parameter Name="esporte" Mode="In" Type="String" />
+            <Parameter Name="data" Mode="In" Type="DateTime" />
+            <Parameter Name="horario" Mode="In" Type="Time" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EventoCEPEInsert">
+            <Parameter Name="nome" Mode="In" Type="String" />
+            <Parameter Name="local" Mode="In" Type="String" />
+            <Parameter Name="descricao" Mode="In" Type="String" />
+            <Parameter Name="esporte" Mode="In" Type="String" />
+            <Parameter Name="data" Mode="In" Type="DateTime" />
+            <Parameter Name="horario" Mode="In" Type="Time" />
+            <Parameter Name="alunoID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EventoCEPEDeletar">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="EventoCEPE">
           <Key>
@@ -40,7 +81,7 @@
           <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Horario" Type="Time" Nullable="false" Precision="7" />
           <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
-          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="true" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -61,7 +102,36 @@
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="usperiodicoModel.EventoCEPE">
+              <ModificationFunctionMapping>
+                <UpdateFunction FunctionName="usperiodicoModel.Store.EventoCEPEUpdate" >
+                  <ScalarProperty Name="Horario" ParameterName="horario" Version="Current" />
+                  <ScalarProperty Name="Data" ParameterName="data" Version="Current" />
+                  <ScalarProperty Name="Esporte" ParameterName="esporte" Version="Current" />
+                  <ScalarProperty Name="Descricao" ParameterName="descricao" Version="Current" />
+                  <ScalarProperty Name="Local" ParameterName="local" Version="Current" />
+                  <ScalarProperty Name="ID" ParameterName="id" Version="Current" />
+                  <ScalarProperty Name="Nome" ParameterName="nome" Version="Current" />
+                </UpdateFunction>
+                <InsertFunction FunctionName="usperiodicoModel.Store.EventoCEPEInsert" >
+                  <ScalarProperty Name="AlunoID" ParameterName="alunoID" />
+                  <ScalarProperty Name="Horario" ParameterName="horario" />
+                  <ScalarProperty Name="Data" ParameterName="data" />
+                  <ScalarProperty Name="Esporte" ParameterName="esporte" />
+                  <ScalarProperty Name="Descricao" ParameterName="descricao" />
+                  <ScalarProperty Name="Local" ParameterName="local" />
+                  <ScalarProperty Name="Nome" ParameterName="nome" />
+                  <ResultBinding Name="ID" ColumnName="ID" />
+                </InsertFunction>
+                <DeleteFunction FunctionName="usperiodicoModel.Store.EventoCEPEDeletar" >
+                  <ScalarProperty Name="ID" ParameterName="id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EventoCEPEUpdate" FunctionName="usperiodicoModel.Store.EventoCEPEUpdate" />
+          <FunctionImportMapping FunctionImportName="EventoCEPEInsert" FunctionName="usperiodicoModel.Store.EventoCEPEInsert" />
+          <FunctionImportMapping FunctionImportName="EventoCEPEDeletar" FunctionName="usperiodicoModel.Store.EventoCEPEDeletar" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,0 +1,63 @@
+﻿@model USPeriodico.Models.EventoCEPE
+
+@{
+    ViewBag.Title = "Cadastrar";
+    Layout = "~/Views/Base/_logadoBase.cshtml";
+}
+
+
+<div class="container" style="width: 75%;">
+        <div class ="hero-unit">
+           
+            <h1 align="center">Criar novo evento</h1><br>
+
+            <form class="form-horizontal" action="Criar" method="post" >
+
+                    
+                
+                <input type="text" name="AlunoID" id="AlunoID" value="@ViewBag.AlunoID" style="display:none">
+
+                <div class="control-group">
+                    <label class="control-label" for="Nome">Nome:</label>
+                    <div class="controls">
+                        <input type="text" id="Nome"  name="Nome">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Local">Local:</label>
+                    <div class="controls">
+                        <input type="text" id="Local"  name ="Local">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Data">Data:</label>
+                    <div class="controls">
+                        <input type="date" id="Data"  name="Data">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Horario">Horario:</label>
+                    <div class="controls">
+                        <input type="text" id="Horario"  name="Horario">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Esporte">Esporte:</label>
+                    <div class="controls">
+                        <input type="text" id="Esporte"  name="Esporte">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Descricao">Descrição:</label>
+                    <div class="controls">
+                            <input type="text" id="Descricao"  name="Descricao">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-warning">Modificar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

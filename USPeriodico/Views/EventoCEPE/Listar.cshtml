@@ -1,0 +1,33 @@
+﻿@model IEnumerable<USPeriodico.Models.EventoCEPE>
+
+
+@{
+    ViewBag.Title = "Listar";
+    Layout = "~/Views/Base/_logadoBase.cshtml";
+}
+
+<h2>Listar eventos</h2>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Detalhes</th>
+    </tr>
+    
+         @foreach(USPeriodico.Models.EventoCEPE evento in Model){
+            <tr>
+                <td>@evento.ID</td>
+                <td>@evento.Nome</td>
+                @if (ViewBag.ID == evento.AlunoID)
+                {
+                    <td><a href="Editar?id=@evento.ID">Modificar</a></td>
+                }
+                else
+                {
+                    <td><a href="Detalhar?ID=@evento.ID">Detalhar</a></td>
+                }
+            </tr>
+         }
+    
+   
+</table>

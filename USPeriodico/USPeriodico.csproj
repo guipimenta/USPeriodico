@@ -311,6 +311,9 @@
     <Content Include="Views\Home\IndexSafe.cshtml" />
     <Content Include="Views\Login\Cadastrar.cshtml" />
     <Content Include="Views\EventoCEPE\Editar.cshtml" />
+    <Content Include="Views\EventoCEPE\Criar.cshtml" />
+    <Content Include="Views\EventoCEPE\Listar.cshtml" />
+    <Content Include="Views\EventoCEPE\Detalhar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

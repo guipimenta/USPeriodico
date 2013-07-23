@@ -1,0 +1,20 @@
+﻿@model USPeriodico.Models.EventoCEPE
+
+@{
+    ViewBag.Title = "Detalhar";
+    Layout = "~/Views/Base/_logadoBase.cshtml";
+}
+
+<h2>Detalhes: @Model.Nome</h2>
+
+<div class="container" style="width: 75%;">
+        <div class ="hero-unit">
+            @Model.Nome <br />
+            @Model.Esporte<br />
+            @Model.Data<br />
+            @Model.Horario<br />
+            @Model.Local<br />
+            @Model.Descricao<br />
+            
+        </div>
+</div>

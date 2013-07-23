@@ -17,45 +17,58 @@
                 </div>
             }
             <form class="form-horizontal" action="Editar" method="post" >
+
+                    
+                <input type="text" name="ID" id="ID" value="@Model.ID" style="display:none">
+                <input type="text" name="AlunoID" id="AlunoID" value="@Model.AlunoID" style="display:none">
+
                 <div class="control-group">
                     <label class="control-label" for="Nome">Nome:</label>
                     <div class="controls">
-                        <input type="text" id="Nome" value="@Model.Nome">
+                        <input type="text" id="Nome" value="@Model.Nome" name="Nome">
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Local">Local:</label>
                     <div class="controls">
-                        <input type="text" id="Local" value="@Model.Local">
+                        <input type="text" id="Local" value="@Model.Local" name ="Local">
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Data">Data:</label>
                     <div class="controls">
-                        <input type="text" id="Data" value="@Model.Data.Year-@Model.Data.Month-@Model.Data.Day">
+                        <input type="text" id="Data" value="@Model.Data.Year-@Model.Data.Month-@Model.Data.Day" name="Data">
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Horario">Horario:</label>
                     <div class="controls">
-                        <input type="text" id="Horario" value="@Model.Horario">
+                        <input type="text" id="Horario" value="@Model.Horario" name="Horario">
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Esporte">Esporte:</label>
                     <div class="controls">
-                        <input type="text" id="Esporte" value="@Model.Esporte">
+                        <input type="text" id="Esporte" value="@Model.Esporte" name="Esporte">
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Descricao">Descrição:</label>
                     <div class="controls">
-                            <textarea rows="3" id="Descricao">@Model.Descricao </textarea>
+                            <input type="text" id="Descricao" value="@Model.Descricao" name="Descricao">
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
                         <button type="submit" class="btn btn-warning">Modificar</button>
+                    </div>
+                </div>
+            </form>
+            <form action="Deletar" method="post">
+                 <input type="text" name="ID" value="@Model.ID" style="display:none">
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-warning">Deletar</button>
                     </div>
                 </div>
             </form>
