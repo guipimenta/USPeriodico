@@ -40,7 +40,10 @@ namespace USPeriodico.Controllers
 
         public static bool VerificaEmailUSP(string emailAddress)
         {
-            return emailAddress.Substring(emailAddress.LastIndexOf('@'), 7).Equals("@usp.br");
+            if (emailAddress.IndexOf("@") >= 0)
+                return emailAddress.Substring(emailAddress.LastIndexOf('@'), 7).Equals("@usp.br");
+            else
+                return false;
         }
 
 
