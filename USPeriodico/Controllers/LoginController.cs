@@ -50,14 +50,23 @@ namespace USPeriodico.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Cadastrar(Usuarios model, String confirmaPassword)
+        public ActionResult Cadastrar(Usuarios model, String confirmaPassword, int tipoUsuario)
         {
             if (ModelState.IsValid)
             {
                 usperiodicoEntities entities = new usperiodicoEntities();
-                
                 //Papel no sistema
-                model.role = ROLE_ALUNO;
+                string criarUsuario = "Home";
+                if (tipoUsuario == 2)
+                {
+                    model.role = ROLE_EMPRESA;
+                    criarUsuario = "Login";
+                }
+                else if (tipoUsuario == 3)
+                {
+                    model.role = ROLE_ALUNO;
+                    criarUsuario = "Login";
+                }
                 try
                 {
                     if (!model.password.Equals(confirmaPassword))
@@ -81,16 +90,28 @@ namespace USPeriodico.Controllers
                     ViewBag.mensagemErro = "Usuário já existe!";
                     return View();
                 }
-                if (!Utilitarios.TestEmailRegex(model.email) && !Utilitarios.VerificaEmailUSP(model.email))
+
+                //Verifica formato do e-mail
+                if (Utilitarios.TestEmailRegex(model.email))
+                {
+                    //Verifica se é um aluno e o domínio é da usp
+                    if (model.role == ROLE_ALUNO && !Utilitarios.VerificaEmailUSP(model.email))
+                    {
+                        ViewBag.alert = true;
+                        ViewBag.mensagemErro = "e-mail inválido!";
+                        return View();
+                    }
+                }
+                else
                 {
                     ViewBag.alert = true;
                     ViewBag.mensagemErro = "e-mail inválido!";
                     return View();
                 }
+
                 entities.Usuarios.Add(model);
                 entities.SaveChanges();
-                return Redirect("Login");
-               
+                return Redirect(criarUsuario);
             }
             return Redirect("Home") ;
         }
