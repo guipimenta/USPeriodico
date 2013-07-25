@@ -128,12 +128,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\EstagioController.cs" />
     <Compile Include="Controllers\EventoCEPEController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Utilitarios.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estagio.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EventoCEPE.Context.cs">
       <AutoGen>True</AutoGen>
@@ -152,6 +156,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EventoCEPE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estagio.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estagio.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>Usuarios.tt</DependentUpon>
@@ -269,6 +288,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EventoCEPE.edmx</DependentUpon>
       <LastGenOutput>EventoCEPE1.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Estagio.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Estagio.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Estagio.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Estagio.edmx.diagram">
+      <DependentUpon>Estagio.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Estagio.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\USPeriodico.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
