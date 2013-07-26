@@ -11,19 +11,14 @@ namespace USPeriodico.Controllers
         public static bool TestEmailRegex(string emailAddress)
         {
             /*
-             * Retorna TRUE caso seja um email vÃ¡lido (sintaticamente) da USP e FALSE caso contrÃ¡rio
+             * Retorna TRUE caso seja um email vÃ¡lido (sintaticamente) e FALSE caso contrÃ¡rio
              */
-            // Email esperado "*@usp.br"
-            if(emailAddress.Length <= 7)
-                return false;
             // EMAIL VALIDATION
             //                string patternLenient = @"\w([.]\w)@\w([.]\w)\.\w([-.]\w)*";
             //                Regex reLenient = new Regex(patternLenient);
-            string patternStrict = @"^(([^<>()[\]\\.,;:\s@\""]" 
-                 +  @"(\.[^<>()[\]\\.,;:\s@\""])*)|(\"".\""))@"
-                 +  @"((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
-                 +  @"\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]\.)"
-                 +  @"[a-zA-Z]{2,}))$";
+            string patternStrict = @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
+                                + "@"
+                                + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$";
             Regex reStrict = new Regex(patternStrict);
 
             //                      bool isLenientMatch = reLenient.IsMatch(emailAddress);
@@ -40,10 +35,7 @@ namespace USPeriodico.Controllers
 
         public static bool VerificaEmailUSP(string emailAddress)
         {
-            if (emailAddress.IndexOf("@") >= 0)
-                return emailAddress.Substring(emailAddress.LastIndexOf('@'), 7).Equals("@usp.br");
-            else
-                return false;
+            return emailAddress.Substring(emailAddress.LastIndexOf('@'), 7).Equals("@usp.br");
         }
 
 

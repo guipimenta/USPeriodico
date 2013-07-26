@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="usperiodicoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="usperiodicoModelStoreContainer">
+          <EntitySet Name="Estagio" EntityType="usperiodicoModel.Store.Estagio" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Estagio">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="EmpresaID" Type="int" Nullable="false" />
+          <Property Name="Descricao" Type="nchar" Nullable="false" MaxLength="1000" />
+          <Property Name="BreveDescricao" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="DataInicio" Type="date" Nullable="false" />
+          <Property Name="Duracao" Type="int" />
+          <Property Name="Bolsa" Type="nchar" MaxLength="100" />
+          <Property Name="Area" Type="nchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Function Name="EstagioDeletar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EstagioInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empresaID" Type="int" Mode="In" />
+          <Parameter Name="descricao" Type="varchar" Mode="In" />
+          <Parameter Name="breveDescricao" Type="varchar" Mode="In" />
+          <Parameter Name="dataInicio" Type="date" Mode="In" />
+          <Parameter Name="duracao" Type="int" Mode="In" />
+          <Parameter Name="bolsa" Type="varchar" Mode="In" />
+          <Parameter Name="area" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="EstagioUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empresaID" Type="int" Mode="In" />
+          <Parameter Name="descricao" Type="varchar" Mode="In" />
+          <Parameter Name="breveDescricao" Type="varchar" Mode="In" />
+          <Parameter Name="dataInicio" Type="date" Mode="In" />
+          <Parameter Name="duracao" Type="int" Mode="In" />
+          <Parameter Name="bolsa" Type="varchar" Mode="In" />
+          <Parameter Name="area" Type="varchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="usperiodicoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="estagioEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Estagio" EntityType="usperiodicoModel.Estagio" />
+          <FunctionImport Name="EstagioDeletar">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EstagioInsert" ReturnType="Collection(Decimal)">
+            <Parameter Name="empresaID" Mode="In" Type="Int32" />
+            <Parameter Name="descricao" Mode="In" Type="String" />
+            <Parameter Name="breveDescricao" Mode="In" Type="String" />
+            <Parameter Name="dataInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="duracao" Mode="In" Type="Int32" />
+            <Parameter Name="bolsa" Mode="In" Type="String" />
+            <Parameter Name="area" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EstagioUpdate">
+            <Parameter Name="empresaID" Mode="In" Type="Int32" />
+            <Parameter Name="descricao" Mode="In" Type="String" />
+            <Parameter Name="breveDescricao" Mode="In" Type="String" />
+            <Parameter Name="dataInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="duracao" Mode="In" Type="Int32" />
+            <Parameter Name="bolsa" Mode="In" Type="String" />
+            <Parameter Name="area" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Estagio">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="EmpresaID" Type="Int32" Nullable="false" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="true" />
+          <Property Name="BreveDescricao" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="DataInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Duracao" Type="Int32" />
+          <Property Name="Bolsa" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="Area" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="usperiodicoModelStoreContainer" CdmEntityContainer="estagioEntities">
+          <EntitySetMapping Name="Estagio">
+            <EntityTypeMapping TypeName="usperiodicoModel.Estagio">
+              <MappingFragment StoreEntitySet="Estagio">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EmpresaID" ColumnName="EmpresaID" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="BreveDescricao" ColumnName="BreveDescricao" />
+                <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+                <ScalarProperty Name="Duracao" ColumnName="Duracao" />
+                <ScalarProperty Name="Bolsa" ColumnName="Bolsa" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="usperiodicoModel.Estagio">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="usperiodicoModel.Store.EstagioInsert" >
+                  <ScalarProperty Name="Area" ParameterName="area" />
+                  <ScalarProperty Name="Bolsa" ParameterName="bolsa" />
+                  <ScalarProperty Name="Duracao" ParameterName="duracao" />
+                  <ScalarProperty Name="DataInicio" ParameterName="dataInicio" />
+                  <ScalarProperty Name="BreveDescricao" ParameterName="breveDescricao" />
+                  <ScalarProperty Name="Descricao" ParameterName="descricao" />
+                  <ScalarProperty Name="EmpresaID" ParameterName="empresaID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="usperiodicoModel.Store.EstagioUpdate" >
+                  <ScalarProperty Name="ID" ParameterName="id" Version="Current" />
+                  <ScalarProperty Name="Area" ParameterName="area" Version="Current" />
+                  <ScalarProperty Name="Bolsa" ParameterName="bolsa" Version="Current" />
+                  <ScalarProperty Name="DataInicio" ParameterName="duracao" Version="Current" />
+                  <ScalarProperty Name="DataInicio" ParameterName="dataInicio" Version="Current" />
+                  <ScalarProperty Name="BreveDescricao" ParameterName="breveDescricao" Version="Current" />
+                  <ScalarProperty Name="Descricao" ParameterName="descricao" Version="Current" />
+                  <ScalarProperty Name="EmpresaID" ParameterName="empresaID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="usperiodicoModel.Store.EstagioDeletar" >
+                  <ScalarProperty Name="ID" ParameterName="id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EstagioDeletar" FunctionName="usperiodicoModel.Store.EstagioDeletar" />
+          <FunctionImportMapping FunctionImportName="EstagioInsert" FunctionName="usperiodicoModel.Store.EstagioInsert" />
+          <FunctionImportMapping FunctionImportName="EstagioUpdate" FunctionName="usperiodicoModel.Store.EstagioUpdate" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
