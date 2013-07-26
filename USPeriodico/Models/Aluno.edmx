@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="usperiodicoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="usperiodicoModelStoreContainer">
+          <EntitySet Name="Aluno" EntityType="usperiodicoModel.Store.Aluno" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Curso" EntityType="usperiodicoModel.Store.Curso" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuarios" EntityType="usperiodicoModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Aluno_Curso" Association="usperiodicoModel.Store.FK_Aluno_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Aluno" EntitySet="Aluno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Aluno_Usuarios" Association="usperiodicoModel.Store.FK_Aluno_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Aluno" EntitySet="Aluno" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Aluno">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="NUSP" Type="int" Nullable="false" />
+          <Property Name="Telefone" Type="nchar" Nullable="false" MaxLength="9" />
+          <Property Name="Curso" Type="int" Nullable="false" />
+          <Property Name="Unidade" Type="nchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Area" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="password" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="role" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Aluno_Curso">
+          <End Role="Curso" Type="usperiodicoModel.Store.Curso" Multiplicity="1" />
+          <End Role="Aluno" Type="usperiodicoModel.Store.Aluno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aluno">
+              <PropertyRef Name="Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Aluno_Usuarios">
+          <End Role="Usuarios" Type="usperiodicoModel.Store.Usuarios" Multiplicity="1" />
+          <End Role="Aluno" Type="usperiodicoModel.Store.Aluno" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Aluno">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="usperiodicoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="alunoEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Aluno" EntityType="usperiodicoModel.Aluno" />
+          <EntitySet Name="Curso" EntityType="usperiodicoModel.Curso" />
+          <EntitySet Name="Usuarios" EntityType="usperiodicoModel.Usuarios" />
+          <AssociationSet Name="FK_Aluno_Curso" Association="usperiodicoModel.FK_Aluno_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Aluno" EntitySet="Aluno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Aluno_Usuarios" Association="usperiodicoModel.FK_Aluno_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Aluno" EntitySet="Aluno" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Aluno">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="NUSP" Type="Int32" Nullable="false" />
+          <Property Name="Telefone" Type="String" Nullable="false" MaxLength="9" Unicode="true" FixedLength="true" />
+          <Property Name="Curso" Type="Int32" Nullable="false" />
+          <Property Name="Unidade" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Curso1" Relationship="usperiodicoModel.FK_Aluno_Curso" FromRole="Aluno" ToRole="Curso" />
+          <NavigationProperty Name="Usuarios" Relationship="usperiodicoModel.FK_Aluno_Usuarios" FromRole="Aluno" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Area" Type="Int32" />
+          <NavigationProperty Name="Aluno" Relationship="usperiodicoModel.FK_Aluno_Curso" FromRole="Curso" ToRole="Aluno" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Aluno" Relationship="usperiodicoModel.FK_Aluno_Usuarios" FromRole="Usuarios" ToRole="Aluno" />
+        </EntityType>
+        <Association Name="FK_Aluno_Curso">
+          <End Role="Curso" Type="usperiodicoModel.Curso" Multiplicity="1" />
+          <End Role="Aluno" Type="usperiodicoModel.Aluno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aluno">
+              <PropertyRef Name="Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Aluno_Usuarios">
+          <End Role="Usuarios" Type="usperiodicoModel.Usuarios" Multiplicity="1" />
+          <End Role="Aluno" Type="usperiodicoModel.Aluno" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Aluno">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="usperiodicoModelStoreContainer" CdmEntityContainer="alunoEntities">
+          <EntitySetMapping Name="Aluno">
+            <EntityTypeMapping TypeName="usperiodicoModel.Aluno">
+              <MappingFragment StoreEntitySet="Aluno">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="NUSP" ColumnName="NUSP" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Curso" ColumnName="Curso" />
+                <ScalarProperty Name="Unidade" ColumnName="Unidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curso">
+            <EntityTypeMapping TypeName="usperiodicoModel.Curso">
+              <MappingFragment StoreEntitySet="Curso">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="usperiodicoModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

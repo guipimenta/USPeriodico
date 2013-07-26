@@ -19,6 +19,6 @@ namespace USPeriodico.Models
         public string password { get; set; }
         public int role { get; set; }
     
-        public virtual Roles Roles { get; set; }
+        public virtual Aluno Aluno { get; set; }
     }
 }

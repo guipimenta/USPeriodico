@@ -15,23 +15,36 @@ namespace USPeriodico.Controllers
         eventoCEPEEntities entities = new eventoCEPEEntities();
         private List<EventoCEPE> todosEventos;
         
+        
         //
         // GET: /EventoCEPE/Listar
 
         [HttpGet]
-        [Authorize]
         public ActionResult Listar()
         {
-            String name = HttpContext.User.Identity.Name;
-            usperiodicoEntities usuario = new usperiodicoEntities();
-            Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
-            ViewBag.ID = recuperado.Id;
+
+            //Dois casos: usuario autenticado ou usuario anonimo
+            try
+                {
+                    String name = HttpContext.User.Identity.Name;
+                    usperiodicoEntities usuario = new usperiodicoEntities();
+                    Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
+                    ViewBag.ID = recuperado.Id;
+                }
+                catch (Exception e)
+                {
+                    //Se a autenticacao nao foi feita, entra em modo anonimo
+                    ViewBag.NoID = true;
+                    ViewBag.ID = null;
+                }
+                
+                
+            
             todosEventos = entities.EventoCEPE.ToList();
             return View(todosEventos);
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult Detalhar(String id)
         {
             int idint = int.Parse(id);
@@ -123,7 +136,8 @@ namespace USPeriodico.Controllers
             catch (DbEntityValidationException e)
             {
                 ViewBag.alert = true;
-                ViewBag.mensagemErro = "Erro ao inserir no Banco de Dados";
+                ViewBag.mensagemErro = "Erro: " + e.Message;
+                return View();
                 
             }
             return Redirect("~/EventoCEPE/Editar?id=" + modelModificado.ID );

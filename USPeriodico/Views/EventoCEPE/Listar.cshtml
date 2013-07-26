@@ -3,7 +3,13 @@
 
 @{
     ViewBag.Title = "Listar";
-    Layout = "~/Views/Base/_logadoBase.cshtml";
+    if(ViewBag.NoID == false)
+    {
+        Layout = "~/Views/Base/_logadoBase.cshtml";
+    } else {
+        Layout = "~/Views/Base/_usuarioComumBase.cshtml";
+    }
+    
 }
 
 <h2>Listar eventos</h2>
@@ -18,11 +24,12 @@
             <tr>
                 <td>@evento.ID</td>
                 <td>@evento.Nome</td>
+                
                 @if (ViewBag.ID == evento.AlunoID)
                 {
                     <td><a href="Editar?id=@evento.ID">Modificar</a></td>
                 }
-                else
+                else if(ViewBag.NoID == true && ViewBag.ID == null)
                 {
                     <td><a href="Detalhar?ID=@evento.ID">Detalhar</a></td>
                 }

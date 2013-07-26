@@ -136,6 +136,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Aluno.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Aluno.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Aluno.cs">
+      <DependentUpon>Aluno.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Aluno.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Aluno.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Aluno1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Aluno.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Curso.cs">
+      <DependentUpon>Aluno.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EventoCEPE.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -163,7 +184,7 @@
       <DependentUpon>Usuarios.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuarios.cs">
-      <DependentUpon>Usuarios.tt</DependentUpon>
+      <DependentUpon>Aluno.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuarios.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -272,6 +293,23 @@
       <LastGenOutput>EventoCEPE1.cs</LastGenOutput>
     </Content>
     <Content Include="Controllers\ListarUsuarios.cshtml" />
+    <EntityDeploy Include="Models\Aluno.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Aluno.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Aluno.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Aluno.edmx</DependentUpon>
+      <LastGenOutput>Aluno.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Aluno.edmx.diagram">
+      <DependentUpon>Aluno.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Aluno.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Aluno.edmx</DependentUpon>
+      <LastGenOutput>Aluno1.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\USPeriodico.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Bootstrap\bootstrap.js" />

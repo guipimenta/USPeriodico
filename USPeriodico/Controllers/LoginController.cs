@@ -38,11 +38,20 @@ namespace USPeriodico.Controllers
                 if (userValid)
                 {
                     FormsAuthentication.SetAuthCookie(email, false);
+                    alunoEntities alunoentities = new alunoEntities();
+                    int id = entities.Usuarios.First(Usuarios => Usuarios.email == email).Id;
+                    if (!alunoentities.Aluno.Any(Aluno => Aluno.ID == id))
+                    {
+                        return View("CriaCadastro");
+                    }
                     return Redirect("/Home/IndexSafe");
                 }
             }
             return Redirect("/Home/");
         }
+
+        [HttpPost]
+        [Authorize]
 
         [HttpGet]
         public ActionResult Cadastrar()

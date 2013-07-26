@@ -2,7 +2,13 @@
 
 @{
     ViewBag.Title = "Detalhar";
-    Layout = "~/Views/Base/_logadoBase.cshtml";
+    if(ViewBag.NoID == false)
+    {
+        Layout = "~/Views/Base/_logadoBase.cshtml";
+    } else {
+        Layout = "~/Views/Base/_usuarioComumBase.cshtml";
+    }
+    
 }
 
 <h2>Detalhes: @Model.Nome</h2>
