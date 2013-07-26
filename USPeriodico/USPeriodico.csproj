@@ -138,6 +138,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="Models\Aluno.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -158,6 +159,10 @@
     </Compile>
     <Compile Include="Models\Curso.cs">
       <DependentUpon>Aluno.tt</DependentUpon>
+=======
+    <Compile Include="Models\Estagio.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+>>>>>>> efbac25ccef0c1e20f52f21b8627b33e1ffa5e5a
 =======
     <Compile Include="Models\Estagio.cs">
       <DependentUpon>Model1.tt</DependentUpon>

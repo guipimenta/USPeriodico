@@ -110,3 +110,5 @@ UpgradeLog*.XML
 # Database files
 DB/*.mdf
 DB/*.ldf
+*.mdf
+*.ldf
