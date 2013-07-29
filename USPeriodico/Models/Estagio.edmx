@@ -120,7 +120,7 @@
                   <ScalarProperty Name="ID" ParameterName="id" Version="Current" />
                   <ScalarProperty Name="Area" ParameterName="area" Version="Current" />
                   <ScalarProperty Name="Bolsa" ParameterName="bolsa" Version="Current" />
-                  <ScalarProperty Name="DataInicio" ParameterName="duracao" Version="Current" />
+                  <ScalarProperty Name="Duracao" ParameterName="duracao" Version="Current" />
                   <ScalarProperty Name="DataInicio" ParameterName="dataInicio" Version="Current" />
                   <ScalarProperty Name="BreveDescricao" ParameterName="breveDescricao" Version="Current" />
                   <ScalarProperty Name="Descricao" ParameterName="descricao" Version="Current" />
