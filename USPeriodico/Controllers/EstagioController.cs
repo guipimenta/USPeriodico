@@ -69,6 +69,11 @@ namespace USPeriodico.Controllers
         [Authorize]
         public ActionResult DeletarEstagio(Int32 id)
         {
+            if (Utilitarios.VerificaUsuario(2, HttpContext.User.Identity.Name) < 0)
+                return Redirect(FormsAuthentication.LoginUrl);
+            else if (Utilitarios.VerificaUsuario(2, HttpContext.User.Identity.Name) == 0)
+                return Redirect("/Home/IndexSafe");
+
             Estagio estagio = entities.Estagio.Find(id);
             entities.Estagio.Remove(estagio);
             entities.SaveChanges();
@@ -81,6 +86,12 @@ namespace USPeriodico.Controllers
         {
             //Pega o login do usuario
             String name = HttpContext.User.Identity.Name;
+
+            if (Utilitarios.VerificaUsuario(2, name) < 0)
+                return Redirect(FormsAuthentication.LoginUrl);
+            else if (Utilitarios.VerificaUsuario(2, name) == 0)
+                return Redirect("/Home/IndexSafe");
+
             ViewBag.alert = false;
             usperiodicoEntities usuario = new usperiodicoEntities();
             Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
@@ -119,6 +130,11 @@ namespace USPeriodico.Controllers
         [Authorize]
         public ActionResult Editar(Int32 id)
         {
+            if (Utilitarios.VerificaUsuario(2, HttpContext.User.Identity.Name) < 0)
+                return Redirect(FormsAuthentication.LoginUrl);
+            else if (Utilitarios.VerificaUsuario(2, HttpContext.User.Identity.Name) == 0)
+                return Redirect("/Home/IndexSafe");
+
             if (id != null)
             {
 
