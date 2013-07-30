@@ -1,6 +1,20 @@
-﻿@{
+﻿@model IEnumerable<USPeriodico.Models.EventoCEPE>
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Base/_usuarioComumBase.cshtml";
 }
 
-<h2>Bem vindo ao USPeriódico</h2>
+<div class="container">
+     @foreach(USPeriodico.Models.EventoCEPE evento in Model){
+        <div class="mosaic-block bar2">
+            <a href="EventoCEPE/Detalhar?ID=@evento.ID" class="mosaic-overlay">
+              <div class="details">
+                  <h5>@evento.Nome -  @evento.Data</h5>
+                  <h5>Mais+</h5>
+              </div>
+            </a>
+        <div class="mosaic-backdrop"><img src="http://www.hangar110.com.br/novo/hangar/2010/images/historia-box1.jpg" style="height: 150px;"/>
+        </div> 
+        </div>
+     }
+</div>

@@ -11,29 +11,31 @@
     }
     
 }
-<h2>Listar estágios</h2>
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Detalhes</th>
-    </tr>
-    
-         @foreach(USPeriodico.Models.Estagio estagio in Model){
+<div class="container" style="width: 75%;">
+   <div class="hero-unit">
+       <h2>Estágios</h2>
+       <table class="table">
             <tr>
-                <td>@estagio.ID</td>
-                <td>@estagio.BreveDescricao</td>
-                
-                @if (ViewBag.ID == estagio.EmpresaID)
-                {
-                    <td><a href="Editar?id=@estagio.ID">Modificar</a></td>
-                }
-                else
-                {
-                    <td><a href="Detalhar?ID=@estagio.ID">Detalhar</a></td>
-                }
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Detalhes</th>
             </tr>
-         }
+             @foreach(USPeriodico.Models.Estagio estagio in Model){
+                <tr>
+                    <td>@estagio.ID</td>
+                    <td>@estagio.BreveDescricao</td>
+                
+                    @if (ViewBag.ID == estagio.EmpresaID)
+                    {
+                        <td><a class="btn btn-warning" href="Editar?id=@estagio.ID">Modificar</a></td>
+                    }
+                    else
+                    {
+                        <td><a class="btn btn-info" href="Detalhar?ID=@estagio.ID">Detalhar</a></td>
+                    }
+                </tr>
+             }
     
-   
-</table>
+        </table>
+    </div>
+</div>
