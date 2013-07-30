@@ -1,0 +1,19 @@
+﻿@model USPeriodico.Models.Estagio
+
+@{
+    ViewBag.Title = "Detalhar";
+    Layout = "~/Views/Base/_logadoBase.cshtml";
+}
+
+<h2>Detalhes: @Model.BreveDescricao</h2>
+
+<div class="container" style="width: 75%;">
+        <div class ="hero-unit">
+            @Model.Descricao <br />
+            @Model.Duracao<br />
+            @Model.Area<br />
+            @Model.DataInicio<br />
+            @Model.Bolsa<br />
+            
+        </div>
+</div>
