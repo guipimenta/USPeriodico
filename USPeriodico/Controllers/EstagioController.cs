@@ -36,10 +36,11 @@ namespace USPeriodico.Controllers
                 if (recuperado.role == 2 || recuperado.role == 1)
                 {
                     ViewBag.ID = recuperado.Id;
+                    ViewBag.NoID = false;
                 }
                 else
                 {
-                    ViewBag.NoID = false;
+                    ViewBag.NoID = true;
                     ViewBag.ID = null;
                 }
             }
@@ -64,9 +65,9 @@ namespace USPeriodico.Controllers
             return Redirect("Listar");
         }
 
-        [HttpGet]
+        [HttpPost]
         [Authorize]
-        public ActionResult DeletarEstagio(Int32 id)
+        public ActionResult Deletar(Int32 id)
         {
             if (Utilitarios.VerificaUsuario(2, HttpContext.User.Identity.Name) < 0)
                 return Redirect(FormsAuthentication.LoginUrl);
