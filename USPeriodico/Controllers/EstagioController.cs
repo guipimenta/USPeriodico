@@ -36,10 +36,11 @@ namespace USPeriodico.Controllers
                 if (recuperado.role == 2 || recuperado.role == 1)
                 {
                     ViewBag.ID = recuperado.Id;
+                    ViewBag.NoID = false;
                 }
                 else
                 {
-                    ViewBag.NoID = false;
+                    ViewBag.NoID = true;
                     ViewBag.ID = null;
                 }
             }
@@ -54,7 +55,6 @@ namespace USPeriodico.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult Detalhar(Int32 id)
         {
             Estagio estagio = entities.Estagio.Find(id);
@@ -65,9 +65,9 @@ namespace USPeriodico.Controllers
             return Redirect("Listar");
         }
 
-        [HttpGet]
+        [HttpPost]
         [Authorize]
-        public ActionResult DeletarEstagio(Int32 id)
+        public ActionResult Deletar(Int32 id)
         {
             if (Utilitarios.VerificaUsuario(2, HttpContext.User.Identity.Name) < 0)
                 return Redirect(FormsAuthentication.LoginUrl);
@@ -95,6 +95,7 @@ namespace USPeriodico.Controllers
             ViewBag.alert = false;
             usperiodicoEntities usuario = new usperiodicoEntities();
             Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
+            
             if (recuperado.role == 2 || recuperado.role == 1)
             {
                 ViewBag.EmpresaID = recuperado.Id;
@@ -139,11 +140,27 @@ namespace USPeriodico.Controllers
             {
 
                 Estagio estagio = entities.Estagio.Find(id);
+                
 
                 if (estagio == null)
                     return View("Invalido");
                 else
-                    return View(estagio);
+                {
+                    String name = HttpContext.User.Identity.Name;
+                    usperiodicoEntities usuario = new usperiodicoEntities();
+                    Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
+                    if (recuperado.Id == estagio.EmpresaID)
+                    {
+                        ViewBag.ID = id;
+                        return View(estagio);
+                    }
+                    else
+                    {
+                        return Redirect("Listar");
+                    }
+               
+                }
+                    
             }
 
             return Redirect("~/Home/IndexSafe");
@@ -167,10 +184,10 @@ namespace USPeriodico.Controllers
             catch (DbEntityValidationException e)
             {
                 ViewBag.alert = true;
-                ViewBag.mensagemErro = "Erro ao inserir no Banco de Dados";
+                ViewBag.mensagemErro = "Erro ao inserir no Banco de Dados " + e.Message;
 
             }
-            return Redirect("~/EventoCEPE/Editar?id=" + modelModificado.ID);
+            return Redirect("~/Estagio/Editar?id=" + modelModificado.ID);
 
         }
 

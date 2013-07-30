@@ -387,6 +387,7 @@
     <Content Include="Views\Estagio\Editar.cshtml" />
     <Content Include="Views\Estagio\Listar.cshtml" />
     <Content Include="Views\Administrador\ListarUsuarios.cshtml" />
+    <Content Include="Views\Estagio\Detalhar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
