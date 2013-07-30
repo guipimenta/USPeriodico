@@ -11,30 +11,32 @@
     }
     
 }
-
-<h2>Listar eventos</h2>
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Detalhes</th>
-    </tr>
+<div class="container" style="width: 75%;">
+   <div class="hero-unit">
+       <h2>Eventos</h2>
+            <table class="table">
+                <tr>
+                    <th><strong>#</strong></th>
+                    <th><strong>Nome</strong></th>
+                    <th><strong>Detalhes</strong></th>
+                </tr>
     
-         @foreach(USPeriodico.Models.EventoCEPE evento in Model){
-            <tr>
-                <td>@evento.ID</td>
-                <td>@evento.Nome</td>
+                     @foreach(USPeriodico.Models.EventoCEPE evento in Model){
+                        <tr>
+                            <td>@evento.ID</td>
+                            <td>@evento.Nome</td>
                 
-                @if (ViewBag.ID == evento.AlunoID)
-                {
-                    <td><a href="Editar?id=@evento.ID">Modificar</a></td>
-                }
-                else
-                {
-                    <td><a href="Detalhar?ID=@evento.ID">Detalhar</a></td>
-                }
-            </tr>
-         }
+                            @if (ViewBag.ID == evento.AlunoID)
+                            {
+                                <td><a class="btn btn-warning" href="Editar?id=@evento.ID">Modificar</a></td>
+                            }
+                            else
+                            {
+                                <td><a class="btn btn-info" href="Detalhar?ID=@evento.ID">Detalhar</a></td>
+                            }
+                        </tr>
+                     }
     
-   
-</table>
+            </table>
+   </div>
+</div>
