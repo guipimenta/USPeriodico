@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using USPeriodico.Models;
 
 namespace USPeriodico.Controllers
 {
@@ -38,6 +39,19 @@ namespace USPeriodico.Controllers
             return emailAddress.Substring(emailAddress.LastIndexOf('@'), 7).Equals("@usp.br");
         }
 
+        public static int VerificaUsuario(int role, string login)
+        {
+            //verifica se é um usuário logado
+            if (login.Equals(""))
+                return -1;
 
+            usperiodicoEntities aux = new usperiodicoEntities();
+            Usuarios usuario = aux.Usuarios.First(Usuario => Usuario.email == login);
+            //verifica se não é um outro tipo de usuario
+            if (usuario.role != 1 && usuario.role != role)
+                return 0;
+
+            return 1;
+        }
     }
 }

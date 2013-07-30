@@ -12,19 +12,15 @@ namespace USPeriodico.Controllers
     {
         //
         // GET: /Administrador/
+        [Authorize]
         public ActionResult ListarUsuarios()
         {
-            //verifica se é um usuário logado
-            if(HttpContext.User.Identity.Name.Equals(""))
+            if(Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) < 0)
                 return Redirect(FormsAuthentication.LoginUrl);
-            System.Web.Security.Roles.IsUserInRole("Administrador");
-            usperiodicoEntities entities = new usperiodicoEntities();
-            
-            //verifica se o usuário é um administrador
-            bool userAdm = entities.Usuarios.Any(Usuarios => Usuarios.email == HttpContext.User.Identity.Name && Usuarios.role == 1);
-            if (!userAdm)
+            else if(Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) == 0)
                 return Redirect("/Home/IndexSafe");
 
+            usperiodicoEntities entities = new usperiodicoEntities();
             IQueryable<Usuarios> listaOrdenada = entities.Usuarios.OrderBy(usuario => usuario.role).ThenBy(usuario => usuario.Id);
             ViewBag.usuarios = listaOrdenada;
             return View();

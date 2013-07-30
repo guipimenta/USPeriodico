@@ -60,6 +60,11 @@ namespace USPeriodico.Controllers
         [Authorize]
         public ActionResult Deletar(String id)
         {
+            if (Utilitarios.VerificaUsuario(3, HttpContext.User.Identity.Name) < 0)
+                return Redirect(FormsAuthentication.LoginUrl);
+            else if (Utilitarios.VerificaUsuario(3, HttpContext.User.Identity.Name) == 0)
+                return Redirect("/Home/IndexSafe");
+
             int idint = int.Parse(id);
             EventoCEPE evento = entities.EventoCEPE.Find(idint);
             entities.EventoCEPE.Remove(evento);
@@ -73,6 +78,12 @@ namespace USPeriodico.Controllers
         {
             //Pega o login do usuario
             String name = HttpContext.User.Identity.Name;
+
+            if (Utilitarios.VerificaUsuario(3, name) < 0)
+                return Redirect(FormsAuthentication.LoginUrl);
+            else if (Utilitarios.VerificaUsuario(3, name) == 0)
+                return Redirect("/Home/IndexSafe");
+
             ViewBag.alert = false;
             usperiodicoEntities usuario = new usperiodicoEntities();
             Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
@@ -103,6 +114,11 @@ namespace USPeriodico.Controllers
         [Authorize]
         public ActionResult Editar(string ID)
         {
+            if (Utilitarios.VerificaUsuario(3, HttpContext.User.Identity.Name) < 0)
+                return Redirect(FormsAuthentication.LoginUrl);
+            else if (Utilitarios.VerificaUsuario(3, HttpContext.User.Identity.Name) == 0)
+                return Redirect("/Home/IndexSafe");
+
             if (ID != null)
             {
                 int idInt = int.Parse(ID);

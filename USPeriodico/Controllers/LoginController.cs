@@ -21,6 +21,9 @@ namespace USPeriodico.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) >= 0)
+                return Redirect("/Home/IndexSafe");
+
             return View();
         }
         [HttpPost]
@@ -30,7 +33,6 @@ namespace USPeriodico.Controllers
             {
                 string email = model.email;
                 string password = model.password;
-
                 usperiodicoEntities entities = new usperiodicoEntities();
 
                 bool userValid = entities.Usuarios.Any(Usuarios => Usuarios.email == email && Usuarios.password == password);
@@ -38,11 +40,15 @@ namespace USPeriodico.Controllers
                 if (userValid)
                 {
                     FormsAuthentication.SetAuthCookie(email, false);
-                    alunoEntities alunoentities = new alunoEntities();
-                    int id = entities.Usuarios.First(Usuarios => Usuarios.email == email).Id;
-                    if (!alunoentities.Aluno.Any(Aluno => Aluno.ID == id))
+                    
+                    if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) == 0)
                     {
-                        return View("CriaCadastro");
+                        alunoEntities alunoentities = new alunoEntities();
+                        int id = entities.Usuarios.First(Usuarios => Usuarios.email == email).Id;
+                        if (!alunoentities.Aluno.Any(Aluno => Aluno.ID == id))
+                        {
+                            return View("CriaCadastro");
+                        }
                     }
                     return Redirect("/Home/IndexSafe");
                 }
@@ -56,6 +62,9 @@ namespace USPeriodico.Controllers
         [HttpGet]
         public ActionResult Cadastrar()
         {
+            if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) >= 0)
+                return Redirect("/Home/IndexSafe");
+
             return View();
         }
         [HttpPost]
