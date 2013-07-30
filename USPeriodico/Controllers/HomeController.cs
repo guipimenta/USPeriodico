@@ -10,21 +10,38 @@ namespace USPeriodico.Controllers
 {
     public class HomeController : Controller
     {
+        
         eventoCEPEEntities entities = new eventoCEPEEntities();
-        private List<EventoCEPE> todosEventos;
+        estagioEntities entities2 = new estagioEntities();
+
+        private List<EventoCEPE> eventosCEPE;
+        private List<Estagio> estagios;
         //
         // GET: /Home/
 
         public ActionResult Index()
         {
+            int[] eventoID;
+            String[] eventosNome;
 
+            eventosCEPE = entities.EventoCEPE.ToList();
+            estagios = entities2.Estagio.ToList();
 
-            todosEventos = entities.EventoCEPE.ToList();
+            foreach (EventoCEPE evento in eventosCEPE)
+            {
+                //eventoID = evento.ID;
+                //eventosNome = evento.Nome;
+            }
+
+            foreach (Estagio estagio  in estagios)
+            {
+            
+            }
 
             if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) >= 0)
                 return Redirect("/Home/IndexSafe");
 
-            return View(todosEventos);
+            return View();
         }
 
         [Authorize]

@@ -14,6 +14,21 @@
     <script src="~/Scripts/Bootstrap/mosaic.1.0.1.js"></script>
     <title>USPeriodico - Home</title>
 
+    <script type="text/javascript">
+            jQuery(function ($) {
+                $('.bar2').mosaic({
+                    animation: 'slide'		//fade or slide
+                });
+            });
+    </script>
+
+    <script type=text/javascript>
+        function carregaPagina(link) {
+            $('#conteudo').load('/eventos/' + link);
+            $('#conteudo').modal('show');
+        }
+    </script>
+
 </head>
 
 <body >

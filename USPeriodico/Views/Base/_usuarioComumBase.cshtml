@@ -20,6 +20,13 @@
         });
     </script>
 
+    <script type=text/javascript>
+        function carregaEventoCEPE(link) {
+            $('#conteudo').load('/EventoCEPE/' + link);
+            $('#conteudo').modal('show');
+        }
+    </script>
+
 </head>
 
 <body >
@@ -37,11 +44,6 @@
                 </li>
                 <li>
                     <a href="#">Contato</a>
-                </li>
-                <li>
-                    <form class="navbar-search pull-left">
-                        <input type="text" class="search-query" placeholder="Buscar">
-                    </form>
                 </li>
             </ul>
         </div>

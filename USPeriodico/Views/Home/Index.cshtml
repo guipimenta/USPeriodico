@@ -1,15 +1,15 @@
-﻿@model IEnumerable<USPeriodico.Models.EventoCEPE>
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Base/_usuarioComumBase.cshtml";
 }
 
 <div class="container">
-     @foreach(USPeriodico.Models.EventoCEPE evento in Model){
+     @for (int i = 0; i < @ViewBag.eventosSize ; i++ )
+     {
         <div class="mosaic-block bar2">
-            <a href="EventoCEPE/Detalhar?ID=@evento.ID" class="mosaic-overlay">
+            <a onclick="carregaEventoCEPE('/Detalhar?ID=')" class="mosaic-overlay">
               <div class="details">
-                  <h5>@evento.Nome -  @evento.Data</h5>
+                  <h5>@ViewBag.eventos[i] - @i</h5>
                   <h5>Mais+</h5>
               </div>
             </a>
@@ -17,4 +17,6 @@
         </div> 
         </div>
      }
+
+    <div id="conteudo" class="modal hide fade" tabindex="-1" aria-hidden="true" style="width: 500px; overflow-x:hidden "></div>
 </div>

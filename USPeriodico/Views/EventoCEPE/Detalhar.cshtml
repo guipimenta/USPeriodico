@@ -12,16 +12,22 @@
 }
 
 
-
-<div class="container" style="width: 75%;">
-    <h2>Detalhes: @Model.Nome</h2>    
-    <div class ="hero-unit">
-            @Model.Nome <br />
-            @Model.Esporte<br />
-            @Model.Data<br />
-            @Model.Horario<br />
-            @Model.Local<br />
-            @Model.Descricao<br />
-            
-        </div>
+<div class="modal-header span6">
+    <button type = "button" class="close" data-dismiss="modal">x</button>
+</div>
+<div class="modal-body span6">
+  <dl class="dl-horizontal">
+    <dt>Nome</dt>
+    <dd>@Model.Nome</dd>
+    <dt>Esporte</dt>
+    <dd>@Model.Esporte</dd>
+    <dt>Horário</dt>
+    <dd>@Model.Horario</dd>
+    <dt>Data</dt>
+    <dd>@Model.Data.Date</dd>
+    <dt>Local</dt>
+    <dd>@Model.Local</dd>
+    <dt>Descrição</dt>
+    <dd>@Model.Descricao</dd>
+  </dl>
 </div>
