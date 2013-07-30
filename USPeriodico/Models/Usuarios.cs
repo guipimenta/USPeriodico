@@ -21,6 +21,5 @@ namespace USPeriodico.Models
 
         public virtual Roles Roles { get; set; }
         public virtual Aluno Aluno { get; set; }
-        public virtual Roles Roles { get; set; }
     }
 }
