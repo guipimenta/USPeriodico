@@ -12,14 +12,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="EmpresaID" Type="int" Nullable="false" />
           <Property Name="Descricao" Type="nchar" Nullable="false" MaxLength="1000" />
           <Property Name="BreveDescricao" Type="nchar" Nullable="false" MaxLength="100" />
           <Property Name="DataInicio" Type="date" Nullable="false" />
           <Property Name="Duracao" Type="int" />
           <Property Name="Bolsa" Type="nchar" MaxLength="100" />
-          <Property Name="Area" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="Area" Type="int" Nullable="false" />
         </EntityType>
         <Function Name="EstagioDeletar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -31,7 +31,7 @@
           <Parameter Name="dataInicio" Type="date" Mode="In" />
           <Parameter Name="duracao" Type="int" Mode="In" />
           <Parameter Name="bolsa" Type="varchar" Mode="In" />
-          <Parameter Name="area" Type="varchar" Mode="In" />
+          <Parameter Name="area" Type="int" Mode="In" />
         </Function>
         <Function Name="EstagioUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="empresaID" Type="int" Mode="In" />
@@ -40,7 +40,7 @@
           <Parameter Name="dataInicio" Type="date" Mode="In" />
           <Parameter Name="duracao" Type="int" Mode="In" />
           <Parameter Name="bolsa" Type="varchar" Mode="In" />
-          <Parameter Name="area" Type="varchar" Mode="In" />
+          <Parameter Name="area" Type="int" Mode="In" />
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
       </Schema>
@@ -60,7 +60,7 @@
             <Parameter Name="dataInicio" Mode="In" Type="DateTime" />
             <Parameter Name="duracao" Mode="In" Type="Int32" />
             <Parameter Name="bolsa" Mode="In" Type="String" />
-            <Parameter Name="area" Mode="In" Type="String" />
+            <Parameter Name="area" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="EstagioUpdate">
             <Parameter Name="empresaID" Mode="In" Type="Int32" />
@@ -69,7 +69,7 @@
             <Parameter Name="dataInicio" Mode="In" Type="DateTime" />
             <Parameter Name="duracao" Mode="In" Type="Int32" />
             <Parameter Name="bolsa" Mode="In" Type="String" />
-            <Parameter Name="area" Mode="In" Type="String" />
+            <Parameter Name="area" Mode="In" Type="Int32" />
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -77,14 +77,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="EmpresaID" Type="Int32" Nullable="false" />
           <Property Name="Descricao" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="true" />
           <Property Name="BreveDescricao" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
           <Property Name="DataInicio" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Duracao" Type="Int32" />
           <Property Name="Bolsa" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
-          <Property Name="Area" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="Area" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -115,12 +115,13 @@
                   <ScalarProperty Name="BreveDescricao" ParameterName="breveDescricao" />
                   <ScalarProperty Name="Descricao" ParameterName="descricao" />
                   <ScalarProperty Name="EmpresaID" ParameterName="empresaID" />
+                  <ResultBinding Name="ID" ColumnName="ID" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="usperiodicoModel.Store.EstagioUpdate" >
                   <ScalarProperty Name="ID" ParameterName="id" Version="Current" />
                   <ScalarProperty Name="Area" ParameterName="area" Version="Current" />
                   <ScalarProperty Name="Bolsa" ParameterName="bolsa" Version="Current" />
-                  <ScalarProperty Name="DataInicio" ParameterName="duracao" Version="Current" />
+                  <ScalarProperty Name="Duracao" ParameterName="duracao" Version="Current" />
                   <ScalarProperty Name="DataInicio" ParameterName="dataInicio" Version="Current" />
                   <ScalarProperty Name="BreveDescricao" ParameterName="breveDescricao" Version="Current" />
                   <ScalarProperty Name="Descricao" ParameterName="descricao" Version="Current" />

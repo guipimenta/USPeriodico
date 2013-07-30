@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -137,8 +139,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-<<<<<<< HEAD
     <Compile Include="Models\Aluno.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -159,14 +159,24 @@
     </Compile>
     <Compile Include="Models\Curso.cs">
       <DependentUpon>Aluno.tt</DependentUpon>
-=======
+    </Compile>
+    <Compile Include="Models\Estagio.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estagio.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Estagio.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
->>>>>>> efbac25ccef0c1e20f52f21b8627b33e1ffa5e5a
-=======
-    <Compile Include="Models\Estagio.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
->>>>>>> efbac25ccef0c1e20f52f21b8627b33e1ffa5e5a
+      <DependentUpon>Estagio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estagio.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estagio.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estagio1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estagio.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EventoCEPE.Context.cs">
       <AutoGen>True</AutoGen>
@@ -186,23 +196,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EventoCEPE.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Estagio.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Estagio.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Roles.cs">
-      <DependentUpon>Usuarios.tt</DependentUpon>
+      <DependentUpon>Aluno.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuarios.Context.cs">
       <AutoGen>True</AutoGen>
@@ -318,23 +313,6 @@
       <DependentUpon>EventoCEPE.edmx</DependentUpon>
       <LastGenOutput>EventoCEPE1.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="Models\Estagio.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Estagio.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Estagio.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Estagio.edmx.diagram">
-      <DependentUpon>Estagio.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Estagio.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Controllers\ListarUsuarios.cshtml" />
     <EntityDeploy Include="Models\Aluno.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -352,6 +330,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Aluno.edmx</DependentUpon>
       <LastGenOutput>Aluno1.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Estagio.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Estagio.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Estagio.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Estagio.edmx</DependentUpon>
+      <LastGenOutput>Estagio.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Estagio.edmx.diagram">
+      <DependentUpon>Estagio.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Estagio.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Estagio.edmx</DependentUpon>
+      <LastGenOutput>Estagio1.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\USPeriodico.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
@@ -397,6 +392,9 @@
     <Content Include="Views\EventoCEPE\Criar.cshtml" />
     <Content Include="Views\EventoCEPE\Listar.cshtml" />
     <Content Include="Views\EventoCEPE\Detalhar.cshtml" />
+    <Content Include="Views\Estagio\Listar.cshtml" />
+    <Content Include="Views\Estagio\Criar.cshtml" />
+    <Content Include="Views\Estagio\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -435,6 +433,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

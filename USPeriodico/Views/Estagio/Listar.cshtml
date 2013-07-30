@@ -1,4 +1,4 @@
-﻿@model IEnumerable<USPeriodico.Models.EventoCEPE>
+﻿@model IEnumerable<USPeriodico.Models.Estagio>
 
 
 @{
@@ -11,8 +11,7 @@
     }
     
 }
-
-<h2>Listar eventos</h2>
+<h2>Listar estágios</h2>
 <table class="table">
     <tr>
         <th>ID</th>
@@ -20,18 +19,18 @@
         <th>Detalhes</th>
     </tr>
     
-         @foreach(USPeriodico.Models.EventoCEPE evento in Model){
+         @foreach(USPeriodico.Models.Estagio estagio in Model){
             <tr>
-                <td>@evento.ID</td>
-                <td>@evento.Nome</td>
+                <td>@estagio.ID</td>
+                <td>@estagio.BreveDescricao</td>
                 
-                @if (ViewBag.ID == evento.AlunoID)
+                @if (ViewBag.ID == estagio.EmpresaID)
                 {
-                    <td><a href="Editar?id=@evento.ID">Modificar</a></td>
+                    <td><a href="Editar?id=@estagio.ID">Modificar</a></td>
                 }
                 else
                 {
-                    <td><a href="Detalhar?ID=@evento.ID">Detalhar</a></td>
+                    <td><a href="Detalhar?ID=@estagio.ID">Detalhar</a></td>
                 }
             </tr>
          }

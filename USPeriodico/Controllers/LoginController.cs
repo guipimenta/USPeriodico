@@ -50,8 +50,7 @@ namespace USPeriodico.Controllers
             return Redirect("/Home/");
         }
 
-        [HttpPost]
-        [Authorize]
+
 
         [HttpGet]
         public ActionResult Cadastrar()

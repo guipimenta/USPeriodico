@@ -1,56 +1,55 @@
-﻿@model USPeriodico.Models.EventoCEPE
+﻿@model USPeriodico.Models.Estagio
 
 @{
-    ViewBag.Title = "Cadastrar";
+    ViewBag.Title = "Criar";
     Layout = "~/Views/Base/_logadoBase.cshtml";
 }
-
 
 <div class="container" style="width: 75%;">
         <div class ="hero-unit">
            
-            <h1 align="center">Criar novo evento</h1><br>
+            <h1 align="center">Criar novo estágio</h1><br>
 
             <form class="form-horizontal" action="Criar" method="post" >
 
                     
                 
-                <input type="text" name="AlunoID" id="AlunoID" value="@ViewBag.AlunoID" style="display:none">
+                <input type="text" name="EmpresaID" id="EmpresaID" value="@ViewBag.EmpresaID" style="display:none">
 
                 <div class="control-group">
-                    <label class="control-label" for="Nome">Nome:</label>
+                    <label class="control-label" for="BreveDescricao">Breve descricao:</label>
                     <div class="controls">
-                        <input type="text" id="Nome"  name="Nome">
+                        <input type="text" id="BreveDescricao"  name="BreveDescricao">
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="Local">Local:</label>
+                    <label class="control-label" for="Descricao">Descricao:</label>
                     <div class="controls">
-                        <input type="text" id="Local"  name ="Local">
+                        <input type="text" id="Descricao"  name ="Descricao">
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="Data">Data:</label>
+                    <label class="control-label" for="DataInicio">Data de Inicio:</label>
                     <div class="controls">
-                        <input type="date" id="Data"  name="Data">
+                        <input type="date" id="DataInicio"  name="DataInicio">
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="Horario">Horario:</label>
+                    <label class="control-label" for="Duracao">Duracao:</label>
                     <div class="controls">
-                        <input type="text" id="Horario"  name="Horario">
+                        <input type="text" id="Duracao"  name="Duracao">
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="Esporte">Esporte:</label>
+                    <label class="control-label" for="Bolsa">Bolsa:</label>
                     <div class="controls">
-                        <input type="text" id="Esporte"  name="Esporte">
+                        <input type="text" id="Bolsa"  name="Bolsa">
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="Descricao">Descrição:</label>
+                    <label class="control-label" for="Area">Área:</label>
                     <div class="controls">
-                            <input type="text" id="Descricao"  name="Descricao">
+                            <input type="text" id="Area"  name="Area">
                     </div>
                 </div>
                 <div class="control-group">

@@ -1,0 +1,55 @@
+﻿@model USPeriodico.Models.Estagio
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Base/_logadoBase.cshtml";
+}
+
+<form class="form-horizontal" action="Editar" method="post" >
+
+                    
+                
+                <input type="text" name="EmpresaID" id="EmpresaID" value="@ViewBag.EmpresaID" style="display:none">
+
+                <div class="control-group">
+                    <label class="control-label" for="BreveDescricao">Breve descricao:</label>
+                    <div class="controls">
+                        <input type="text" id="BreveDescricao"  name="BreveDescricao" value="@Model.BreveDescricao">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Descricao">Descricao:</label>
+                    <div class="controls">
+                        <input type="text" id="Descricao"  name ="Descricao" value="@Model.Descricao">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="DataInicio">Data de Inicio:</label>
+                    <div class="controls">
+                        <input type="text" id="DataInicio"  name="DataInicio" value="@Model.DataInicio.Year-@Model.DataInicio.Month-@Model.DataInicio.Day">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Duracao">Duracao:</label>
+                    <div class="controls">
+                        <input type="text" id="Duracao"  name="Duracao" value="@Model.Duracao">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Bolsa">Bolsa:</label>
+                    <div class="controls">
+                        <input type="text" id="Bolsa"  name="Bolsa" value="@Model.Bolsa">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Area">Área:</label>
+                    <div class="controls">
+                            <input type="text" id="Area"  name="Area" value="@Model.Area">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-warning">Criar</button>
+                    </div>
+                </div>
+            </form>

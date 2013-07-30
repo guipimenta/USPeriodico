@@ -30,6 +30,7 @@ namespace USPeriodico.Controllers
                     usperiodicoEntities usuario = new usperiodicoEntities();
                     Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
                     ViewBag.ID = recuperado.Id;
+                    ViewBag.NoID = false;
                 }
                 catch (Exception e)
                 {

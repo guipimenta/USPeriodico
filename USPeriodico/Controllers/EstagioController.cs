@@ -27,10 +27,28 @@ namespace USPeriodico.Controllers
         [HttpGet]
         public ActionResult Listar()
         {
-            String name = HttpContext.User.Identity.Name;
-            usperiodicoEntities usuario = new usperiodicoEntities();
-            Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
-            ViewBag.ID = recuperado.Id;
+            try
+            {
+                String name = HttpContext.User.Identity.Name;
+                usperiodicoEntities usuario = new usperiodicoEntities();
+                Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
+                //Verifica se o usuario possui role de empresa
+                if (recuperado.role == 2 || recuperado.role == 1)
+                {
+                    ViewBag.ID = recuperado.Id;
+                }
+                else
+                {
+                    ViewBag.NoID = false;
+                    ViewBag.ID = null;
+                }
+            }
+            catch (Exception e)
+            {
+                //Se a autenticacao nao foi feita, entra em modo anonimo
+                ViewBag.NoID = true;
+                ViewBag.ID = null;
+            }
             todosEstagios = entities.Estagio.ToList();
             return View(todosEstagios);
         }
@@ -66,7 +84,15 @@ namespace USPeriodico.Controllers
             ViewBag.alert = false;
             usperiodicoEntities usuario = new usperiodicoEntities();
             Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
-            ViewBag.EmpresaID = recuperado.Id;
+            if (recuperado.role == 2 || recuperado.role == 1)
+            {
+                ViewBag.EmpresaID = recuperado.Id;
+            }
+            else
+            {
+                return Redirect("~/SafeIndex");
+            }
+            
 
             return View();
         }
@@ -78,13 +104,14 @@ namespace USPeriodico.Controllers
             try
             {
                 model = entities.Estagio.Add(model);
-                entities.SaveChanges();
+                entities.SaveChanges();          
                 return Redirect("Editar?Id=" + model.ID);
             }
-            catch (Exception e)
-            {
+           catch (Exception e)
+           {
                 return Redirect("Editar " + e.Message);
             }
+            
 
         }
 

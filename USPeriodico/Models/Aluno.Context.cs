@@ -12,6 +12,9 @@ namespace USPeriodico.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class alunoEntities : DbContext
     {
@@ -28,5 +31,81 @@ namespace USPeriodico.Models
         public DbSet<Aluno> Aluno { get; set; }
         public DbSet<Curso> Curso { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Roles> Roles { get; set; }
+    
+        public virtual int EventoCEPEDeletar(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EventoCEPEDeletar", idParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> EventoCEPEInsert(string nome, string local, string descricao, string esporte, Nullable<System.DateTime> data, Nullable<System.TimeSpan> horario, Nullable<int> alunoID)
+        {
+            var nomeParameter = nome != null ?
+                new ObjectParameter("nome", nome) :
+                new ObjectParameter("nome", typeof(string));
+    
+            var localParameter = local != null ?
+                new ObjectParameter("local", local) :
+                new ObjectParameter("local", typeof(string));
+    
+            var descricaoParameter = descricao != null ?
+                new ObjectParameter("descricao", descricao) :
+                new ObjectParameter("descricao", typeof(string));
+    
+            var esporteParameter = esporte != null ?
+                new ObjectParameter("esporte", esporte) :
+                new ObjectParameter("esporte", typeof(string));
+    
+            var dataParameter = data.HasValue ?
+                new ObjectParameter("data", data) :
+                new ObjectParameter("data", typeof(System.DateTime));
+    
+            var horarioParameter = horario.HasValue ?
+                new ObjectParameter("horario", horario) :
+                new ObjectParameter("horario", typeof(System.TimeSpan));
+    
+            var alunoIDParameter = alunoID.HasValue ?
+                new ObjectParameter("alunoID", alunoID) :
+                new ObjectParameter("alunoID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("EventoCEPEInsert", nomeParameter, localParameter, descricaoParameter, esporteParameter, dataParameter, horarioParameter, alunoIDParameter);
+        }
+    
+        public virtual int EventoCEPEUpdate(string nome, string local, string descricao, string esporte, Nullable<System.DateTime> data, Nullable<System.TimeSpan> horario, Nullable<int> id)
+        {
+            var nomeParameter = nome != null ?
+                new ObjectParameter("nome", nome) :
+                new ObjectParameter("nome", typeof(string));
+    
+            var localParameter = local != null ?
+                new ObjectParameter("local", local) :
+                new ObjectParameter("local", typeof(string));
+    
+            var descricaoParameter = descricao != null ?
+                new ObjectParameter("descricao", descricao) :
+                new ObjectParameter("descricao", typeof(string));
+    
+            var esporteParameter = esporte != null ?
+                new ObjectParameter("esporte", esporte) :
+                new ObjectParameter("esporte", typeof(string));
+    
+            var dataParameter = data.HasValue ?
+                new ObjectParameter("data", data) :
+                new ObjectParameter("data", typeof(System.DateTime));
+    
+            var horarioParameter = horario.HasValue ?
+                new ObjectParameter("horario", horario) :
+                new ObjectParameter("horario", typeof(System.TimeSpan));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EventoCEPEUpdate", nomeParameter, localParameter, descricaoParameter, esporteParameter, dataParameter, horarioParameter, idParameter);
+        }
     }
 }

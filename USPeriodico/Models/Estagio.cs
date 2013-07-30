@@ -21,6 +21,6 @@ namespace USPeriodico.Models
         public System.DateTime DataInicio { get; set; }
         public Nullable<int> Duracao { get; set; }
         public string Bolsa { get; set; }
-        public string Area { get; set; }
+        public int Area { get; set; }
     }
 }

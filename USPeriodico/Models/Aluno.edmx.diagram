@@ -5,11 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2a806f1bab3547a29aac9efcf6109b60" Name="Diagram1">
-        <EntityTypeShape EntityType="usperiodicoModel.Aluno" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="usperiodicoModel.Curso" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="usperiodicoModel.Aluno" Width="1.5" PointX="5.375" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="usperiodicoModel.Curso" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="usperiodicoModel.Usuarios" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="usperiodicoModel.FK_Aluno_Curso" ManuallyRouted="false" />
         <AssociationConnector Association="usperiodicoModel.FK_Aluno_Usuarios" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="usperiodicoModel.Roles" Width="1.5" PointX="0.875" PointY="3" />
+        <AssociationConnector Association="usperiodicoModel.FK_Usuarios_roles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
