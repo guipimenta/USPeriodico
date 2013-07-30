@@ -13,10 +13,10 @@ namespace USPeriodico.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class usperiodicoEntities : DbContext
+    public partial class empresaEntities : DbContext
     {
-        public usperiodicoEntities()
-            : base("name=usperiodicoEntities")
+        public empresaEntities()
+            : base("name=empresaEntities")
         {
         }
     
@@ -25,7 +25,6 @@ namespace USPeriodico.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Roles> Roles { get; set; }
-        public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Empresa> Empresa { get; set; }
     }
 }

@@ -153,14 +153,34 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Aluno.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Aluno1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Aluno.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Area.cs">
-      <DependentUpon>Estagio.tt</DependentUpon>
+      <DependentUpon>Aluno.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Curso.cs">
       <DependentUpon>Aluno.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Empresa.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Empresa.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Empresa.cs">
-      <DependentUpon>Estagio.tt</DependentUpon>
+      <DependentUpon>Empresa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Empresa.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Empresa.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Empresa1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Empresa.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Estagio.Context.cs">
       <AutoGen>True</AutoGen>
@@ -220,7 +240,7 @@
       <DependentUpon>Usuarios.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuarios.cs">
-      <DependentUpon>Aluno.tt</DependentUpon>
+      <DependentUpon>Usuarios.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuarios.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -294,23 +314,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <EntityDeploy Include="Models\Usuarios.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Usuarios.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Usuarios.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Usuarios.edmx</DependentUpon>
-      <LastGenOutput>Usuarios.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Usuarios.edmx.diagram">
-      <DependentUpon>Usuarios.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Usuarios.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Usuarios.edmx</DependentUpon>
-      <LastGenOutput>Usuarios1.cs</LastGenOutput>
-    </Content>
     <EntityDeploy Include="Models\EventoCEPE.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EventoCEPE.Designer.cs</LastGenOutput>
@@ -327,23 +330,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EventoCEPE.edmx</DependentUpon>
       <LastGenOutput>EventoCEPE1.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\Aluno.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Aluno.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Aluno.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Aluno.edmx</DependentUpon>
-      <LastGenOutput>Aluno.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Aluno.edmx.diagram">
-      <DependentUpon>Aluno.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Aluno.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Aluno.edmx</DependentUpon>
-      <LastGenOutput>Aluno1.cs</LastGenOutput>
     </Content>
     <Content Include="ClassDiagram1.cd" />
     <EntityDeploy Include="Models\Timer.edmx">
@@ -379,6 +365,57 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Estagio.edmx</DependentUpon>
       <LastGenOutput>Estagio1.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Usuarios.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Usuarios.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Usuarios.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Usuarios.edmx</DependentUpon>
+      <LastGenOutput>Usuarios.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Usuarios.edmx.diagram">
+      <DependentUpon>Usuarios.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Usuarios.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Usuarios.edmx</DependentUpon>
+      <LastGenOutput>Usuarios1.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Aluno.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Aluno.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Aluno.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Aluno.edmx</DependentUpon>
+      <LastGenOutput>Aluno.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Aluno.edmx.diagram">
+      <DependentUpon>Aluno.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Aluno.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Aluno.edmx</DependentUpon>
+      <LastGenOutput>Aluno1.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Empresa.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Empresa.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Empresa.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Empresa.edmx</DependentUpon>
+      <LastGenOutput>Empresa.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Empresa.edmx.diagram">
+      <DependentUpon>Empresa.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Empresa.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Empresa.edmx</DependentUpon>
+      <LastGenOutput>Empresa1.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\USPeriodico.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
@@ -430,6 +467,8 @@
     <Content Include="Views\Administrador\ListarUsuarios.cshtml" />
     <Content Include="Views\Estagio\Detalhar.cshtml" />
     <Content Include="Views\Administrador\Historico.cshtml" />
+    <Content Include="Views\Login\CriarAluno.cshtml" />
+    <Content Include="Views\Login\CriarEmpresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
