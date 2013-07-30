@@ -75,8 +75,21 @@ namespace USPeriodico.Controllers
                 return Redirect("/Home/IndexSafe");
 
             Estagio estagio = entities.Estagio.Find(id);
-            entities.Estagio.Remove(estagio);
-            entities.SaveChanges();
+            usperiodicoEntities empresa = new usperiodicoEntities();
+            Usuarios dono = empresa.Usuarios.Find(HttpContext.User.Identity.Name);
+            if (Utilitarios.VerificaUsuario(1, dono.email) > 1)
+            {
+                entities.Estagio.Remove(estagio);
+                entities.SaveChanges();
+            }
+            else if (Utilitarios.VerificaUsuario(2, dono.email) > 1)
+            {
+                if (estagio.EmpresaID == dono.Id)
+                {
+                    entities.Estagio.Remove(estagio);
+                    entities.SaveChanges();
+                }
+            }
             return Redirect("Listar");
         }
 
@@ -140,7 +153,6 @@ namespace USPeriodico.Controllers
             {
 
                 Estagio estagio = entities.Estagio.Find(id);
-                
 
                 if (estagio == null)
                     return View("Invalido");
@@ -149,14 +161,22 @@ namespace USPeriodico.Controllers
                     String name = HttpContext.User.Identity.Name;
                     usperiodicoEntities usuario = new usperiodicoEntities();
                     Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
-                    if (recuperado.Id == estagio.EmpresaID)
+                    if (Utilitarios.VerificaUsuario(1, recuperado.email) > 1)
                     {
                         ViewBag.ID = id;
                         return View(estagio);
                     }
-                    else
+                    else if (Utilitarios.VerificaUsuario(2, recuperado.email) > 1)
                     {
-                        return Redirect("Listar");
+                        if (recuperado.Id == estagio.EmpresaID)
+                        {
+                            ViewBag.ID = id;
+                            return View(estagio);
+                        }
+                        else
+                        {
+                            return Redirect("Listar");
+                        }
                     }
                
                 }
