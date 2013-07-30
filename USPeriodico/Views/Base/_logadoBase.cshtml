@@ -23,8 +23,13 @@
     </script>
 
     <script type=text/javascript>
-        function carregaPagina(link) {
-            $('#conteudo').load('/eventos/' + link);
+        function carregaEventoCEPE(link) {
+            $('#conteudo').load('/EventoCEPE/' + link);
+            $('#conteudo').modal('show');
+        }
+
+        function carregaEstagio(link) {
+            $('#conteudo').load('/Estagio/' + link);
             $('#conteudo').modal('show');
         }
     </script>

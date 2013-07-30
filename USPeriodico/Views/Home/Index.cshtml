@@ -4,18 +4,35 @@
 }
 
 <div class="container">
-     @for (int i = 0; i < @ViewBag.eventosSize ; i++ )
+     @for (int i = 0; i < @ViewBag.eventoSize ; i++ )
      {
-        <div class="mosaic-block bar2">
-            <a onclick="carregaEventoCEPE('/Detalhar?ID=')" class="mosaic-overlay">
+         if (@ViewBag.eventoTipo[i] == 1)
+         {
+            <div class="mosaic-block bar2">
+            <a onclick="carregaEventoCEPE('/Detalhar?ID=@ViewBag.eventosID[i]')" class="mosaic-overlay">
               <div class="details">
-                  <h5>@ViewBag.eventos[i] - @i</h5>
+                  <h5>@ViewBag.eventosNome[i] - </h5>
                   <h5>Mais+</h5>
               </div>
             </a>
         <div class="mosaic-backdrop"><img src="http://www.hangar110.com.br/novo/hangar/2010/images/historia-box1.jpg" style="height: 150px;"/>
         </div> 
         </div>
+         }
+         else if (@ViewBag.eventoTipo[i] == 2){
+            <div class="mosaic-block bar2">
+            <a onclick="carregaEstagio('/Detalhar?ID=@ViewBag.eventosID[i]')" class="mosaic-overlay">
+              <div class="details">
+                  <h5>@ViewBag.eventosNome[i] - </h5>
+                  <h5>Mais+</h5>
+              </div>
+            </a>
+        <div class="mosaic-backdrop"><img src="http://www.hangar110.com.br/novo/hangar/2010/images/historia-box1.jpg" style="height: 150px;"/>
+        </div> 
+        </div>
+         
+         }
+
      }
 
     <div id="conteudo" class="modal hide fade" tabindex="-1" aria-hidden="true" style="width: 500px; overflow-x:hidden "></div>
