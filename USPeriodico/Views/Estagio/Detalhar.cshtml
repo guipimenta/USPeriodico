@@ -7,13 +7,23 @@
 
 <h2>Detalhes: @Model.BreveDescricao</h2>
 
-<div class="container" style="width: 75%;">
-        <div class ="hero-unit">
-            @Model.Descricao <br />
-            @Model.Duracao<br />
-            @Model.Area<br />
-            @Model.DataInicio<br />
-            @Model.Bolsa<br />
-            
-        </div>
+<div class="modal-header">
+    <button type = "button" class="close" data-dismiss="modal">X</button>
+</div>
+<div class="modal-body">
+  <dl class="dl-horizontal">
+    <dt>Descrição</dt>
+    <dd>@Model.Descricao </dd>
+    <dt>Duração</dt>
+    <dd>@Model.Duracao</dd>
+    <dt>Área</dt>
+    <dd>@Model.Area</dd>
+    <dt>Início</dt>
+    <dd>@Model.DataInicio.Day/@Model.DataInicio.Month/@Model.DataInicio.Year</dd>
+    <dt>Valor da Bolsa</dt>
+    <dd>R$ @Model.Bolsa</dd>        
+  </dl>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
 </div>

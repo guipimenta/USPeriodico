@@ -22,19 +22,18 @@ namespace USPeriodico.Controllers
         public ActionResult Index()
         {
             
-           
-            
-
             eventosCEPE = entities.EventoCEPE.ToList();
             estagios = entities2.Estagio.ToList();
             int[] eventoID = new int[eventosCEPE.Count+ estagios.Count];
             String[] eventosNome = new String[eventosCEPE.Count + estagios.Count];
             int[] eventoTipo = new int[eventosCEPE.Count + estagios.Count];
+            DateTime[] eventosData = new DateTime[eventosCEPE.Count + estagios.Count];
             int i=0;
             foreach (EventoCEPE evento in eventosCEPE)
             {
                 eventoID[i] = evento.ID;
                 eventosNome[i] = evento.Nome;
+                eventosData[i] = evento.Data.Date;
                 eventoTipo[i] = 1;
                 i++;
             }
@@ -43,6 +42,7 @@ namespace USPeriodico.Controllers
             {
                 eventoID[i] = estagio.ID;
                 eventosNome[i] = estagio.BreveDescricao;
+                eventosData[i] = estagio.DataInicio.Date;
                 eventoTipo[i] = 2;
             }
 
@@ -52,6 +52,7 @@ namespace USPeriodico.Controllers
             ViewBag.eventosID = eventoID;
             ViewBag.eventosNome = eventosNome;
             ViewBag.eventoTipo = eventoTipo;
+            ViewBag.eventosData = eventosData;
             ViewBag.eventoSize = i;
             return View();
         }

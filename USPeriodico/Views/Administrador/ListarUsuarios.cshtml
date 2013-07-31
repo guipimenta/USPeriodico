@@ -1,27 +1,43 @@
 ﻿@model USPeriodico.Models.Usuarios
 
 @{
-    ViewBag.Title = "ListarUsuarios";
+    ViewBag.Title = "Listar Usuarios";
     Layout = "~/Views/Base/_logadoBase.cshtml";
 }
 
-<h2>Lista de Usuarios</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Usuário</th>
-      <th>Role</th>
-    </tr>
-  </thead>
-  <tbody>
-      @foreach (USPeriodico.Models.Usuarios usuario in ViewBag.usuarios)
-      {
-          if (usuario == null)
-          {
-              continue;
-          }
-        <tr><td>@usuario.Id</td><td>@usuario.role</td></tr>
-      }
-  </tbody>
-</table>
+<div class="container" style="width: 75%;">
+   <div class="hero-unit">
+       <h2>Lista de Usuarios</h2>
+       <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Usuário</th>
+                <th>Role</th>
+            </tr>
+            @foreach (USPeriodico.Models.Usuarios usuario in ViewBag.usuarios)
+            {
+                if (usuario == null)
+                {
+                    continue;
+                }
+            <tr>
+                <td>@usuario.Id</td>
+                <td>@usuario.email</td>
+                @if (@usuario.role == 1){
+                <td>Admin</td>
+                }
+                else if (@usuario.role == 2)
+                {
+                <td>Empresa</td>
+                }
+                else if (@usuario.role == 3)
+                {
+                <td>Aluno</td>
+                }
+            </tr>
+            }
+            </table>
+   </div>
+</div>
+

@@ -32,11 +32,12 @@
                             }
                             else
                             {
-                                <td><a class="btn btn-info" href="Detalhar?ID=@evento.ID">Detalhar</a></td>
+                                <td><a onclick="carregaEventoCEPE('/Detalhar?ID=@evento.ID')" class="btn btn-info">Detalhar</a></td>
                             }
                         </tr>
                      }
     
             </table>
    </div>
+    <div id="conteudo" class="modal hide fade" tabindex="-1" aria-hidden="true" style="width: 500px; overflow-x:hidden "></div>
 </div>

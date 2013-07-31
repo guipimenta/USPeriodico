@@ -31,11 +31,12 @@
                     }
                     else
                     {
-                        <td><a class="btn btn-info" href="Detalhar?ID=@estagio.ID">Detalhar</a></td>
+                        <td><a onclick="carregaEstagio('/Detalhar?ID=@estagio.ID')" class="btn btn-info">Detalhar</a></td>
                     }
                 </tr>
              }
     
         </table>
     </div>
+    <div id="conteudo" class="modal hide fade" tabindex="-1" aria-hidden="true" style="width: 500px; overflow-x:hidden "></div>
 </div>

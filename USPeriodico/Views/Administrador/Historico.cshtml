@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Historico";
+    Layout = "~/Views/Base/_logadoBase.cshtml";
+}
+
+<div class="container" style="width: 75%;">
+   <div class="hero-unit">
+       <h2>Historico de Eventos</h2>
+       <table class="table">
+           <thead> 
+               <tr>
+                   <th>#</th>
+                   <th>Tipo</th>
+                   <th>Nome</th>
+                   <th>Data</th>
+                   <th></th>
+               </tr>
+           </thead>
+           <tbody>
+           @for (int i = 0; i < @ViewBag.eventoSize; i++)
+           {
+               if(@ViewBag.eventosData[i] < DateTime.Now){
+               <tr class="success">
+                   <td>@ViewBag.eventosID[i]</td>
+                   @if (@ViewBag.eventoTipo[i] == 1)
+                   {
+                   <td>Esporte</td>
+                   <td>@ViewBag.eventosNome[i]</td>
+                   <td>@ViewBag.eventosDataString[i]</td>
+                   <td><a onclick="carregaEventoCEPE('/Detalhar?ID=@ViewBag.eventosID[i]')" class="btn btn-info">Detalhar</a></td>
+                   }
+               </tr>
+               }
+               else if (@ViewBag.eventosData[i] >= DateTime.Now){
+               <tr class="warning">
+                   <td>@ViewBag.eventosID[i]</td>
+                   @if (@ViewBag.eventoTipo[i] == 2)
+                   {
+                   <td>Estágio</td>
+                   <td>@ViewBag.eventosNome[i]</td>
+                   <td>@ViewBag.eventosDataString[i]</td>
+                   <td><a onclick="carregaEstagio('/Detalhar?ID=@ViewBag.eventosID[i]')" class="btn btn-info">Detalhar</a></td>
+                   }
+
+               </tr>
+               }
+           }
+           </tbody>
+       </table>
+   </div>
+    <div id="conteudo" class="modal hide fade" tabindex="-1" aria-hidden="true" style="width: 500px; overflow-x:hidden "></div>
+</div>
+
