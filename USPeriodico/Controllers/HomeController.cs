@@ -31,19 +31,26 @@ namespace USPeriodico.Controllers
             int i=0;
             foreach (EventoCEPE evento in eventosCEPE)
             {
-                eventoID[i] = evento.ID;
-                eventosNome[i] = evento.Nome;
-                eventosData[i] = evento.Data.Date;
-                eventoTipo[i] = 1;
+                if (evento.Data >= DateTime.Now)
+                {
+                    eventoID[i] = evento.ID;
+                    eventosNome[i] = evento.Nome;
+                    eventosData[i] = evento.Data.Date;
+                    eventoTipo[i] = 1;
+                }
                 i++;
             }
 
             foreach (Estagio estagio  in estagios)
             {
-                eventoID[i] = estagio.ID;
-                eventosNome[i] = estagio.BreveDescricao;
-                eventosData[i] = estagio.DataInicio.Date;
-                eventoTipo[i] = 2;
+                if (estagio.DataInicio >= DateTime.Now)
+                {
+                    eventoID[i] = estagio.ID;
+                    eventosNome[i] = estagio.BreveDescricao;
+                    eventosData[i] = estagio.DataInicio.Date;
+                    eventoTipo[i] = 2;
+                }
+                i++;
             }
 
             if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) >= 0)

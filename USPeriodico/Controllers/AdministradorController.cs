@@ -67,6 +67,7 @@ namespace USPeriodico.Controllers
                 eventosData[i] = estagio.DataInicio;
                 eventosDataString[i] = "" + estagio.DataInicio.Day + "/" + estagio.DataInicio.Month + "/" + estagio.DataInicio.Year;
                 eventoTipo[i] = 2;
+                i++;
             }
 
             ViewBag.eventosID = eventoID;
