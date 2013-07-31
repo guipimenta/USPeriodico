@@ -19,10 +19,9 @@
 	float:left;
 	position:relative;
 	overflow:hidden;
-	width:175px;
-	height: 175px;
+	width:200px;
+	height: 200px;
 	margin:10px;
-	background:#111 url(../img/progress.gif) no-repeat center center;
 	border:1px solid #fff;
 	-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5);
 }
@@ -33,7 +32,6 @@
 		top:0;
 		height:100%;
 		width:100%;
-		background:#111;
 	}
 	
 	.mosaic-overlay {
@@ -69,7 +67,7 @@
 		
 		.bar2 .mosaic-overlay {
 			bottom:-50px;
-			height:100px;
+			height:80px;
 			opacity:0.8;
 			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 			filter:alpha(opacity=80);

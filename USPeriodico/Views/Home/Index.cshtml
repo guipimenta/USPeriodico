@@ -11,11 +11,11 @@
             <div class="mosaic-block bar2">
             <a onclick="carregaEventoCEPE('/Detalhar?ID=@ViewBag.eventosID[i]')" class="mosaic-overlay">
               <div class="details">
-                  <h5>@ViewBag.eventosNome[i] - </h5>
+                  <h5>@ViewBag.eventosNome[i] - @ViewBag.eventosDataString[i] </h5>
                   <h5>Mais+</h5>
               </div>
             </a>
-        <div class="mosaic-backdrop"><img src="http://www.hangar110.com.br/novo/hangar/2010/images/historia-box1.jpg" style="height: 150px;"/>
+        <div class="mosaic-backdrop"><img src="http://www.hangar110.com.br/novo/hangar/2010/images/historia-box1.jpg" style="height: 200px;"/>
         </div> 
         </div>
          }
@@ -23,17 +23,32 @@
             <div class="mosaic-block bar2">
             <a onclick="carregaEstagio('/Detalhar?ID=@ViewBag.eventosID[i]')" class="mosaic-overlay">
               <div class="details">
-                  <h5>@ViewBag.eventosNome[i] - </h5>
+                  <h5>@ViewBag.eventosNome[i] - @ViewBag.eventosDataString[i]</h5>
                   <h5>Mais+</h5>
               </div>
             </a>
-        <div class="mosaic-backdrop"><img src="http://www.hangar110.com.br/novo/hangar/2010/images/historia-box1.jpg" style="height: 150px;"/>
+        <div class="mosaic-backdrop"><img src="http://www.hangar110.com.br/novo/hangar/2010/images/historia-box1.jpg" style="height: 200px;"/>
         </div> 
         </div>
          
          }
 
      }
-
+    <div class="pagination pagination-centered">
+        <ul>
+          <li><a href="/Index?mesDesejado=1">Janeiro</a></li>
+          <li><a href="/Home/Index?mesDesejado=2">Fevereiro</a></li>
+          <li><a href="/Home/Index?mesDesejado=3">Março</a></li>
+          <li><a href="/Home/Index?mesDesejado=4">Abril</a></li>
+          <li><a href="/Home/Index?mesDesejado=5">Maio</a></li>
+          <li><a href="/Home/Index?mesDesejado=6">Junho</a></li>
+          <li><a href="/Home/Index?mesDesejado=7">Julho</a></li>
+          <li><a href="/Home/Index?mesDesejado=8">Agosto</a></li>
+          <li><a href="/Home/Index?mesDesejado=9">Setembro</a></li>
+          <li><a href="/Home/Index?mesDesejado=10">Outubro</a></li>
+          <li><a href="/Home/Index?mesDesejado=11">Novembro</a></li>
+          <li><a href="/Home/Index?mesDesejado=12">Dezembro</a></li>
+        </ul>    
+    </div>
     <div id="conteudo" class="modal hide fade" tabindex="-1" aria-hidden="true" style="width: 500px; overflow-x:hidden "></div>
 </div>
