@@ -174,11 +174,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Estagio.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Estagio1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Estagio.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\EventoCEPE.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
