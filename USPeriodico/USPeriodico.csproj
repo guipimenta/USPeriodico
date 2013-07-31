@@ -135,6 +135,7 @@
     <Compile Include="Controllers\EventoCEPEController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SincronizadorController.cs" />
     <Compile Include="Controllers\Utilitarios.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -320,7 +321,6 @@
     <Content Include="Models\Estagio.edmx.diagram">
       <DependentUpon>Estagio.edmx</DependentUpon>
     </Content>
-    <Content Include="Controllers\ListarUsuarios.cshtml" />
     <EntityDeploy Include="Models\Aluno.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Aluno.Designer.cs</LastGenOutput>
