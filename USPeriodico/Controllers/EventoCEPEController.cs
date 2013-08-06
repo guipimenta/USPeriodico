@@ -13,7 +13,6 @@ namespace USPeriodico.Controllers
     public class EventoCEPEController : Controller
     {
         eventoCEPEEntities entities = new eventoCEPEEntities();
-        private List<EventoCEPE> todosEventos;
         
         
         //
@@ -38,11 +37,16 @@ namespace USPeriodico.Controllers
                     ViewBag.NoID = true;
                     ViewBag.ID = null;
                 }
-                
-                
-            
-            todosEventos = entities.EventoCEPE.ToList();
-            return View(todosEventos);
+
+
+
+            List<EventoCEPE> eventosCEPE = new List<EventoCEPE>();
+            foreach (EventoCEPE evento in entities.EventoCEPE.ToList())
+            {
+                if (evento.Valido == true)
+                    eventosCEPE.Add(evento);
+            }
+            return View(eventosCEPE);
         }
 
         [HttpGet]

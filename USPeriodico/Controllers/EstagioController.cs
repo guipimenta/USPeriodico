@@ -14,7 +14,6 @@ namespace USPeriodico.Controllers
     {
 
         estagioEntities entities = new estagioEntities();
-        private List<Estagio> todosEstagios;
 
         //
         // GET: /Estagio/
@@ -50,8 +49,14 @@ namespace USPeriodico.Controllers
                 ViewBag.NoID = true;
                 ViewBag.ID = null;
             }
-            todosEstagios = entities.Estagio.ToList();
-            return View(todosEstagios);
+
+            List<Estagio> estagios = new List<Estagio>();
+            foreach(Estagio estagio in entities.Estagio.ToList())
+            {
+                if(estagio.Valido == true)
+                    estagios.Add(estagio);
+            }
+            return View(estagios);
         }
 
         [HttpGet]
