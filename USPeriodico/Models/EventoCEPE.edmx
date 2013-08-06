@@ -20,6 +20,9 @@
           <Property Name="Horario" Type="time" Nullable="false" />
           <Property Name="Nome" Type="nchar" Nullable="false" MaxLength="100" />
           <Property Name="Descricao" Type="nchar" Nullable="false" MaxLength="250" />
+          <Property Name="Valido" Type="bit" Nullable="false" />
+          <Property Name="UltimaAlteracao" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="ImageLink" Type="nchar" MaxLength="100" />
         </EntityType>
         <Function Name="EventoCEPEDeletar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -67,7 +70,7 @@
             <Parameter Name="alunoID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="EventoCEPEDeletar">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="EventoCEPE">
@@ -82,6 +85,9 @@
           <Property Name="Horario" Type="Time" Nullable="false" Precision="7" />
           <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
           <Property Name="Descricao" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="true" />
+          <Property Type="Boolean" Name="Valido" Nullable="false" />
+          <Property Type="Binary" Name="UltimaAlteracao" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="String" Name="ImageLink" MaxLength="100" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -92,6 +98,9 @@
           <EntitySetMapping Name="EventoCEPE">
             <EntityTypeMapping TypeName="usperiodicoModel.EventoCEPE">
               <MappingFragment StoreEntitySet="EventoCEPE">
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
+                <ScalarProperty Name="UltimaAlteracao" ColumnName="UltimaAlteracao" />
+                <ScalarProperty Name="Valido" ColumnName="Valido" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AlunoID" ColumnName="AlunoID" />
                 <ScalarProperty Name="Local" ColumnName="Local" />

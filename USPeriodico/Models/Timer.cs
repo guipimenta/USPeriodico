@@ -12,18 +12,10 @@ namespace USPeriodico.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class EventoCEPE
+    public partial class Timer
     {
-        public int ID { get; set; }
-        public int AlunoID { get; set; }
-        public string Local { get; set; }
-        public string Esporte { get; set; }
-        public System.DateTime Data { get; set; }
+        public int Id { get; set; }
         public System.TimeSpan Horario { get; set; }
-        public string Nome { get; set; }
-        public string Descricao { get; set; }
-        public bool Valido { get; set; }
-        public byte[] UltimaAlteracao { get; set; }
-        public string ImageLink { get; set; }
+        public int Frequencia { get; set; }
     }
 }

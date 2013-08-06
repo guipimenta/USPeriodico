@@ -136,7 +136,7 @@ namespace USPeriodico.Controllers
             else if (Utilitarios.VerificaUsuario(2, HttpContext.User.Identity.Name) == 0)
                 return Redirect("/Home/IndexSafe");
 
-            if (id != null)
+            if (id > 0)
             {
 
                 Estagio estagio = entities.Estagio.Find(id);

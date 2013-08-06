@@ -35,6 +35,18 @@ namespace USPeriodico.Controllers
         }
 
         [Authorize]
+        [HttpGet]
+        public ActionResult CriarTimer()
+        {
+            if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) < 0)
+                return Redirect(FormsAuthentication.LoginUrl);
+            else if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) == 0)
+                return Redirect("/Home/IndexSafe");
+
+            return View();
+        }
+
+        [Authorize]
         public ActionResult Historico()
         {
             if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) < 0)
@@ -80,5 +92,28 @@ namespace USPeriodico.Controllers
 
         }
 
+        [Authorize]
+        public ActionResult Timers()
+        {
+            if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) < 0)
+                return Redirect(FormsAuthentication.LoginUrl);
+            else if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) == 0)
+                return Redirect("/Home/IndexSafe");
+
+
+            return View();
+        }
+
+
+        [Authorize]
+        public ActionResult Adicionar()
+        {
+            if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) < 0)
+                return Redirect(FormsAuthentication.LoginUrl);
+            else if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) == 0)
+                return Redirect("/Home/IndexSafe");
+
+            return View();
+        }
     }
 }
