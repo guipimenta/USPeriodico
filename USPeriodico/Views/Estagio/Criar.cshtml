@@ -5,7 +5,7 @@
     Layout = "~/Views/Base/_logadoBase.cshtml";
 }
 
-<div class="container" style="width: 75%;">
+<div class="container" style="width: 60%;">
         <div class ="hero-unit">
            
             <h1 align="center">Criar novo estágio</h1><br>
@@ -17,15 +17,15 @@
                 <input type="text" name="EmpresaID" id="EmpresaID" value="@ViewBag.EmpresaID" style="display:none">
 
                 <div class="control-group">
-                    <label class="control-label" for="BreveDescricao">Breve descricao:</label>
+                    <label class="control-label" for="BreveDescricao">Breve descrição:</label>
                     <div class="controls">
                         <input type="text" id="BreveDescricao"  name="BreveDescricao">
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="Descricao">Descricao:</label>
+                    <label class="control-label" for="Descricao">Descrição:</label>
                     <div class="controls">
-                        <input type="text" id="Descricao"  name ="Descricao">
+                        <textarea class="form-control" rows="4" id="Descricao" name ="Descricao"></textarea>
                     </div>
                 </div>
                 <div class="control-group">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="Duracao">Duracao:</label>
+                    <label class="control-label" for="Duracao">Duração:</label>
                     <div class="controls">
                         <input type="text" id="Duracao"  name="Duracao">
                     </div>
