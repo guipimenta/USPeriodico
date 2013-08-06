@@ -12,21 +12,18 @@ namespace USPeriodico.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Estagio
+    public partial class Area
     {
+        public Area()
+        {
+            this.Estagio = new HashSet<Estagio>();
+        }
+    
         public int ID { get; set; }
-        public int EmpresaID { get; set; }
-        public string Descricao { get; set; }
-        public string BreveDescricao { get; set; }
-        public System.DateTime DataInicio { get; set; }
-        public Nullable<int> Duracao { get; set; }
-        public string Bolsa { get; set; }
-        public int Area { get; set; }
-        public bool Valido { get; set; }
-        public byte[] UltimaAlteracao { get; set; }
-        public string ImageLink { get; set; }
+        public string Nome { get; set; }
     
         public virtual Area Area1 { get; set; }
-        public virtual Empresa Empresa { get; set; }
+        public virtual Area Area2 { get; set; }
+        public virtual ICollection<Estagio> Estagio { get; set; }
     }
 }

@@ -4,10 +4,41 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="usperiodicoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="usperiodicoModelStoreContainer">
-          <EntitySet Name="Estagio" EntityType="usperiodicoModel.Store.Estagio" store:Type="Tables" Schema="dbo" />
+    <Schema Namespace="estagioModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="estagioModelStoreContainer">
+          <EntitySet Name="Area" EntityType="estagioModel.Store.Area" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Empresa" EntityType="estagioModel.Store.Empresa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Estagio" EntityType="estagioModel.Store.Estagio" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Area_Area" Association="estagioModel.Store.FK_Area_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Area1" EntitySet="Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estagio_Area" Association="estagioModel.Store.FK_Estagio_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Estagio" EntitySet="Estagio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estagio_Empresa" Association="estagioModel.Store.FK_Estagio_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Estagio" EntitySet="Estagio" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="nchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="Telefone" Type="nchar" Nullable="false" MaxLength="9" />
+          <Property Name="Endereco" Type="nchar" Nullable="false" MaxLength="200" />
+          <Property Name="Descricao" Type="nchar" Nullable="false" MaxLength="500" />
+        </EntityType>
         <EntityType Name="Estagio">
           <Key>
             <PropertyRef Name="ID" />
@@ -22,7 +53,44 @@
           <Property Name="Area" Type="int" Nullable="false" />
           <Property Name="Valido" Type="bit" Nullable="false" />
           <Property Name="UltimaAlteracao" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="ImageLink" Type="nchar" MaxLength="100" />
         </EntityType>
+        <Association Name="FK_Area_Area">
+          <End Role="Area" Type="estagioModel.Store.Area" Multiplicity="1" />
+          <End Role="Area1" Type="estagioModel.Store.Area" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Area1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estagio_Area">
+          <End Role="Area" Type="estagioModel.Store.Area" Multiplicity="1" />
+          <End Role="Estagio" Type="estagioModel.Store.Estagio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estagio">
+              <PropertyRef Name="Area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estagio_Empresa">
+          <End Role="Empresa" Type="estagioModel.Store.Empresa" Multiplicity="1" />
+          <End Role="Estagio" Type="estagioModel.Store.Estagio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estagio">
+              <PropertyRef Name="EmpresaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="EstagioDeletar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
@@ -48,11 +116,25 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="usperiodicoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="estagioModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="estagioEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Estagio" EntityType="usperiodicoModel.Estagio" />
+          <EntitySet Name="Area" EntityType="estagioModel.Area" />
+          <EntitySet Name="Empresa" EntityType="estagioModel.Empresa" />
+          <EntitySet Name="Estagio" EntityType="estagioModel.Estagio" />
+          <AssociationSet Name="FK_Area_Area" Association="estagioModel.FK_Area_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Area1" EntitySet="Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estagio_Area" Association="estagioModel.FK_Estagio_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Estagio" EntitySet="Estagio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estagio_Empresa" Association="estagioModel.FK_Estagio_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Estagio" EntitySet="Estagio" />
+          </AssociationSet>
           <FunctionImport Name="EstagioDeletar">
-          <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="EstagioInsert" ReturnType="Collection(Decimal)">
             <Parameter Name="empresaID" Mode="In" Type="Int32" />
@@ -74,6 +156,27 @@
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Area1" Relationship="estagioModel.FK_Area_Area" FromRole="Area" ToRole="Area1" />
+          <NavigationProperty Name="Area2" Relationship="estagioModel.FK_Area_Area" FromRole="Area1" ToRole="Area" />
+          <NavigationProperty Name="Estagio" Relationship="estagioModel.FK_Estagio_Area" FromRole="Area" ToRole="Estagio" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="Telefone" Type="String" Nullable="false" MaxLength="9" Unicode="true" FixedLength="true" />
+          <Property Name="Endereco" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="true" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Estagio" Relationship="estagioModel.FK_Estagio_Empresa" FromRole="Empresa" ToRole="Estagio" />
+        </EntityType>
         <EntityType Name="Estagio">
           <Key>
             <PropertyRef Name="ID" />
@@ -86,20 +189,76 @@
           <Property Name="Duracao" Type="Int32" />
           <Property Name="Bolsa" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
           <Property Name="Area" Type="Int32" Nullable="false" />
-          <Property Type="Boolean" Name="Valido" Nullable="false" />
-          <Property Type="Binary" Name="UltimaAlteracao" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Valido" Type="Boolean" Nullable="false" />
+          <Property Name="UltimaAlteracao" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" p1:StoreGeneratedPattern="Computed" />
+          <Property Name="ImageLink" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Area1" Relationship="estagioModel.FK_Estagio_Area" FromRole="Estagio" ToRole="Area" />
+          <NavigationProperty Name="Empresa" Relationship="estagioModel.FK_Estagio_Empresa" FromRole="Estagio" ToRole="Empresa" />
         </EntityType>
+        <Association Name="FK_Area_Area">
+          <End Role="Area" Type="estagioModel.Area" Multiplicity="1" />
+          <End Role="Area1" Type="estagioModel.Area" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Area1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estagio_Area">
+          <End Role="Area" Type="estagioModel.Area" Multiplicity="1" />
+          <End Role="Estagio" Type="estagioModel.Estagio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estagio">
+              <PropertyRef Name="Area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estagio_Empresa">
+          <End Role="Empresa" Type="estagioModel.Empresa" Multiplicity="1" />
+          <End Role="Estagio" Type="estagioModel.Estagio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estagio">
+              <PropertyRef Name="EmpresaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="usperiodicoModelStoreContainer" CdmEntityContainer="estagioEntities">
+        <EntityContainerMapping StorageEntityContainer="estagioModelStoreContainer" CdmEntityContainer="estagioEntities">
+          <EntitySetMapping Name="Area">
+            <EntityTypeMapping TypeName="estagioModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="estagioModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Estagio">
-            <EntityTypeMapping TypeName="usperiodicoModel.Estagio">
+            <EntityTypeMapping TypeName="estagioModel.Estagio">
               <MappingFragment StoreEntitySet="Estagio">
-                <ScalarProperty Name="UltimaAlteracao" ColumnName="UltimaAlteracao" />
-                <ScalarProperty Name="Valido" ColumnName="Valido" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EmpresaID" ColumnName="EmpresaID" />
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
@@ -108,11 +267,14 @@
                 <ScalarProperty Name="Duracao" ColumnName="Duracao" />
                 <ScalarProperty Name="Bolsa" ColumnName="Bolsa" />
                 <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Valido" ColumnName="Valido" />
+                <ScalarProperty Name="UltimaAlteracao" ColumnName="UltimaAlteracao" />
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
               </MappingFragment>
             </EntityTypeMapping>
-            <EntityTypeMapping TypeName="usperiodicoModel.Estagio">
+            <EntityTypeMapping TypeName="estagioModel.Estagio">
               <ModificationFunctionMapping>
-                <InsertFunction FunctionName="usperiodicoModel.Store.EstagioInsert" >
+                <InsertFunction FunctionName="estagioModel.Store.EstagioInsert" >
                   <ScalarProperty Name="Area" ParameterName="area" />
                   <ScalarProperty Name="Bolsa" ParameterName="bolsa" />
                   <ScalarProperty Name="Duracao" ParameterName="duracao" />
@@ -120,27 +282,26 @@
                   <ScalarProperty Name="BreveDescricao" ParameterName="breveDescricao" />
                   <ScalarProperty Name="Descricao" ParameterName="descricao" />
                   <ScalarProperty Name="EmpresaID" ParameterName="empresaID" />
-                  <ResultBinding Name="ID" ColumnName="ID" />
                 </InsertFunction>
-                <UpdateFunction FunctionName="usperiodicoModel.Store.EstagioUpdate" >
-                  <ScalarProperty Name="ID" ParameterName="id" Version="Current" />
-                  <ScalarProperty Name="Area" ParameterName="area" Version="Current" />
-                  <ScalarProperty Name="Bolsa" ParameterName="bolsa" Version="Current" />
-                  <ScalarProperty Name="Duracao" ParameterName="duracao" Version="Current" />
-                  <ScalarProperty Name="DataInicio" ParameterName="dataInicio" Version="Current" />
-                  <ScalarProperty Name="BreveDescricao" ParameterName="breveDescricao" Version="Current" />
-                  <ScalarProperty Name="Descricao" ParameterName="descricao" Version="Current" />
-                  <ScalarProperty Name="EmpresaID" ParameterName="empresaID" Version="Current" />
+                <UpdateFunction FunctionName="estagioModel.Store.EstagioDeletar" >
+                <ScalarProperty Name="ID" ParameterName="id" Version="Current" />
                 </UpdateFunction>
-                <DeleteFunction FunctionName="usperiodicoModel.Store.EstagioDeletar" >
+                <DeleteFunction FunctionName="estagioModel.Store.EstagioUpdate" >
                   <ScalarProperty Name="ID" ParameterName="id" />
+                  <ScalarProperty Name="Area" ParameterName="area" />
+                  <ScalarProperty Name="Bolsa" ParameterName="bolsa" />
+                  <ScalarProperty Name="Duracao" ParameterName="duracao" />
+                  <ScalarProperty Name="DataInicio" ParameterName="dataInicio" />
+                  <ScalarProperty Name="BreveDescricao" ParameterName="breveDescricao" />
+                  <ScalarProperty Name="Descricao" ParameterName="descricao" />
+                  <ScalarProperty Name="EmpresaID" ParameterName="empresaID" />
                 </DeleteFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="EstagioDeletar" FunctionName="usperiodicoModel.Store.EstagioDeletar" />
-          <FunctionImportMapping FunctionImportName="EstagioInsert" FunctionName="usperiodicoModel.Store.EstagioInsert" />
-          <FunctionImportMapping FunctionImportName="EstagioUpdate" FunctionName="usperiodicoModel.Store.EstagioUpdate" />
+          <FunctionImportMapping FunctionImportName="EstagioDeletar" FunctionName="estagioModel.Store.EstagioDeletar" />
+          <FunctionImportMapping FunctionImportName="EstagioInsert" FunctionName="estagioModel.Store.EstagioInsert" />
+          <FunctionImportMapping FunctionImportName="EstagioUpdate" FunctionName="estagioModel.Store.EstagioUpdate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

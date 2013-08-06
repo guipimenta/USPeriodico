@@ -28,6 +28,8 @@ namespace USPeriodico.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Area> Area { get; set; }
+        public DbSet<Empresa> Empresa { get; set; }
         public DbSet<Estagio> Estagio { get; set; }
     
         public virtual int EstagioDeletar(Nullable<int> id)
