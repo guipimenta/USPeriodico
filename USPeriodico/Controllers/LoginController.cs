@@ -163,6 +163,9 @@ namespace USPeriodico.Controllers
         {
             alunoEntities novoAluno = new alunoEntities();
             List<Curso> todosCursos = novoAluno.Curso.ToList();
+            // Inicializar ViewBag
+            ViewBag.alert = false;
+            ViewBag.mensagemErro = "";
             if (ModelState.IsValid)
             {
                 try
@@ -170,38 +173,37 @@ namespace USPeriodico.Controllers
                     if (model.Curso == 0)
                     {
                         ViewBag.alert = true;
-                        ViewBag.mensagemErro = "Selecione um curso";
-                        return View(todosCursos);
+                        ViewBag.mensagemErro += "Selecione um curso\n";
                     }
-                    if (model.Nome.Equals(""))
+                    if (model.Nome.Length == 0)
                     {
                         ViewBag.alert = true;
-                        ViewBag.mensagemErro = "Nome vazio";
-                        return View(todosCursos);
+                        ViewBag.mensagemErro += "Nome vazio\n";
                     }
-                    if (model.NUSP.ToString().Equals(""))
+                    if (model.NUSP.ToString().Length == 0)
                     {
                         ViewBag.alert = true;
-                        ViewBag.mensagemErro = "Numero USP vazio";
-                        return View(todosCursos);
+                        ViewBag.mensagemErro += "Numero USP vazio\n";
                     }
-                    if (model.Telefone.Equals(""))
+                    if (model.NUSP.ToString().Length != 7)
                     {
                         ViewBag.alert = true;
-                        ViewBag.mensagemErro = "Telefone vazio";
-                        return View(todosCursos);
+                        ViewBag.mensagemErro += "Numero USP inválido\n";
+                    }
+                    if (model.Telefone.Length == 0)
+                    {
+                        ViewBag.alert = true;
+                        ViewBag.mensagemErro += "Telefone vazio\n";
                     }
                     else if (model.Telefone.Length > 9)
                     {
                         ViewBag.alert = true;
-                        ViewBag.mensagemErro = "Telefone muito grande";
-                        return View(todosCursos);
+                        ViewBag.mensagemErro += "Telefone muito grande\n";
                     }
-                    if (model.Unidade.Equals(""))
+                    if (model.Unidade.Length == 0)
                     {
                         ViewBag.alert = true;
-                        ViewBag.mensagemErro = "Unidade vazia";
-                        return View(todosCursos);
+                        ViewBag.mensagemErro += "Unidade vazia\n";
                     }
                 }
                 catch (Exception e)
@@ -210,7 +212,10 @@ namespace USPeriodico.Controllers
                     ViewBag.mensagemErro = "Complete todos os campos!";
                     return View(todosCursos);
                 }
-
+                if (ViewBag.alert == true)
+                {
+                    return View(todosCursos);
+                }
 
                 //Verifica se ja existe o aluno cadastrado
                 if (novoAluno.Aluno.Any(Aluno => Aluno.NUSP == model.NUSP))
