@@ -27,11 +27,11 @@
                 
                     @if (ViewBag.ID == estagio.EmpresaID)
                     {
-                        <td><a class="btn btn-warning" href="Editar?id=@estagio.ID">Modificar</a></td>
+                        <td><a class="btn btn-warning" href="Editar?id=@estagio.ID"><i class=" icon-pencil icon-white"></i> Modificar</a></td>
                     }
                     else
                     {
-                        <td><a onclick="carregaEstagio('/Detalhar?ID=@estagio.ID')" class="btn btn-info">Detalhar</a></td>
+                        <td><a onclick="carregaEstagio('/Detalhar?ID=@estagio.ID')" class="btn btn-info"><i class=" icon-plus icon-white"></i> Detalhar</a></td>
                     }
                 </tr>
              }

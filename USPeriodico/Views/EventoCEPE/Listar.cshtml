@@ -26,13 +26,13 @@
                             <td>@evento.ID</td>
                             <td>@evento.Nome</td>
                 
-                            @if (ViewBag.ID == evento.AlunoID)
+                            @if (ViewBag.ID == evento.AlunoID && evento.Data <= DateTime.Now)
                             {
-                                <td><a class="btn btn-warning" href="Editar?id=@evento.ID">Modificar</a></td>
+                                <td><a class="btn btn-warning" href="Editar?id=@evento.ID"><i class=" icon-pencil icon-white"></i> Modificar</a></td>
                             }
                             else
                             {
-                                <td><a onclick="carregaEventoCEPE('/Detalhar?ID=@evento.ID')" class="btn btn-info">Detalhar</a></td>
+                                <td><a onclick="carregaEventoCEPE('/Detalhar?ID=@evento.ID')" class="btn btn-info"><i class=" icon-plus icon-white"></i> Detalhar</a></td>
                             }
                         </tr>
                      }

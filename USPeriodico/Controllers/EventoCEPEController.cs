@@ -90,7 +90,6 @@ namespace USPeriodico.Controllers
             Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
             ViewBag.AlunoID = recuperado.Id;
 
-
             return View();
         }
 
