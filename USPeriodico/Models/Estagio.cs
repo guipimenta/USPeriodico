@@ -22,5 +22,11 @@ namespace USPeriodico.Models
         public Nullable<int> Duracao { get; set; }
         public string Bolsa { get; set; }
         public int Area { get; set; }
+        public bool Valido { get; set; }
+        public byte[] UltimaAlteracao { get; set; }
+        public string ImageLink { get; set; }
+    
+        public virtual Area Area1 { get; set; }
+        public virtual Empresa Empresa { get; set; }
     }
 }
