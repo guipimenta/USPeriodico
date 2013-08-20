@@ -73,7 +73,7 @@ namespace USPeriodico.Controllers
             int idint = int.Parse(id);
             EventoCEPE evento = entities.EventoCEPE.Find(idint);
             usperiodicoEntities aluno = new usperiodicoEntities();
-            Usuarios dono = aluno.Usuarios.Find(HttpContext.User.Identity.Name);
+            Usuarios dono = aluno.Usuarios.First(Usuario => Usuario.email == HttpContext.User.Identity.Name);
             if (Utilitarios.VerificaUsuario(1, dono.email) > 1)
             {
                 entities.EventoCEPE.Remove(evento);
@@ -142,7 +142,8 @@ namespace USPeriodico.Controllers
                 
                 EventoCEPE evento = entities.EventoCEPE.Find(idInt);
                 usperiodicoEntities aluno = new usperiodicoEntities();
-                Usuarios dono = aluno.Usuarios.Find(HttpContext.User.Identity.Name);
+                Usuarios dono = aluno.Usuarios.First(Usuario => Usuario.email == HttpContext.User.Identity.Name);
+            
 
                 if (evento == null)
                     return View("Invalido");
