@@ -419,6 +419,8 @@
     <Content Include="Views\Administrador\ListarUsuarios.cshtml" />
     <Content Include="Views\Estagio\Detalhar.cshtml" />
     <Content Include="Views\Administrador\Historico.cshtml" />
+    <Content Include="Views\Administrador\Timers.cshtml" />
+    <Content Include="Views\Administrador\Adicionar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

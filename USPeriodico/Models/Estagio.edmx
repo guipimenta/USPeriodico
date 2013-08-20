@@ -22,6 +22,7 @@
           <Property Name="Area" Type="int" Nullable="false" />
           <Property Name="Valido" Type="bit" Nullable="false" />
           <Property Name="UltimaAlteracao" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="ImageLink" Type="nchar" MaxLength="100" />
         </EntityType>
         <Function Name="EstagioDeletar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -88,6 +89,7 @@
           <Property Name="Area" Type="Int32" Nullable="false" />
           <Property Type="Boolean" Name="Valido" Nullable="false" />
           <Property Type="Binary" Name="UltimaAlteracao" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="String" Name="ImageLink" MaxLength="100" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -98,6 +100,7 @@
           <EntitySetMapping Name="Estagio">
             <EntityTypeMapping TypeName="usperiodicoModel.Estagio">
               <MappingFragment StoreEntitySet="Estagio">
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
                 <ScalarProperty Name="UltimaAlteracao" ColumnName="UltimaAlteracao" />
                 <ScalarProperty Name="Valido" ColumnName="Valido" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
