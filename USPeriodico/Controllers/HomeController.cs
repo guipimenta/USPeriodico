@@ -34,6 +34,7 @@ namespace USPeriodico.Controllers
             String[] eventosNome = new String[eventosCEPE.Count + estagios.Count];
             String[] eventosDataString = new String[eventosCEPE.Count + estagios.Count];
             DateTime[] eventosData = new DateTime[eventosCEPE.Count + estagios.Count];
+            String[] eventosLinkImage = new String[eventosCEPE.Count + estagios.Count];
             int i=0;
 
             if (mesDesejado < 1 || mesDesejado > 12)
@@ -50,6 +51,7 @@ namespace USPeriodico.Controllers
                     eventosNome[i] = evento.Nome;
                     eventosData[i] = evento.Data.Date;
                     eventosDataString[i] = "" + evento.Data.Day + "/" + evento.Data.Month;
+                    eventosLinkImage[i] = evento.ImageLink;
                     eventoTipo[i] = 1;
                 }
                 i++;
@@ -63,6 +65,7 @@ namespace USPeriodico.Controllers
                     eventosNome[i] = estagio.BreveDescricao;
                     eventosData[i] = estagio.DataInicio.Date;
                     eventosDataString[i] = "" + estagio.DataInicio.Day + "/" + estagio.DataInicio.Month;
+                    eventosLinkImage[i] = estagio.ImageLink;
                     eventoTipo[i] = 2;
                 }
                 i++;
@@ -76,6 +79,7 @@ namespace USPeriodico.Controllers
             ViewBag.eventoTipo = eventoTipo;
             ViewBag.eventosData = eventosData;
             ViewBag.eventosDataString = eventosDataString;
+            ViewBag.eventosLinkImage = eventosLinkImage;
             ViewBag.eventoSize = i;
             return View();
         }
@@ -98,6 +102,7 @@ namespace USPeriodico.Controllers
             String[] eventosNome = new String[eventosCEPE.Count + estagios.Count];
             String[] eventosDataString = new String[eventosCEPE.Count + estagios.Count];
             DateTime[] eventosData = new DateTime[eventosCEPE.Count + estagios.Count];
+            String[] eventosLinkImage = new String[eventosCEPE.Count + estagios.Count];
             int i = 0;
 
             if (mesDesejado < 1 || mesDesejado > 12)
@@ -114,6 +119,7 @@ namespace USPeriodico.Controllers
                     eventosNome[i] = evento.Nome;
                     eventosData[i] = evento.Data.Date;
                     eventosDataString[i] = "" + evento.Data.Day + "/" + evento.Data.Month;
+                    eventosLinkImage[i] = evento.ImageLink;
                     eventoTipo[i] = 1;
                 }
                 i++;
@@ -127,6 +133,7 @@ namespace USPeriodico.Controllers
                     eventosNome[i] = estagio.BreveDescricao;
                     eventosData[i] = estagio.DataInicio.Date;
                     eventosDataString[i] = "" + estagio.DataInicio.Day + "/" + estagio.DataInicio.Month;
+                    eventosLinkImage[i] = estagio.ImageLink;
                     eventoTipo[i] = 2;
                 }
                 i++;
@@ -137,6 +144,7 @@ namespace USPeriodico.Controllers
             ViewBag.eventoTipo = eventoTipo;
             ViewBag.eventosData = eventosData;
             ViewBag.eventosDataString = eventosDataString;
+            ViewBag.eventosLinkImage = eventosLinkImage;
             ViewBag.eventoSize = i;
 
             return View();

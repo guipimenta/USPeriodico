@@ -81,7 +81,7 @@ namespace USPeriodico.Controllers
 
             Estagio estagio = entities.Estagio.Find(id);
             usperiodicoEntities empresa = new usperiodicoEntities();
-            Usuarios dono = empresa.Usuarios.Find(HttpContext.User.Identity.Name);
+            Usuarios dono = empresa.Usuarios.First(Usuario => Usuario.email == HttpContext.User.Identity.Name);
             if (Utilitarios.VerificaUsuario(1, dono.email) > 1)
             {
                 entities.Estagio.Remove(estagio);
