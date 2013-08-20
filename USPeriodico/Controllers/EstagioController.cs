@@ -167,7 +167,7 @@ namespace USPeriodico.Controllers
                     String name = HttpContext.User.Identity.Name;
                     usperiodicoEntities usuario = new usperiodicoEntities();
                     Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
-                    if (Utilitarios.VerificaUsuario(1, recuperado.email) > 1)
+                    if (Utilitarios.VerificaUsuario(1, recuperado.email) >= 1)
                     {
                         ViewBag.ID = id;
                         return View(estagio);

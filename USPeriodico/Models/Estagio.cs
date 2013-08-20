@@ -19,7 +19,7 @@ namespace USPeriodico.Models
         public string Descricao { get; set; }
         public string BreveDescricao { get; set; }
         public System.DateTime DataInicio { get; set; }
-        public Nullable<int> Duracao { get; set; }
+        public string Duracao { get; set; }
         public string Bolsa { get; set; }
         public int Area { get; set; }
         public bool Valido { get; set; }

@@ -76,7 +76,7 @@ namespace USPeriodico.Controllers
                 // falta parametro de data de atualizacao -> extremamente necessario para terminar esse controler devido ao filtro
                 // falta Model da empresa, para pegar o nome dela a partir do ID
                 json_estagio.data_inicio = estagio.DataInicio;
-                json_estagio.duracao = estagio.Duracao.Value;
+                json_estagio.duracao = estagio.Duracao;
                 json_estagio.bolsa = Convert.ToDecimal(estagio.Bolsa); // trocar tipo de dado do estagio.Bolsa para Money
                 // falta Model da area, para pegar o nome dela a partir do ID
                 json_estagios.Enqueue(json_estagio);
@@ -103,7 +103,7 @@ namespace USPeriodico.Controllers
         public string nome_empresa;
         public string descricao_empresa;
         public DateTime data_inicio;
-        public int duracao;
+        public string duracao;
         public decimal bolsa;
         public string area;
     }

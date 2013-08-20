@@ -39,7 +39,7 @@ namespace USPeriodico.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EstagioDeletar", idParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> EstagioInsert(Nullable<int> empresaID, string descricao, string breveDescricao, Nullable<System.DateTime> dataInicio, Nullable<int> duracao, string bolsa, Nullable<int> area, string imageLink)
+        public virtual ObjectResult<Nullable<decimal>> EstagioInsert(Nullable<int> empresaID, string descricao, string breveDescricao, Nullable<System.DateTime> dataInicio, string duracao, string bolsa, Nullable<int> area, string imageLink)
         {
             var empresaIDParameter = empresaID.HasValue ?
                 new ObjectParameter("empresaID", empresaID) :
@@ -57,9 +57,9 @@ namespace USPeriodico.Models
                 new ObjectParameter("dataInicio", dataInicio) :
                 new ObjectParameter("dataInicio", typeof(System.DateTime));
     
-            var duracaoParameter = duracao.HasValue ?
+            var duracaoParameter = duracao != null ?
                 new ObjectParameter("duracao", duracao) :
-                new ObjectParameter("duracao", typeof(int));
+                new ObjectParameter("duracao", typeof(string));
     
             var bolsaParameter = bolsa != null ?
                 new ObjectParameter("bolsa", bolsa) :
@@ -76,7 +76,7 @@ namespace USPeriodico.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("EstagioInsert", empresaIDParameter, descricaoParameter, breveDescricaoParameter, dataInicioParameter, duracaoParameter, bolsaParameter, areaParameter, imageLinkParameter);
         }
     
-        public virtual int EstagioUpdate(Nullable<int> empresaID, string descricao, string breveDescricao, Nullable<System.DateTime> dataInicio, Nullable<int> duracao, string bolsa, Nullable<int> area, Nullable<int> id)
+        public virtual int EstagioUpdate(Nullable<int> empresaID, string descricao, string breveDescricao, Nullable<System.DateTime> dataInicio, string duracao, string bolsa, Nullable<int> area, Nullable<int> id)
         {
             var empresaIDParameter = empresaID.HasValue ?
                 new ObjectParameter("empresaID", empresaID) :
@@ -94,9 +94,9 @@ namespace USPeriodico.Models
                 new ObjectParameter("dataInicio", dataInicio) :
                 new ObjectParameter("dataInicio", typeof(System.DateTime));
     
-            var duracaoParameter = duracao.HasValue ?
+            var duracaoParameter = duracao != null ?
                 new ObjectParameter("duracao", duracao) :
-                new ObjectParameter("duracao", typeof(int));
+                new ObjectParameter("duracao", typeof(string));
     
             var bolsaParameter = bolsa != null ?
                 new ObjectParameter("bolsa", bolsa) :

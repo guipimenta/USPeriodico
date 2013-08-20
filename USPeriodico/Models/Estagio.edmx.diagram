@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="19ee2aa4b14b45e98a632f7948243390" Name="Diagram1">
+      <Diagram DiagramId="6ac9c383d76b43e2b1378c4d6dc48efb" Name="Diagram1">
         <EntityTypeShape EntityType="usperiodicoModel.Estagio" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
