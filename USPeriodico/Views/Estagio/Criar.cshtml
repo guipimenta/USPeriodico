@@ -5,27 +5,41 @@
     Layout = "~/Views/Base/_logadoBase.cshtml";
 }
 
+<script>  
+$(function ()  
+{
+    $("#BreveHelper").popover({ trigger: 'hover' });
+    $("#DescHelper").popover({ trigger: 'hover' });
+    $("#BolsaHelper").popover({ trigger: 'hover' });
+    $("#DuracaoHelper").popover({ trigger: 'hover' });
+}
+
+    );
+</script>
+
 <div class="container" style="width: 60%;">
         <div class ="hero-unit">
            
             <h1 align="center">Criar novo estágio</h1><br>
-
             <form class="form-horizontal" action="Criar" method="post" >
-
-                    
-                
                 <input type="text" name="EmpresaID" id="EmpresaID" value="@ViewBag.EmpresaID" style="display:none">
 
                 <div class="control-group">
                     <label class="control-label" for="BreveDescricao">Breve descrição:</label>
                     <div class="controls">
-                        <input type="text" id="BreveDescricao"  name="BreveDescricao">
+                        <div style="font-size:12px">
+                            <input type="text" id="BreveDescricao"  name="BreveDescricao"/>
+                            <a href ="#" id="BreveHelper" rel="popover" data-content="Esta breve descrição será usada no mural, procure destacar a posição que o estagiário irá ocupar!"><i class="icon-question-sign"></i></a> 
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Descricao">Descrição:</label>
                     <div class="controls">
-                        <textarea class="form-control" rows="4" id="Descricao" name ="Descricao"></textarea>
+                        <div style="font-size:12px">
+                            <textarea class="form-control" rows="4" id="Descricao" name ="Descricao"></textarea>
+                            <a href ="#" id="DescHelper" rel="popover" data-content="Descreva em detalhes a sua vaga de estágio"><i class="icon-question-sign"></i></a> 
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
@@ -37,19 +51,28 @@
                 <div class="control-group">
                     <label class="control-label" for="Duracao">Duração:</label>
                     <div class="controls">
-                        <input type="text" id="Duracao"  name="Duracao">
+                        <div style="font-size:12px">
+                            <input type="text" id="Duracao"  name="Duracao">
+                            <a href ="#" id="DuracaoHelper" rel="popover" data-content="Coloque a quantidade em meses"><i class="icon-question-sign"></i></a> 
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Bolsa">Bolsa:</label>
                     <div class="controls">
-                        <input type="text" id="Bolsa"  name="Bolsa">
+                        <div style="font-size:12px">
+                            <input type="text" id="Bolsa"  name="Bolsa">
+                            <a href ="#" id="BolsaHelper" rel="popover" data-content="Coloque apenas o valor da bolsa, em reais"><i class="icon-question-sign"></i></a> 
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Area">Área:</label>
                     <div class="controls">
-                            <input type="text" id="Area"  name="Area">
+                        <select id="Area" name="Area">
+                            <option value="1">Engenharia</option>
+                            <option value="2">FEA</option>
+                        </select>
                     </div>
                 </div>
                 <div class="control-group">

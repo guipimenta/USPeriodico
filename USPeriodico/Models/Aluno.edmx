@@ -4,23 +4,22 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="usperiodicoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="usperiodicoModelStoreContainer">
-          <EntitySet Name="Aluno" EntityType="usperiodicoModel.Store.Aluno" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Curso" EntityType="usperiodicoModel.Store.Curso" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Roles" EntityType="usperiodicoModel.Store.Roles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Usuarios" EntityType="usperiodicoModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Aluno_Curso" Association="usperiodicoModel.Store.FK_Aluno_Curso">
+      <Schema Namespace="alunoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="alunoModelStoreContainer">
+          <EntitySet Name="Aluno" EntityType="alunoModel.Store.Aluno" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Area" EntityType="alunoModel.Store.Area" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Curso" EntityType="alunoModel.Store.Curso" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Aluno_Curso" Association="alunoModel.Store.FK_Aluno_Curso">
             <End Role="Curso" EntitySet="Curso" />
             <End Role="Aluno" EntitySet="Aluno" />
           </AssociationSet>
-          <AssociationSet Name="FK_Aluno_Usuarios" Association="usperiodicoModel.Store.FK_Aluno_Usuarios">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Aluno" EntitySet="Aluno" />
+          <AssociationSet Name="FK_Area_Area" Association="alunoModel.Store.FK_Area_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Area1" EntitySet="Area" />
           </AssociationSet>
-          <AssociationSet Name="FK_Usuarios_roles" Association="usperiodicoModel.Store.FK_Usuarios_roles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
+          <AssociationSet Name="FK_Curso_Area" Association="alunoModel.Store.FK_Curso_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Curso" EntitySet="Curso" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Aluno">
@@ -34,6 +33,13 @@
           <Property Name="Curso" Type="int" Nullable="false" />
           <Property Name="Unidade" Type="nchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="nchar" Nullable="false" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Curso">
           <Key>
             <PropertyRef Name="ID" />
@@ -42,25 +48,9 @@
           <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Area" Type="int" />
         </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Role" Type="nchar" Nullable="false" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Usuarios">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="email" Type="nchar" Nullable="false" MaxLength="100" />
-          <Property Name="password" Type="nchar" Nullable="false" MaxLength="100" />
-          <Property Name="role" Type="int" Nullable="false" />
-        </EntityType>
         <Association Name="FK_Aluno_Curso">
-          <End Role="Curso" Type="usperiodicoModel.Store.Curso" Multiplicity="1" />
-          <End Role="Aluno" Type="usperiodicoModel.Store.Aluno" Multiplicity="*" />
+          <End Role="Curso" Type="alunoModel.Store.Curso" Multiplicity="1" />
+          <End Role="Aluno" Type="alunoModel.Store.Aluno" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Curso">
               <PropertyRef Name="ID" />
@@ -70,93 +60,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Aluno_Usuarios">
-          <End Role="Usuarios" Type="usperiodicoModel.Store.Usuarios" Multiplicity="1" />
-          <End Role="Aluno" Type="usperiodicoModel.Store.Aluno" Multiplicity="0..1" />
+        <Association Name="FK_Area_Area">
+          <End Role="Area" Type="alunoModel.Store.Area" Multiplicity="1" />
+          <End Role="Area1" Type="alunoModel.Store.Area" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="Id" />
+            <Principal Role="Area">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Aluno">
+            <Dependent Role="Area1">
               <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Usuarios_roles">
-          <End Role="Roles" Type="usperiodicoModel.Store.Roles" Multiplicity="1" />
-          <End Role="Usuarios" Type="usperiodicoModel.Store.Usuarios" Multiplicity="*" />
+        <Association Name="FK_Curso_Area">
+          <End Role="Area" Type="alunoModel.Store.Area" Multiplicity="0..1" />
+          <End Role="Curso" Type="alunoModel.Store.Curso" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleId" />
+            <Principal Role="Area">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="role" />
+            <Dependent Role="Curso">
+              <PropertyRef Name="Area" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="EventoCEPEDeletar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="EventoCEPEInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nome" Type="varchar" Mode="In" />
-          <Parameter Name="local" Type="varchar" Mode="In" />
-          <Parameter Name="descricao" Type="varchar" Mode="In" />
-          <Parameter Name="esporte" Type="varchar" Mode="In" />
-          <Parameter Name="data" Type="date" Mode="In" />
-          <Parameter Name="horario" Type="time" Mode="In" />
-          <Parameter Name="alunoID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="EventoCEPEUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nome" Type="varchar" Mode="In" />
-          <Parameter Name="local" Type="varchar" Mode="In" />
-          <Parameter Name="descricao" Type="varchar" Mode="In" />
-          <Parameter Name="esporte" Type="varchar" Mode="In" />
-          <Parameter Name="data" Type="date" Mode="In" />
-          <Parameter Name="horario" Type="time" Mode="In" />
-          <Parameter Name="id" Type="int" Mode="In" />
-        </Function>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="usperiodicoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="alunoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="alunoEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Aluno" EntityType="usperiodicoModel.Aluno" />
-          <EntitySet Name="Curso" EntityType="usperiodicoModel.Curso" />
-          <EntitySet Name="Usuarios" EntityType="usperiodicoModel.Usuarios" />
-          <AssociationSet Name="FK_Aluno_Curso" Association="usperiodicoModel.FK_Aluno_Curso">
+          <EntitySet Name="Aluno" EntityType="alunoModel.Aluno" />
+          <EntitySet Name="Area" EntityType="alunoModel.Area" />
+          <EntitySet Name="Curso" EntityType="alunoModel.Curso" />
+          <AssociationSet Name="FK_Aluno_Curso" Association="alunoModel.FK_Aluno_Curso">
             <End Role="Curso" EntitySet="Curso" />
             <End Role="Aluno" EntitySet="Aluno" />
           </AssociationSet>
-          <AssociationSet Name="FK_Aluno_Usuarios" Association="usperiodicoModel.FK_Aluno_Usuarios">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Aluno" EntitySet="Aluno" />
+          <AssociationSet Name="FK_Area_Area" Association="alunoModel.FK_Area_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Area1" EntitySet="Area" />
           </AssociationSet>
-          <EntitySet Name="Roles" EntityType="usperiodicoModel.Roles" />
-          <AssociationSet Name="FK_Usuarios_roles" Association="usperiodicoModel.FK_Usuarios_roles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
+          <AssociationSet Name="FK_Curso_Area" Association="alunoModel.FK_Curso_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Curso" EntitySet="Curso" />
           </AssociationSet>
-          <FunctionImport Name="EventoCEPEDeletar">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="EventoCEPEInsert" ReturnType="Collection(Decimal)">
-            <Parameter Name="nome" Mode="In" Type="String" />
-            <Parameter Name="local" Mode="In" Type="String" />
-            <Parameter Name="descricao" Mode="In" Type="String" />
-            <Parameter Name="esporte" Mode="In" Type="String" />
-            <Parameter Name="data" Mode="In" Type="DateTime" />
-            <Parameter Name="horario" Mode="In" Type="Time" />
-            <Parameter Name="alunoID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="EventoCEPEUpdate">
-            <Parameter Name="nome" Mode="In" Type="String" />
-            <Parameter Name="local" Mode="In" Type="String" />
-            <Parameter Name="descricao" Mode="In" Type="String" />
-            <Parameter Name="esporte" Mode="In" Type="String" />
-            <Parameter Name="data" Mode="In" Type="DateTime" />
-            <Parameter Name="horario" Mode="In" Type="Time" />
-            <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Aluno">
           <Key>
@@ -168,8 +116,17 @@
           <Property Name="Telefone" Type="String" Nullable="false" MaxLength="9" Unicode="true" FixedLength="true" />
           <Property Name="Curso" Type="Int32" Nullable="false" />
           <Property Name="Unidade" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="Curso1" Relationship="usperiodicoModel.FK_Aluno_Curso" FromRole="Aluno" ToRole="Curso" />
-          <NavigationProperty Name="Usuarios" Relationship="usperiodicoModel.FK_Aluno_Usuarios" FromRole="Aluno" ToRole="Usuarios" />
+          <NavigationProperty Name="Curso1" Relationship="alunoModel.FK_Aluno_Curso" FromRole="Aluno" ToRole="Curso" />
+        </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Area1" Relationship="alunoModel.FK_Area_Area" FromRole="Area" ToRole="Area1" />
+          <NavigationProperty Name="Area2" Relationship="alunoModel.FK_Area_Area" FromRole="Area1" ToRole="Area" />
+          <NavigationProperty Name="Curso" Relationship="alunoModel.FK_Curso_Area" FromRole="Area" ToRole="Curso" />
         </EntityType>
         <EntityType Name="Curso">
           <Key>
@@ -178,22 +135,12 @@
           <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="Area" Type="Int32" />
-          <NavigationProperty Name="Aluno" Relationship="usperiodicoModel.FK_Aluno_Curso" FromRole="Curso" ToRole="Aluno" />
-        </EntityType>
-        <EntityType Name="Usuarios">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="email" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
-          <Property Name="role" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Aluno" Relationship="usperiodicoModel.FK_Aluno_Usuarios" FromRole="Usuarios" ToRole="Aluno" />
-          <NavigationProperty Name="Roles" Relationship="usperiodicoModel.FK_Usuarios_roles" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Aluno" Relationship="alunoModel.FK_Aluno_Curso" FromRole="Curso" ToRole="Aluno" />
+          <NavigationProperty Name="Area1" Relationship="alunoModel.FK_Curso_Area" FromRole="Curso" ToRole="Area" />
         </EntityType>
         <Association Name="FK_Aluno_Curso">
-          <End Role="Curso" Type="usperiodicoModel.Curso" Multiplicity="1" />
-          <End Role="Aluno" Type="usperiodicoModel.Aluno" Multiplicity="*" />
+          <End Role="Curso" Type="alunoModel.Curso" Multiplicity="1" />
+          <End Role="Aluno" Type="alunoModel.Aluno" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Curso">
               <PropertyRef Name="ID" />
@@ -203,35 +150,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Aluno_Usuarios">
-          <End Role="Usuarios" Type="usperiodicoModel.Usuarios" Multiplicity="1" />
-          <End Role="Aluno" Type="usperiodicoModel.Aluno" Multiplicity="0..1" />
+        <Association Name="FK_Area_Area">
+          <End Role="Area" Type="alunoModel.Area" Multiplicity="1" />
+          <End Role="Area1" Type="alunoModel.Area" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="Id" />
+            <Principal Role="Area">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Aluno">
+            <Dependent Role="Area1">
               <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Type="Int32" Name="RoleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Role" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Usuarios" Relationship="usperiodicoModel.FK_Usuarios_roles" FromRole="Roles" ToRole="Usuarios" />
-        </EntityType>
-        <Association Name="FK_Usuarios_roles">
-          <End Type="usperiodicoModel.Roles" Role="Roles" Multiplicity="1" />
-          <End Type="usperiodicoModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+        <Association Name="FK_Curso_Area">
+          <End Role="Area" Type="alunoModel.Area" Multiplicity="0..1" />
+          <End Role="Curso" Type="alunoModel.Curso" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleId" />
+            <Principal Role="Area">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="role" />
+            <Dependent Role="Curso">
+              <PropertyRef Name="Area" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -240,9 +179,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="usperiodicoModelStoreContainer" CdmEntityContainer="alunoEntities">
+        <EntityContainerMapping StorageEntityContainer="alunoModelStoreContainer" CdmEntityContainer="alunoEntities">
           <EntitySetMapping Name="Aluno">
-            <EntityTypeMapping TypeName="usperiodicoModel.Aluno">
+            <EntityTypeMapping TypeName="alunoModel.Aluno">
               <MappingFragment StoreEntitySet="Aluno">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
@@ -253,8 +192,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Area">
+            <EntityTypeMapping TypeName="alunoModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Curso">
-            <EntityTypeMapping TypeName="usperiodicoModel.Curso">
+            <EntityTypeMapping TypeName="alunoModel.Curso">
               <MappingFragment StoreEntitySet="Curso">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
@@ -262,27 +209,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="usperiodicoModel.Usuarios">
-              <MappingFragment StoreEntitySet="Usuarios">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="role" ColumnName="role" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="usperiodicoModel.Roles">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="EventoCEPEDeletar" FunctionName="usperiodicoModel.Store.EventoCEPEDeletar" />
-          <FunctionImportMapping FunctionImportName="EventoCEPEInsert" FunctionName="usperiodicoModel.Store.EventoCEPEInsert" />
-          <FunctionImportMapping FunctionImportName="EventoCEPEUpdate" FunctionName="usperiodicoModel.Store.EventoCEPEUpdate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -299,7 +225,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Nenhum" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

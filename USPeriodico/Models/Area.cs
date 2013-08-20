@@ -12,18 +12,20 @@ namespace USPeriodico.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Curso
+    public partial class Area
     {
-        public Curso()
+        public Area()
         {
-            this.Aluno = new HashSet<Aluno>();
+            this.Estagio = new HashSet<Estagio>();
+            this.Curso = new HashSet<Curso>();
         }
     
         public int ID { get; set; }
         public string Nome { get; set; }
-        public Nullable<int> Area { get; set; }
     
-        public virtual ICollection<Aluno> Aluno { get; set; }
         public virtual Area Area1 { get; set; }
+        public virtual Area Area2 { get; set; }
+        public virtual ICollection<Estagio> Estagio { get; set; }
+        public virtual ICollection<Curso> Curso { get; set; }
     }
 }

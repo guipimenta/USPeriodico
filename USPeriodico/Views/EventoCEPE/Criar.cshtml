@@ -5,6 +5,16 @@
     Layout = "~/Views/Base/_logadoBase.cshtml";
 }
 
+<script>  
+$(function ()  
+{
+    $("#NomeHelper").popover({ trigger: 'hover' });
+    $("#LocalHelper").popover({ trigger: 'hover' });
+    $("#DescHelper").popover({ trigger: 'hover' });
+}
+
+    );
+</script>
 
 <div class="container" style="width: 60%;">
         <div class ="hero-unit">
@@ -12,21 +22,25 @@
             <h1 align="center">Criar novo evento</h1><br>
 
             <form class="form-horizontal" action="Criar" method="post" >
-
-                    
                 
                 <input type="text" name="AlunoID" id="AlunoID" value="@ViewBag.AlunoID" style="display:none">
 
                 <div class="control-group">
                     <label class="control-label" for="Nome">Nome:</label>
                     <div class="controls">
-                        <input type="text" id="Nome"  name="Nome">
+                        <div style="font-size:12px">
+                            <input type="text" id="Nome"  name="Nome">
+                            <a href ="#" id="NomeHelper" rel="popover" data-content="Coloque um breve nome, por exemplo: Rachão ou Basquete Feminino"><i class="icon-question-sign"></i></a> 
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Local">Local:</label>
                     <div class="controls">
-                        <input type="text" id="Local"  name ="Local">
+                        <div style="font-size:12px">
+                            <input type="text" id="Local"  name ="Local">
+                            <a href ="#" id="LocalHelper" rel="popover" data-content="Coloque a quadra ou o local do encontro"><i class="icon-question-sign"></i></a> 
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
@@ -50,7 +64,10 @@
                 <div class="control-group">
                     <label class="control-label" for="Descricao">Descrição:</label>
                     <div class="controls">
+                        <div style="font-size:12px">
                             <input type="text" id="Descricao"  name="Descricao">
+                            <a href ="#" id="DescHelper" rel="popover" data-content="Procure descrever seu evento para atrair muitas pessoas!"><i class="icon-question-sign"></i></a> 
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">

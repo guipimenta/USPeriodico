@@ -4,11 +4,11 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="usperiodicoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="usperiodicoModelStoreContainer">
-          <EntitySet Name="Roles" EntityType="usperiodicoModel.Store.Roles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Usuarios" EntityType="usperiodicoModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Usuarios_roles" Association="usperiodicoModel.Store.FK_Usuarios_roles">
+      <Schema Namespace="usperiodicoModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="usperiodicoModel1StoreContainer">
+          <EntitySet Name="Roles" EntityType="usperiodicoModel1.Store.Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuarios" EntityType="usperiodicoModel1.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Usuarios_roles" Association="usperiodicoModel1.Store.FK_Usuarios_roles">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -30,8 +30,8 @@
           <Property Name="role" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Usuarios_roles">
-          <End Role="Roles" Type="usperiodicoModel.Store.Roles" Multiplicity="1" />
-          <End Role="Usuarios" Type="usperiodicoModel.Store.Usuarios" Multiplicity="*" />
+          <End Role="Roles" Type="usperiodicoModel1.Store.Roles" Multiplicity="1" />
+          <End Role="Usuarios" Type="usperiodicoModel1.Store.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Roles">
               <PropertyRef Name="RoleId" />
@@ -45,11 +45,11 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="usperiodicoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="usperiodicoModel1" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="usperiodicoEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Roles" EntityType="usperiodicoModel.Roles" />
-          <EntitySet Name="Usuarios" EntityType="usperiodicoModel.Usuarios" />
-          <AssociationSet Name="FK_Usuarios_roles" Association="usperiodicoModel.FK_Usuarios_roles">
+          <EntitySet Name="Roles" EntityType="usperiodicoModel1.Roles" />
+          <EntitySet Name="Usuarios" EntityType="usperiodicoModel1.Usuarios" />
+          <AssociationSet Name="FK_Usuarios_roles" Association="usperiodicoModel1.FK_Usuarios_roles">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -60,7 +60,7 @@
           </Key>
           <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Role" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="Usuarios" Relationship="usperiodicoModel.FK_Usuarios_roles" FromRole="Roles" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="usperiodicoModel1.FK_Usuarios_roles" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -70,11 +70,11 @@
           <Property Name="email" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
           <Property Name="role" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="usperiodicoModel.FK_Usuarios_roles" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Roles" Relationship="usperiodicoModel1.FK_Usuarios_roles" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_Usuarios_roles">
-          <End Role="Roles" Type="usperiodicoModel.Roles" Multiplicity="1" />
-          <End Role="Usuarios" Type="usperiodicoModel.Usuarios" Multiplicity="*" />
+          <End Role="Roles" Type="usperiodicoModel1.Roles" Multiplicity="1" />
+          <End Role="Usuarios" Type="usperiodicoModel1.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Roles">
               <PropertyRef Name="RoleId" />
@@ -89,9 +89,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="usperiodicoModelStoreContainer" CdmEntityContainer="usperiodicoEntities">
+        <EntityContainerMapping StorageEntityContainer="usperiodicoModel1StoreContainer" CdmEntityContainer="usperiodicoEntities">
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="usperiodicoModel.Roles">
+            <EntityTypeMapping TypeName="usperiodicoModel1.Roles">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
@@ -99,7 +99,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="usperiodicoModel.Usuarios">
+            <EntityTypeMapping TypeName="usperiodicoModel1.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -124,7 +124,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Nenhum" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

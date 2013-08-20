@@ -13,7 +13,6 @@ namespace USPeriodico.Controllers
     public class EventoCEPEController : Controller
     {
         eventoCEPEEntities entities = new eventoCEPEEntities();
-        private List<EventoCEPE> todosEventos;
         
         
         //
@@ -38,11 +37,16 @@ namespace USPeriodico.Controllers
                     ViewBag.NoID = true;
                     ViewBag.ID = null;
                 }
-                
-                
-            
-            todosEventos = entities.EventoCEPE.ToList();
-            return View(todosEventos);
+
+
+
+            List<EventoCEPE> eventosCEPE = new List<EventoCEPE>();
+            foreach (EventoCEPE evento in entities.EventoCEPE.ToList())
+            {
+                if (evento.Valido == true)
+                    eventosCEPE.Add(evento);
+            }
+            return View(eventosCEPE);
         }
 
         [HttpGet]
@@ -68,8 +72,21 @@ namespace USPeriodico.Controllers
 
             int idint = int.Parse(id);
             EventoCEPE evento = entities.EventoCEPE.Find(idint);
-            entities.EventoCEPE.Remove(evento);
-            entities.SaveChanges();
+            usperiodicoEntities aluno = new usperiodicoEntities();
+            Usuarios dono = aluno.Usuarios.Find(HttpContext.User.Identity.Name);
+            if (Utilitarios.VerificaUsuario(1, dono.email) > 1)
+            {
+                entities.EventoCEPE.Remove(evento);
+                entities.SaveChanges();
+            }
+            else if (Utilitarios.VerificaUsuario(3, dono.email) > 1)
+            {
+                if (evento.AlunoID == dono.Id)
+                {
+                    entities.EventoCEPE.Remove(evento);
+                    entities.SaveChanges();
+                }
+            }
             return Redirect("Listar");
         }
 
@@ -89,7 +106,6 @@ namespace USPeriodico.Controllers
             usperiodicoEntities usuario = new usperiodicoEntities();
             Usuarios recuperado = usuario.Usuarios.First(Usuario => Usuario.email == name);
             ViewBag.AlunoID = recuperado.Id;
-
 
             return View();
         }
@@ -125,11 +141,20 @@ namespace USPeriodico.Controllers
                 int idInt = int.Parse(ID);
                 
                 EventoCEPE evento = entities.EventoCEPE.Find(idInt);
+                usperiodicoEntities aluno = new usperiodicoEntities();
+                Usuarios dono = aluno.Usuarios.Find(HttpContext.User.Identity.Name);
 
                 if (evento == null)
                     return View("Invalido");
-                else
+                else if (Utilitarios.VerificaUsuario(1, dono.email) > 1)
                     return View(evento);
+                else if (Utilitarios.VerificaUsuario(3, dono.email) > 1)
+                {
+                    if (evento.AlunoID == dono.Id)
+                        return View(evento);
+                    else
+                        return View();
+                }
             }
 
             return Redirect("~/Home/IndexSafe");
