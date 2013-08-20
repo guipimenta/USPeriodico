@@ -195,6 +195,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Estagio.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Estagio1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estagio.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EventoCEPE.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -351,23 +356,6 @@
       <DependentUpon>Timer.edmx</DependentUpon>
       <LastGenOutput>Timer1.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="Models\Estagio.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Estagio.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Estagio.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Estagio.edmx</DependentUpon>
-      <LastGenOutput>Estagio.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Estagio.edmx.diagram">
-      <DependentUpon>Estagio.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Estagio.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Estagio.edmx</DependentUpon>
-      <LastGenOutput>Estagio1.cs</LastGenOutput>
-    </Content>
     <EntityDeploy Include="Models\Usuarios.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Usuarios.Designer.cs</LastGenOutput>
@@ -419,6 +407,23 @@
       <DependentUpon>Empresa.edmx</DependentUpon>
       <LastGenOutput>Empresa1.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\Estagio.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Estagio.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Estagio.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Estagio.edmx</DependentUpon>
+      <LastGenOutput>Estagio.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Estagio.edmx.diagram">
+      <DependentUpon>Estagio.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Estagio.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Estagio.edmx</DependentUpon>
+      <LastGenOutput>Estagio1.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\USPeriodico.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Bootstrap\bootstrap.js" />
@@ -469,13 +474,10 @@
     <Content Include="Views\Administrador\ListarUsuarios.cshtml" />
     <Content Include="Views\Estagio\Detalhar.cshtml" />
     <Content Include="Views\Administrador\Historico.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Administrador\Timers.cshtml" />
     <Content Include="Views\Administrador\Adicionar.cshtml" />
-=======
     <Content Include="Views\Login\CriarAluno.cshtml" />
     <Content Include="Views\Login\CriarEmpresa.cshtml" />
->>>>>>> a8d4177dba8edf115d76420738903ac026bd7184
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

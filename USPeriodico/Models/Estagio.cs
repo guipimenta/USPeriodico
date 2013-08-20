@@ -25,8 +25,5 @@ namespace USPeriodico.Models
         public bool Valido { get; set; }
         public byte[] UltimaAlteracao { get; set; }
         public string ImageLink { get; set; }
-    
-        public virtual Area Area1 { get; set; }
-        public virtual Empresa Empresa { get; set; }
     }
 }

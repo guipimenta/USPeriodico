@@ -133,6 +133,7 @@ namespace USPeriodico.Controllers
         {
             try
             {
+                model.Valido = true;
                 model = entities.Estagio.Add(model);
                 entities.SaveChanges();          
                 return Redirect("Editar?Id=" + model.ID);

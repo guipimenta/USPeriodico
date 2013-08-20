@@ -28,8 +28,6 @@ namespace USPeriodico.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Area> Area { get; set; }
-        public DbSet<Empresa> Empresa { get; set; }
         public DbSet<Estagio> Estagio { get; set; }
     
         public virtual int EstagioDeletar(Nullable<int> id)
@@ -41,7 +39,7 @@ namespace USPeriodico.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EstagioDeletar", idParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> EstagioInsert(Nullable<int> empresaID, string descricao, string breveDescricao, Nullable<System.DateTime> dataInicio, Nullable<int> duracao, string bolsa, Nullable<int> area)
+        public virtual ObjectResult<Nullable<decimal>> EstagioInsert(Nullable<int> empresaID, string descricao, string breveDescricao, Nullable<System.DateTime> dataInicio, Nullable<int> duracao, string bolsa, Nullable<int> area, string imageLink)
         {
             var empresaIDParameter = empresaID.HasValue ?
                 new ObjectParameter("empresaID", empresaID) :
@@ -71,7 +69,11 @@ namespace USPeriodico.Models
                 new ObjectParameter("area", area) :
                 new ObjectParameter("area", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("EstagioInsert", empresaIDParameter, descricaoParameter, breveDescricaoParameter, dataInicioParameter, duracaoParameter, bolsaParameter, areaParameter);
+            var imageLinkParameter = imageLink != null ?
+                new ObjectParameter("ImageLink", imageLink) :
+                new ObjectParameter("ImageLink", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("EstagioInsert", empresaIDParameter, descricaoParameter, breveDescricaoParameter, dataInicioParameter, duracaoParameter, bolsaParameter, areaParameter, imageLinkParameter);
         }
     
         public virtual int EstagioUpdate(Nullable<int> empresaID, string descricao, string breveDescricao, Nullable<System.DateTime> dataInicio, Nullable<int> duracao, string bolsa, Nullable<int> area, Nullable<int> id)
