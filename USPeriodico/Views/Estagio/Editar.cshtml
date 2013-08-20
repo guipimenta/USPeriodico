@@ -5,12 +5,14 @@
     Layout = "~/Views/Base/_logadoBase.cshtml";
 }
 
-<form class="form-horizontal" action="Editar" method="post" >
+
+<div class="container" style="width: 75%;">
+        <div class ="hero-unit">
                 @if (ViewBag.mensagemErro != null)
                 {
                     @ViewBag.mensagemErro;
                 }
-                    
+            <form class="form-horizontal" action="Editar" method="post" >                  
                     
                 <input type="text" name="ID" id="ID" value="@ViewBag.ID" style="display:none" />
                 <input type="text" name="EmpresaID" id="EmpresaID" value="@Model.EmpresaID" style="display:none">
@@ -66,3 +68,5 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
