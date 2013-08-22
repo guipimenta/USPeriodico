@@ -74,12 +74,20 @@ namespace USPeriodico.Controllers
             EventoCEPE evento = entities.EventoCEPE.Find(idint);
             usperiodicoEntities aluno = new usperiodicoEntities();
             Usuarios dono = aluno.Usuarios.First(Usuario => Usuario.email == HttpContext.User.Identity.Name);
+<<<<<<< HEAD
             if (Utilitarios.VerificaUsuario(1, dono.email) >= 1)
+=======
+            if (Utilitarios.VerificaUsuario(1, dono.email) > 0)
+>>>>>>> a5cdb0d1e13c58c5ee93ca597b2483c11f591aad
             {
                 entities.EventoCEPE.Remove(evento);
                 entities.SaveChanges();
             }
+<<<<<<< HEAD
             else if (Utilitarios.VerificaUsuario(3, dono.email) >= 1)
+=======
+            else if (Utilitarios.VerificaUsuario(3, dono.email) > 0)
+>>>>>>> a5cdb0d1e13c58c5ee93ca597b2483c11f591aad
             {
                 if (evento.AlunoID == dono.Id)
                 {
@@ -147,9 +155,15 @@ namespace USPeriodico.Controllers
 
                 if (evento == null)
                     return View("Invalido");
+<<<<<<< HEAD
                 else if (Utilitarios.VerificaUsuario(1, dono.email) >= 1)
                     return View(evento);
                 else if (Utilitarios.VerificaUsuario(3, dono.email) >= 1)
+=======
+                else if (Utilitarios.VerificaUsuario(1, dono.email) > 0)
+                    return View(evento);
+                else if (Utilitarios.VerificaUsuario(3, dono.email) > 0)
+>>>>>>> a5cdb0d1e13c58c5ee93ca597b2483c11f591aad
                 {
                     if (evento.AlunoID == dono.Id)
                         return View(evento);
