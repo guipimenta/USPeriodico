@@ -172,7 +172,7 @@ namespace USPeriodico.Controllers
                         ViewBag.ID = id;
                         return View(estagio);
                     }
-                    else if (Utilitarios.VerificaUsuario(2, recuperado.email) > 1)
+                    else if (Utilitarios.VerificaUsuario(2, recuperado.email) >= 1)
                     {
                         if (recuperado.Id == estagio.EmpresaID)
                         {

@@ -9,6 +9,29 @@ namespace USPeriodico.Controllers
 {
     public class SincronizadorController : Controller
     {
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult ListaTimer()
+        {
+            String name = HttpContext.User.Identity.Name;
+
+            if (Utilitarios.VerificaUsuario(1, name) == 1)
+            {
+                timerEntities timer = new timerEntities();
+                List<Timer> todosTimers = timer.Timer.ToList();
+                return View(todosTimers);
+            }
+            else
+            {
+                String titulo = "Erro ao authenticar usuario";
+                String error = "O usuário não possuí permissões suficientes para listar os timers";
+                return Redirect("~/Error/Index?titulo="+ titulo + "&mensagem=" + error);
+            }
+
+            
+        }
+
         //
         // GET: /Sincronizador/EventoCEPE
         [HttpGet]
@@ -77,7 +100,7 @@ namespace USPeriodico.Controllers
                 // falta Model da empresa, para pegar o nome dela a partir do ID
                 json_estagio.data_inicio = estagio.DataInicio;
                 json_estagio.duracao = estagio.Duracao;
-                json_estagio.bolsa = Convert.ToDecimal(estagio.Bolsa); // trocar tipo de dado do estagio.Bolsa para Money
+                json_estagio.bolsa = estagio.Bolsa; // trocar tipo de dado do estagio.Bolsa para Money
                 // falta Model da area, para pegar o nome dela a partir do ID
                 json_estagios.Enqueue(json_estagio);
             }
@@ -104,7 +127,7 @@ namespace USPeriodico.Controllers
         public string descricao_empresa;
         public DateTime data_inicio;
         public string duracao;
-        public decimal bolsa;
+        public string bolsa;
         public string area;
     }
 

@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EstagioController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\EventoCEPEController.cs" />
@@ -478,6 +479,9 @@
     <Content Include="Views\Administrador\Adicionar.cshtml" />
     <Content Include="Views\Login\CriarAluno.cshtml" />
     <Content Include="Views\Login\CriarEmpresa.cshtml" />
+    <Content Include="Views\Sincronizador\ListaTimer.cshtml" />
+    <Content Include="Views\Shared\Fracasso.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
