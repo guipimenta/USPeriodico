@@ -1,0 +1,29 @@
+﻿@model IEnumerable<USPeriodico.Models.palestras>
+
+@{
+    Layout = "~/Views/Base/_logadoBase.cshtml";
+}
+
+<!DOCTYPE html>
+<div class="container" style="width: 75%;">
+   <div class="hero-unit">
+       <h2>Estágios</h2>
+       <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Detalhes</th>
+            </tr>
+             @foreach(USPeriodico.Models.palestras palestraS in Model){
+                <tr>
+                    <td>@palestraS.ID</td>
+                    <td>@palestraS.nome</td>
+                
+                        <td><a onclick="carregaPalestra('/Detalhar?ID=@palestraS.ID')" class="btn btn-info"><i class=" icon-plus icon-white"></i> Detalhar</a></td>
+                </tr>
+             }
+    
+        </table>
+    </div>
+    <div id="conteudo" class="modal hide fade" tabindex="-1" aria-hidden="true" style="width: 500px; overflow-x:hidden "></div>
+</div>

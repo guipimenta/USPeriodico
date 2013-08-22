@@ -26,7 +26,7 @@
                             <td>@evento.ID</td>
                             <td>@evento.Nome</td>
                 
-                            @if (ViewBag.ID == evento.AlunoID && evento.Data <= DateTime.Now)
+                            @if (ViewBag.ID == evento.AlunoID)
                             {
                                 <td><a class="btn btn-warning" href="Editar?id=@evento.ID"><i class=" icon-pencil icon-white"></i> Modificar</a></td>
                             }

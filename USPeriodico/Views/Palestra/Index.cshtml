@@ -1,13 +1,17 @@
 ﻿@{
     ViewBag.Title = "Usperiodico";
-    Layout = "~/Views/Base/_usuarioComumBase.cshtml";
+    if(ViewBag.isLogado == false)
+    {
+        Layout = "~/Views/Base/_usuarioComumBase.cshtml";
+    } else {
+        Layout = "~/Views/Base/_logadoBase.cshtml";
+    }
+       
 }
 
 <div class="container">
      @for (int i = 0; i < @ViewBag.eventoSize ; i++ )
      {
-         if (@ViewBag.eventoTipo[i] == 1)
-         {
             <div class="mosaic-block bar2">
             <a onclick="carregaEventoCEPE('/Detalhar?ID=@ViewBag.eventosID[i]')" class="mosaic-overlay">
               <div class="details">
@@ -18,36 +22,8 @@
         <div class="mosaic-backdrop"><img src="@ViewBag.eventosLinkImage[i]" style="height: 200px;"/>
         </div> 
         </div>
-         }
-         else if (@ViewBag.eventoTipo[i] == 2){
-            <div class="mosaic-block bar2">
-            <a onclick="carregaEstagio('/Detalhar?ID=@ViewBag.eventosID[i]')" class="mosaic-overlay">
-              <div class="details">
-                  <h5>@ViewBag.eventosNome[i] - @ViewBag.eventosDataString[i]</h5>
-                  <h5>Mais+</h5>
-              </div>
-            </a>
-        <div class="mosaic-backdrop"><img src="@ViewBag.eventosLinkImage[i]" style="height: 200px;"/>
-        </div> 
-                </div>
-         
-         }
-
-         else if (@ViewBag.eventoTipo[i] == 3)
-         {
-             <div class="mosaic-block bar2">
-                <a onclick="carregaPalestra('/Detalhar?ID=@ViewBag.eventosID[i]')" class="mosaic-overlay">
-                  <div class="details">
-                      <h5>@ViewBag.eventosNome[i] - @ViewBag.eventosDataString[i]</h5>
-                      <h5>Mais+</h5>
-                  </div>
-                </a>
-            <div class="mosaic-backdrop"><img src="@ViewBag.eventosLinkImage[i]" style="height: 200px;"/>
-                 </div> 
-                </div>
-
-         }
-         }
+      
+        
 
      }
 </div>

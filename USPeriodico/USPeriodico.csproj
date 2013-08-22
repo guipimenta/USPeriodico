@@ -130,11 +130,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EstagioController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\EventoCEPEController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PalestraController.cs" />
     <Compile Include="Controllers\SincronizadorController.cs" />
     <Compile Include="Controllers\Utilitarios.cs" />
     <Compile Include="Global.asax.cs">
@@ -217,6 +219,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EventoCEPE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Palestra.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Palestra.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Palestra.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Palestra.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Palestra.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Palestra.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\palestras.cs">
+      <DependentUpon>Palestra.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>Usuarios.tt</DependentUpon>
@@ -339,23 +359,6 @@
       <LastGenOutput>EventoCEPE1.cs</LastGenOutput>
     </Content>
     <Content Include="ClassDiagram1.cd" />
-    <EntityDeploy Include="Models\Timer.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Timer.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Timer.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Timer.edmx</DependentUpon>
-      <LastGenOutput>Timer.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Timer.edmx.diagram">
-      <DependentUpon>Timer.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Timer.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Timer.edmx</DependentUpon>
-      <LastGenOutput>Timer1.cs</LastGenOutput>
-    </Content>
     <EntityDeploy Include="Models\Usuarios.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Usuarios.Designer.cs</LastGenOutput>
@@ -424,6 +427,40 @@
       <DependentUpon>Estagio.edmx</DependentUpon>
       <LastGenOutput>Estagio1.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\Timer.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Timer.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Timer.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Timer.edmx</DependentUpon>
+      <LastGenOutput>Timer.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Timer.edmx.diagram">
+      <DependentUpon>Timer.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Timer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Timer.edmx</DependentUpon>
+      <LastGenOutput>Timer1.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Palestra.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Palestra.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Palestra.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Palestra.edmx</DependentUpon>
+      <LastGenOutput>Palestra.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Palestra.edmx.diagram">
+      <DependentUpon>Palestra.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Palestra.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Palestra.edmx</DependentUpon>
+      <LastGenOutput>Palestra.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\USPeriodico.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Bootstrap\bootstrap.js" />
@@ -478,6 +515,14 @@
     <Content Include="Views\Administrador\Adicionar.cshtml" />
     <Content Include="Views\Login\CriarAluno.cshtml" />
     <Content Include="Views\Login\CriarEmpresa.cshtml" />
+    <Content Include="Views\Sincronizador\ListaTimer.cshtml" />
+    <Content Include="Views\Shared\Fracasso.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Sincronizador\Editar.cshtml" />
+    <Content Include="Views\Sincronizador\Criar.cshtml" />
+    <Content Include="Views\Palestra\Index.cshtml" />
+    <Content Include="Views\Palestra\Listar.cshtml" />
+    <Content Include="Views\Palestra\Detalhar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
