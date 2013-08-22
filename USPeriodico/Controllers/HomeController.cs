@@ -29,12 +29,16 @@ namespace USPeriodico.Controllers
 
             eventosCEPE = entities.EventoCEPE.ToList();
             estagios = entities2.Estagio.ToList();
-            int[] eventoID = new int[eventosCEPE.Count+ estagios.Count];
-            int[] eventoTipo = new int[eventosCEPE.Count + estagios.Count];
-            String[] eventosNome = new String[eventosCEPE.Count + estagios.Count];
-            String[] eventosDataString = new String[eventosCEPE.Count + estagios.Count];
-            DateTime[] eventosData = new DateTime[eventosCEPE.Count + estagios.Count];
-            String[] eventosLinkImage = new String[eventosCEPE.Count + estagios.Count];
+
+            palestraEntities palestraE = new palestraEntities();
+            List<palestras> palestrasList = palestraE.palestras.ToList();
+
+            int[] eventoID = new int[eventosCEPE.Count+ estagios.Count + palestrasList.Count];
+            int[] eventoTipo = new int[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            String[] eventosNome = new String[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            String[] eventosDataString = new String[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            DateTime[] eventosData = new DateTime[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            String[] eventosLinkImage = new String[eventosCEPE.Count + estagios.Count + palestrasList.Count];
             int i=0;
 
             if (mesDesejado < 1 || mesDesejado > 12)
@@ -42,6 +46,19 @@ namespace USPeriodico.Controllers
                     mesDesejado = DateTime.Now.Month;
             }
 
+            foreach (palestras palestraS in palestrasList)
+            {
+                if (((DateTime)palestraS.dataInicio).Month == mesDesejado)
+                {
+                    eventoID[i] = palestraS.ID;
+                    eventosNome[i] = palestraS.nome;
+                    eventosData[i] = (DateTime)palestraS.dataInicio;
+                    eventosDataString[i] = "" + eventosData[i].Day + "/" + eventosData[i].Month;
+                    eventosLinkImage[i] = palestraS.imagemLink;
+                    eventoTipo[i] = 3;
+                }
+                i++;
+            }
 
             foreach (EventoCEPE evento in eventosCEPE)
             {
@@ -87,9 +104,6 @@ namespace USPeriodico.Controllers
         [Authorize]
         public ActionResult IndexSafe(int? mesDesejado = null)
         {
-            if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) < 0)
-                return Redirect(FormsAuthentication.LoginUrl);
-
             if (!mesDesejado.HasValue)
             {
                 mesDesejado = DateTime.Now.Month;
@@ -97,12 +111,16 @@ namespace USPeriodico.Controllers
 
             eventosCEPE = entities.EventoCEPE.ToList();
             estagios = entities2.Estagio.ToList();
-            int[] eventoID = new int[eventosCEPE.Count + estagios.Count];
-            int[] eventoTipo = new int[eventosCEPE.Count + estagios.Count];
-            String[] eventosNome = new String[eventosCEPE.Count + estagios.Count];
-            String[] eventosDataString = new String[eventosCEPE.Count + estagios.Count];
-            DateTime[] eventosData = new DateTime[eventosCEPE.Count + estagios.Count];
-            String[] eventosLinkImage = new String[eventosCEPE.Count + estagios.Count];
+
+            palestraEntities palestraE = new palestraEntities();
+            List<palestras> palestrasList = palestraE.palestras.ToList();
+
+            int[] eventoID = new int[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            int[] eventoTipo = new int[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            String[] eventosNome = new String[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            String[] eventosDataString = new String[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            DateTime[] eventosData = new DateTime[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            String[] eventosLinkImage = new String[eventosCEPE.Count + estagios.Count + palestrasList.Count];
             int i = 0;
 
             if (mesDesejado < 1 || mesDesejado > 12)
@@ -110,6 +128,19 @@ namespace USPeriodico.Controllers
                 mesDesejado = DateTime.Now.Month;
             }
 
+            foreach (palestras palestraS in palestrasList)
+            {
+                if (((DateTime)palestraS.dataInicio).Month == mesDesejado)
+                {
+                    eventoID[i] = palestraS.ID;
+                    eventosNome[i] = palestraS.nome;
+                    eventosData[i] = (DateTime)palestraS.dataInicio;
+                    eventosDataString[i] = "" + eventosData[i].Day + "/" + eventosData[i].Month;
+                    eventosLinkImage[i] = palestraS.imagemLink;
+                    eventoTipo[i] = 3;
+                }
+                i++;
+            }
 
             foreach (EventoCEPE evento in eventosCEPE)
             {
@@ -146,7 +177,6 @@ namespace USPeriodico.Controllers
             ViewBag.eventosDataString = eventosDataString;
             ViewBag.eventosLinkImage = eventosLinkImage;
             ViewBag.eventoSize = i;
-
             return View();
         }
 

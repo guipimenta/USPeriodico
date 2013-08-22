@@ -1,0 +1,36 @@
+﻿@model USPeriodico.Models.palestras
+
+@{
+    ViewBag.Title = "Detalhar";
+    if(ViewBag.NoID == false)
+    {
+        Layout = "~/Views/Base/_logadoBase.cshtml";
+    } else {
+        Layout = "~/Views/Base/_usuarioComumBase.cshtml";
+    }
+    
+}
+
+
+<div class="modal-header">
+    <button type = "button" class="close" data-dismiss="modal">X</button>
+</div>
+<div class="modal-body">
+  <dl class="dl-horizontal">
+    <dt>Nome</dt>
+    <dd>@Model.nome</dd>
+    <dt>Descrição</dt>
+    <dd>@Model.descricao</dd>
+    <dt>Data</dt>
+    <dd>@Model.dataInicio</dd>
+    <dt>Local</dt>
+    <dd>@Model.local</dd>
+    <dt>Duracao</dt>
+    <dd>@Model.duracao</dd>
+    <dt>Palestrante</dt>
+    <dd>@Model.palestrantes</dd>
+  </dl>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+</div>

@@ -32,6 +32,11 @@
             $('#conteudo').load('/Estagio/' + link);
             $('#conteudo').modal('show');
         }
+        
+        function carregaPalestra(link) {
+            $('#conteudo').load('/Palestra/' + link);
+            $('#conteudo').modal('show');
+        }
     </script>
 
 </head>
@@ -64,7 +69,7 @@
                             <a href="#">Cursos ExtCur</a>
                         </li>
                          <li>
-                            <a href="#">Palestras</a>
+                            <a href="~/Palestra/">Palestras</a>
                         </li>
                     </ul>
                 </li>
@@ -92,8 +97,10 @@
                         <li>
                             <a href="~/Administrador/Historico">Eventos</a>
                         </li>
+                         <li class="divider" role="presentation"></li>
                          <li>
                             <a href="~/Sincronizador/ListaTimer">Timers</a>
+                            <a href="~/Sincronizador/Criar">Criar novo timer</a>
                         </li>
                     </ul>
                 </li>

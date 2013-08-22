@@ -1,0 +1,49 @@
+﻿@model USPeriodico.Models.Timer
+
+@{
+    ViewBag.Title = "Criar";
+    Layout = "~/Views/Base/_logadoBase.cshtml";
+}
+
+<script>  
+$(function ()  
+{
+    $("#HorarioHelper").popover({ trigger: 'hover' });
+    $("#FreqHelper").popover({ trigger: 'hover' });
+}
+
+    );
+</script>
+
+<div class="container" style="width: 60%;">
+        <div class ="hero-unit">
+           
+            <h1 align="center">Criar novo timer</h1><br>
+            <form class="form-horizontal" action="Criar" method="post" >
+                <div class="control-group">
+                    <label class="control-label" for="Horario">Horario:</label>
+                    <div class="controls">
+                        <div style="font-size:12px">
+                            <input type="text" id="Horario"  name="Horario"/>
+                            <a href ="#" id="HorarioHelper" rel="popover" data-content="Insira o horario do dia desejado para sincronizar o sistema USPeriódicos com os sistemas externos."><i class="icon-question-sign"></i></a> 
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Frequencia">Frequência:</label>
+                    <div class="controls">
+                        <div style="font-size:12px">
+                            <input type="text" id="Frequencia"  name="Frequencia"/>
+                            <a href ="#" id="FreqHelper" rel="popover" data-content="Quantas vezes durante a semana os timers deverao ser rodados (não funcional)"><i class="icon-question-sign"></i></a> 
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-warning">Criar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

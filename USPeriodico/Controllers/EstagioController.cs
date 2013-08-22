@@ -172,11 +172,8 @@ namespace USPeriodico.Controllers
                         ViewBag.ID = id;
                         return View(estagio);
                     }
-<<<<<<< HEAD
-                    else if (Utilitarios.VerificaUsuario(2, recuperado.email) >= 1)
-=======
+
                     else if (Utilitarios.VerificaUsuario(2, recuperado.email) > 0)
->>>>>>> a5cdb0d1e13c58c5ee93ca597b2483c11f591aad
                     {
                         if (recuperado.Id == estagio.EmpresaID)
                         {

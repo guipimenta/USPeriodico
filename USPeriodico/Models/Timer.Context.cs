@@ -39,7 +39,7 @@ namespace USPeriodico.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TimerDeletar", idParameter);
         }
     
-        public virtual int TimerInsert(Nullable<System.TimeSpan> horario, Nullable<int> frequencia)
+        public virtual ObjectResult<Nullable<decimal>> TimerInsert(Nullable<System.TimeSpan> horario, Nullable<int> frequencia)
         {
             var horarioParameter = horario.HasValue ?
                 new ObjectParameter("horario", horario) :
@@ -49,7 +49,7 @@ namespace USPeriodico.Models
                 new ObjectParameter("frequencia", frequencia) :
                 new ObjectParameter("frequencia", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TimerInsert", horarioParameter, frequenciaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("TimerInsert", horarioParameter, frequenciaParameter);
         }
     
         public virtual int TimerUpdate(Nullable<int> id, Nullable<System.TimeSpan> horario, Nullable<int> frequencia)
