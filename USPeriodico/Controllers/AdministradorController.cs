@@ -54,13 +54,16 @@ namespace USPeriodico.Controllers
             else if (Utilitarios.VerificaUsuario(1, HttpContext.User.Identity.Name) == 0)
                 return Redirect("/Home/IndexSafe");
 
+
+            palestraEntities palestraE = new palestraEntities();
+            List<palestras> palestrasList = palestraE.palestras.ToList();
             eventosCEPE = entities.EventoCEPE.ToList();
             estagios = entities2.Estagio.ToList();
-            int[] eventoID = new int[eventosCEPE.Count + estagios.Count];
-            int[] eventoTipo = new int[eventosCEPE.Count + estagios.Count];
-            String[] eventosNome = new String[eventosCEPE.Count + estagios.Count];
-            String[] eventosDataString = new String[eventosCEPE.Count + estagios.Count];
-            DateTime[] eventosData = new DateTime[eventosCEPE.Count + estagios.Count];
+            int[] eventoID = new int[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            int[] eventoTipo = new int[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            String[] eventosNome = new String[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            String[] eventosDataString = new String[eventosCEPE.Count + estagios.Count + palestrasList.Count];
+            DateTime[] eventosData = new DateTime[eventosCEPE.Count + estagios.Count + palestrasList.Count];
             int i = 0;
             foreach (EventoCEPE evento in eventosCEPE)
             {
@@ -79,6 +82,17 @@ namespace USPeriodico.Controllers
                 eventosData[i] = estagio.DataInicio;
                 eventosDataString[i] = "" + estagio.DataInicio.Day + "/" + estagio.DataInicio.Month + "/" + estagio.DataInicio.Year;
                 eventoTipo[i] = 2;
+                i++;
+            }
+
+
+            foreach (palestras palestraS in palestrasList)
+            {
+                    eventoID[i] = palestraS.ID;
+                    eventosNome[i] = palestraS.nome;
+                    eventosData[i] = (DateTime)palestraS.dataInicio;
+                    eventosDataString[i] = "" + eventosData[i].Day + "/" + eventosData[i].Month;
+                    eventoTipo[i] = 3;
                 i++;
             }
 

@@ -24,19 +24,47 @@
                    <td>@ViewBag.eventosID[i]</td>
                    @if (@ViewBag.eventoTipo[i] == 1)
                    {
-                   <td>Esporte</td>
+                       <td>Esporte</td>
+                       <td>@ViewBag.eventosNome[i]</td>
+                       <td>@ViewBag.eventosDataString[i]</td>
+                       <td><a onclick="carregaEventoCEPE('/Detalhar?ID=@ViewBag.eventosID[i]')" class="btn btn-info"><i class=" icon-plus icon-white"></i> Detalhar</a></td>
+                   }
+                   @if (@ViewBag.eventoTipo[i] == 2)
+                   {
+                       <td>Esporte</td>
+                       <td>@ViewBag.eventosNome[i]</td>
+                       <td>@ViewBag.eventosDataString[i]</td>
+                       <td><a onclick="carregaEventoCEPE('/Detalhar?ID=@ViewBag.eventosID[i]')" class="btn btn-info"><i class=" icon-plus icon-white"></i> Detalhar</a></td>
+                   }
+                   @if (@ViewBag.eventoTipo[i] == 3)
+                   {
+                   <td>Palestra</td>
                    <td>@ViewBag.eventosNome[i]</td>
                    <td>@ViewBag.eventosDataString[i]</td>
-                   <td><a onclick="carregaEventoCEPE('/Detalhar?ID=@ViewBag.eventosID[i]')" class="btn btn-info"><i class=" icon-plus icon-white"></i> Detalhar</a></td>
+                   <td><a onclick="carregaEstagio('/Detalhar?ID=@ViewBag.eventosID[i]')" class="btn btn-info"><i class=" icon-plus icon-white"></i> Detalhar</a></td>
                    }
                </tr>
                }
                else if (@ViewBag.eventosData[i] >= DateTime.Now){
                <tr class="warning">
                    <td>@ViewBag.eventosID[i]</td>
+                   @if (@ViewBag.eventoTipo[i] == 1)
+                   {
+                       <td>Esporte</td>
+                       <td>@ViewBag.eventosNome[i]</td>
+                       <td>@ViewBag.eventosDataString[i]</td>
+                       <td><a onclick="carregaEventoCEPE('/Detalhar?ID=@ViewBag.eventosID[i]')" class="btn btn-info"><i class=" icon-plus icon-white"></i> Detalhar</a></td>
+                   }
                    @if (@ViewBag.eventoTipo[i] == 2)
                    {
                    <td>Estágio</td>
+                   <td>@ViewBag.eventosNome[i]</td>
+                   <td>@ViewBag.eventosDataString[i]</td>
+                   <td><a onclick="carregaEstagio('/Detalhar?ID=@ViewBag.eventosID[i]')" class="btn btn-info"><i class=" icon-plus icon-white"></i> Detalhar</a></td>
+                   }
+                    @if (@ViewBag.eventoTipo[i] == 3)
+                   {
+                   <td>Palestra</td>
                    <td>@ViewBag.eventosNome[i]</td>
                    <td>@ViewBag.eventosDataString[i]</td>
                    <td><a onclick="carregaEstagio('/Detalhar?ID=@ViewBag.eventosID[i]')" class="btn btn-info"><i class=" icon-plus icon-white"></i> Detalhar</a></td>

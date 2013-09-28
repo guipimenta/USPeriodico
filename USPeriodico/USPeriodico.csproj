@@ -280,6 +280,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CSS\bootstrap-responsive.css" />
     <Content Include="Content\CSS\bootstrap.css" />
     <Content Include="Content\CSS\mosaic.css" />
     <Content Include="Content\CSS\usperiodico.css" />
